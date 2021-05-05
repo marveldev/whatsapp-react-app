@@ -1,8 +1,12 @@
+import ContactListPage from '../chatPage/ContactListPage'
 import TopNav from '../topNav/TopNav'
 
 const HomePage = () => {
   return (
-    <TopNav />
+    <div>
+      <TopNav />
+      <ContactListPage />
+    </div>
   )
 }
 

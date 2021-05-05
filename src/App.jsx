@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { TopNav } from './components'
+import { HomePage } from './components'
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className="app-layer">
         <Switch>
-          <Route path="/" component={TopNav} exact />
+          <Route path="/" component={HomePage} exact />
         </Switch>
       </div>
     </BrowserRouter>
