@@ -1,0 +1,57 @@
+@import '../../common/helper';
+
+.contact-list-page {
+  position: relative;
+  top: 6em;
+
+  .contact-list {
+    padding-bottom: 0.5em;
+
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 0 1em;
+
+      .info {
+        width: 100%;
+        border-bottom: 0.1em solid #DCDCDC;
+        padding: 0.5em 2em 0.5em 0;
+        cursor: pointer;
+
+        p {
+          margin: 0.5em 0 0 0;
+          font-weight: 600;
+        }
+
+        div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.9em;
+
+          .notification {
+            background-color: $primaryColor;
+            padding: 0.5em 0.8em;
+            font-weight: 600;
+            color: #fff;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+    .photo-container {
+      @extend %photo-size;
+      background: #000000;
+
+      .contact-photo {
+        @extend %photo-size;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .message-icon {
+    @extend %style-icon;
+  }
+}

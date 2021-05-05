@@ -6,8 +6,16 @@ $textPrimaryColor: #fff;
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1;
   background-color: $primaryColor;
   color: $textPrimaryColor;
+}
+
+%photo-size {
+  height: 3.5em;
+  width: 3.5em;
+  cursor: pointer;
+  border-radius: 50%;
 }
 
 %remove-default {
@@ -21,4 +29,20 @@ $textPrimaryColor: #fff;
   display: flex;
   justify-content: $value;
   align-items: center;
+}
+
+%style-icon {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  font-size: 1.2em;
+  background-color: $primaryColor;
+  box-shadow: 0 0.2em 0.2em 0em #00000060;
 }
