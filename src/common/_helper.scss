@@ -1,0 +1,24 @@
+$primaryColor: #1D7063;
+$textPrimaryColor: #fff;
+
+%fixed-position {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $primaryColor;
+  color: $textPrimaryColor;
+}
+
+%remove-default {
+  border: unset;
+  background-color: transparent;
+  color: $textPrimaryColor;
+  cursor: pointer;
+}
+
+@mixin display($value) {
+  display: flex;
+  justify-content: $value;
+  align-items: center;
+}

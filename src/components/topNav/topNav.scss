@@ -1,0 +1,35 @@
+@import '../../common/helper';
+
+.top-nav {
+  @extend %fixed-position;
+
+  .header {
+    @include display(space-between);
+    padding: 0 1em;
+
+    button {
+      @extend %remove-default;
+      width: 3em;
+      height: 2em;
+      font-size: 1.1em;
+      vertical-align: middle;
+    }
+  }
+
+  .nav {
+    @include display(space-around);
+
+    button {
+      @extend %remove-default;
+      font-weight: 600;
+      color: #ffffffca;
+      height: 3em;
+      width: 100%;
+    }
+
+    .active{
+      color: $textPrimaryColor;
+      border-bottom: 0.2em solid $textPrimaryColor;
+    }
+  }
+}
