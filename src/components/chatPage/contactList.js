@@ -5,7 +5,7 @@ const contactList = [
     profilePhoto: 'https://images.pexels.com/photos/2327283/pexels-photo-2327283.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
   },
   {
-    id: 'ejobao',
+    id: 'mzaqrt',
     name: 'Dulani Kondo',
     profilePhoto: 'https://images.pexels.com/photos/3189024/pexels-photo-3189024.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
   },
