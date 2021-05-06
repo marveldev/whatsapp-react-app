@@ -1,8 +1,7 @@
 @import '../../common/helper';
 
 .calls-page {
-  position: relative;
-  top: 6em;
+  @extend %relative-position;
   text-align: center;
 
   div {

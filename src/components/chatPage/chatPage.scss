@@ -1,8 +1,7 @@
 @import '../../common/helper';
 
 .contact-list-page {
-  position: relative;
-  top: 6em;
+  @extend %relative-position;
 
   .contact-list {
     padding-bottom: 0.5em;
@@ -24,16 +23,14 @@
         }
 
         div {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+          @include display(space-between);
           font-size: 0.9em;
 
           .notification {
             background-color: $primaryColor;
             padding: 0.5em 0.8em;
             font-weight: 600;
-            color: #fff;
+            color: $textPrimaryColor;
             border-radius: 50%;
           }
         }

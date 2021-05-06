@@ -1,5 +1,6 @@
 $primaryColor: #1D7063;
 $textPrimaryColor: #fff;
+$secondaryColor: #00E676;
 
 %fixed-position {
   position: fixed;
@@ -9,6 +10,11 @@ $textPrimaryColor: #fff;
   z-index: 1;
   background-color: $primaryColor;
   color: $textPrimaryColor;
+}
+
+%relative-position {
+  position: relative;
+  top: 6em;
 }
 
 %photo-size {
@@ -23,6 +29,10 @@ $textPrimaryColor: #fff;
   background-color: transparent;
   color: $textPrimaryColor;
   cursor: pointer;
+
+  &:active {
+    transform: translateY(0.2em);
+  }
 }
 
 @mixin display($value) {
@@ -32,17 +42,17 @@ $textPrimaryColor: #fff;
 }
 
 %style-icon {
-  position: fixed;
-  bottom: 2em;
-  right: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  position: fixed;
+  bottom: 2em;
+  right: 1.5em;
+  color: $textPrimaryColor;
   width: 3em;
   height: 3em;
   border-radius: 50%;
   font-size: 1.2em;
-  background-color: $primaryColor;
+  background-color: $secondaryColor;
   box-shadow: 0 0.2em 0.2em 0em #00000060;
 }
