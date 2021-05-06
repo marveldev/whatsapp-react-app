@@ -1,0 +1,15 @@
+@import '../../common/helper';
+
+.calls-page {
+  position: relative;
+  top: 6em;
+  text-align: center;
+
+  div {
+    padding: 10em 2em;
+  }
+
+  .phone-icon {
+    @extend %style-icon;
+  }
+}

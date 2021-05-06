@@ -1,3 +1,4 @@
+import CallsPage from '../callsPage/CallsPage'
 import ContactListPage from '../chatPage/ContactListPage'
 import TopNav from '../topNav/TopNav'
 
@@ -5,7 +6,8 @@ const HomePage = () => {
   return (
     <div>
       <TopNav />
-      <ContactListPage />
+      {/* <ContactListPage /> */}
+      <CallsPage />
     </div>
   )
 }
