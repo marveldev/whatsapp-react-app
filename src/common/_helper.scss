@@ -31,7 +31,8 @@ $secondaryColor: #00E676;
   cursor: pointer;
 
   &:active {
-    transform: translateY(0.2em);
+    transform: translateY(0.1em);
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -47,12 +48,22 @@ $secondaryColor: #00E676;
   align-items: center;
   position: fixed;
   bottom: 2em;
-  right: 1.5em;
+  right: 1em;
   color: $textPrimaryColor;
   width: 3em;
   height: 3em;
+  border: unset;
   border-radius: 50%;
+  cursor: pointer;
   font-size: 1.2em;
   background-color: $secondaryColor;
   box-shadow: 0 0.2em 0.2em 0em #00000060;
+
+  i {
+    font-size: 1.3em;
+  }
+
+  &:active {
+    transform: translateY(0.2em);
+  }
 }

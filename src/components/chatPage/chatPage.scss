@@ -14,7 +14,7 @@
       .info {
         width: 100%;
         border-bottom: 0.1em solid #DCDCDC;
-        padding: 0.5em 2em 0.5em 0;
+        padding: 0.5em 1em 0.5em 0;
         cursor: pointer;
 
         p {
@@ -27,7 +27,7 @@
           font-size: 0.9em;
 
           .notification {
-            background-color: $primaryColor;
+            background-color: $secondaryColor;
             padding: 0.5em 0.8em;
             font-weight: 600;
             color: $textPrimaryColor;

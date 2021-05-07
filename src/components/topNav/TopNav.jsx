@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { currentPageActions } from '../homePage/slice'
 import './topNav.scss'
 
 const TopNav = () => {
+  const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
   const dispatch = useDispatch()
   const { currentPage } = useSelector(state => state.currentPage)
 
@@ -17,7 +19,7 @@ const TopNav = () => {
         <h3>WhatsApp</h3>
         <div>
           <button><i className="fa fa-search"></i></button>
-          <button>
+          <button onClick={() => setDropdownIsOpen(true)}>
             <i className="material-icons">&#xe5d4;</i>
           </button>
         </div>
@@ -40,6 +42,17 @@ const TopNav = () => {
           CALLS
         </button>
       </nav>
+      {dropdownIsOpen && (
+        <div onClick={() => setDropdownIsOpen(false)} className="overlay">
+          <div className="dropdown">
+            <button>New group</button>
+            <button>New broadcast</button>
+            <button>WhatsApp Web</button>
+            <button>Starred messages</button>
+            <button>Settings</button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
