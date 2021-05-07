@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router'
 import contactList from './contactList'
-import './chatPage.scss'
+import './contactListPage.scss'
 
 const ContactListPage = () => {
   const history = useHistory()

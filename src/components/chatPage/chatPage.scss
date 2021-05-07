@@ -1,56 +1,132 @@
 @import '../../common/helper';
 
-.contact-list-page {
-  @extend %relative-position;
+.chat-page {
 
-  .contact-list {
-    padding-bottom: 0.5em;
+  .header {
+    @extend %fixed-position;
+    @include display(space-between);
+    height: 4em;
 
-    .contact {
+    .back-button-container {
       display: flex;
       align-items: center;
-      gap: 0 1em;
+    }
 
-      .info {
-        width: 100%;
-        border-bottom: 0.1em solid #DCDCDC;
-        padding: 0.5em 1em 0.5em 0;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
+    .chat-person-info {
+      width: 100%;
+      cursor: pointer;
+      margin-left: 0.5em;
+      -webkit-tap-highlight-color: transparent;
 
-        p {
-          margin: 0.5em 0 0 0;
-          font-weight: 600;
-        }
+      .name {
+        font-weight: 550;
+      }
 
-        div {
-          @include display(space-between);
-          font-size: 0.9em;
+      p {
+        margin: 0;
 
-          .notification {
-            background-color: $secondaryColor;
-            padding: 0.5em 0.8em;
-            font-weight: 600;
-            color: $textPrimaryColor;
-            border-radius: 50%;
-          }
+        &:last-child {
+          font-size: 0.8em;
         }
       }
     }
 
     .photo-container {
       @extend %photo-size;
+      @include display(center);
       background: #000000;
-      -webkit-tap-highlight-color: #DCDCDC;
+      font-size: 0.8em;
+    }
 
-      .contact-photo {
-        @extend %photo-size;
-        object-fit: cover;
+    .contact-photo {
+      @extend %photo-size;
+      object-fit: cover;
+      font-size: 0.8em;
+      -webkit-tap-highlight-color: #DCDCDC;
+    }
+
+    button {
+      @extend %remove-default;
+    }
+
+    .button-container {
+      display: flex;
+      align-items: center;
+
+      button {
+        width: 3em;
+        height: 3em;
+
+        i {
+          font-size: 1.5em;
+        }
       }
     }
   }
 
-  .message-icon {
-    @extend %style-icon;
+  .chat-input-container {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 10em;
+    min-height: 4em;
+    z-index: 1;
+    background-color: aqua;
+
+    .chat-input-options {
+      display: flex;
+      align-items: center;
+      flex: 1;
+
+      .chat-input {
+        width: 100%;
+        border-radius: 1.5em;
+        resize: none;
+        border: unset;
+        padding: 0.8em 3em 0;
+        font-size: 1.1em;
+        outline: none;
+      }
+
+      .smiley-button {
+        position: relative;
+        left: 3em;
+      }
+
+      .clip-button {
+        position: relative;
+        right: 3em;
+
+        i {
+          font-size: 1.5em;
+        }
+      }
+    }
+
+    .send-chat-container {
+      display: none;
+    }
+
+    button {
+      @extend %remove-default;
+      color: #000;
+    }
+
+    .record-button {
+      width: 3em;
+      height: 3em;
+      border-radius: 50%;
+      background-color: $primaryColor;
+      margin-right: 1em;
+
+      i {
+        font-size: 1.5em;
+        color: $textPrimaryColor;
+      }
+    }
   }
 }
