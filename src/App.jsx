@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { HomePage } from './components'
+import { ChatPage, HomePage } from './components'
 import './index.scss'
 
 const App = () => {
@@ -8,6 +8,7 @@ const App = () => {
       <div className="app-layer">
         <Switch>
           <Route path="/" component={HomePage} exact />
+          <Route path="/chatPage" component={ChatPage} />
         </Switch>
       </div>
     </BrowserRouter>

@@ -16,6 +16,7 @@
         border-bottom: 0.1em solid #DCDCDC;
         padding: 0.5em 1em 0.5em 0;
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
 
         p {
           margin: 0.5em 0 0 0;
@@ -40,6 +41,7 @@
     .photo-container {
       @extend %photo-size;
       background: #000000;
+      -webkit-tap-highlight-color: #DCDCDC;
 
       .contact-photo {
         @extend %photo-size;

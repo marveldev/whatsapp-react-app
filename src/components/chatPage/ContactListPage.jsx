@@ -1,7 +1,10 @@
+import { useHistory } from 'react-router'
 import contactList from './contactList'
 import './chatPage.scss'
 
 const ContactListPage = () => {
+  const history = useHistory()
+
   return (
     <div className="contact-list-page">
       <div className="contact-list">
@@ -10,7 +13,7 @@ const ContactListPage = () => {
             <div className="photo-container">
               <img src={profilePhoto} className="contact-photo" alt="contact" />
             </div>
-            <div className="info">
+            <div onClick={() => history.push('/chatPage')} className="info">
               <p>{name}</p>
               <div>
                 <span>Hello</span>
