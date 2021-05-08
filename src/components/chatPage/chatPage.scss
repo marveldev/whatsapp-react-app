@@ -1,6 +1,11 @@
 @import '../../common/helper';
 
 .chat-page {
+  position: fixed;
+  left: 0;
+  background:url('../../common/lightThemeChatWallpaper.jpg');
+  width: 100%;
+  height: 100%;
 
   .header {
     @extend %fixed-position;
@@ -60,6 +65,66 @@
         i {
           font-size: 1.5em;
         }
+      }
+    }
+  }
+
+  .chat-container {
+    position: relative;
+    top: 4em;
+
+    .chat-item-wrapper {
+      .chat-item {
+        padding: 0.5em 1em;
+        display: flex;
+        //remove this for first person
+
+        div {
+          background-color: #E1FFC7;
+          border-radius: 0.3em;
+          padding: 0.3em 0.5em 0.1em;
+          max-width: 18em;
+          width: fit-content;
+          height: auto;
+        }
+
+        .chat-text {
+          word-wrap: break-word;
+          display: inline;
+        }
+
+        .chat-time {
+          font-size: 0.8em;
+          margin: 0;
+          float: right;
+          color: #9aad88;
+
+          i {
+            color: #38a9f0;
+            vertical-align: text-top;
+            font-size: 1.5em;
+            margin-left: 0.2em;
+          }
+        }
+      }
+
+      .person-one {
+        flex-direction: row-reverse;
+        
+        div {
+          background-color: #fff;
+        }
+      }
+
+      .arrow-right {
+        position: relative;
+        right: 1.3em;
+        top: 0.5em;
+        float: right;
+        width: 0;
+        height: 0;
+        border-bottom: 1.5em solid transparent;
+        border-left: 0.8em solid #E1FFC7;
       }
     }
   }

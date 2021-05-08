@@ -31,13 +31,29 @@ const ChatPage = () => {
         </div>
       </div>
       <div className="chat-container">
-        <div id="">
-          <div className=""></div>
+        <div className="chat-item-wrapper">
           <div className="chat-item-overlay"></div>
-          <div className="chat-item">
-            <div id="" className="chat-text">
-              <span className="message-value">Hello test chat</span>
-              <sub className="chat-time"></sub>
+          <div className="arrow-right"></div>
+          <div className="person-two chat-item">
+            <div>
+              <p className="chat-text">This is a text chat</p>
+              <div className="chat-time">
+                <sub>4:00 pm</sub>
+                <i className="material-icons">&#xe877;</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="chat-item-wrapper">
+          <div className="chat-item-overlay"></div>
+          <div className="arrow-right"></div>
+          <div className="person-one chat-item">
+            <div>
+              <p className="chat-text">This is a second person test chat</p>
+              <div className="chat-time">
+                <sub>4:00 pm</sub>
+                <i className="material-icons">&#xe877;</i>
+              </div>
             </div>
           </div>
         </div>
