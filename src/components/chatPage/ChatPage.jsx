@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import { useHistory } from 'react-router'
 import { CONSTANTS } from '../../common/constants'
+import { displaySendButton } from './events'
 import './chatPage.scss'
 
 const ChatPage = () => {
+  const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
   const { goBack } = useHistory()
 
   return (
@@ -62,19 +65,35 @@ const ChatPage = () => {
       </div>
       <div className="chat-input-container">
         <div className="chat-input-options">
-          <button className="smiley-button"><i className="material-icons">&#xe7f2;</i></button>
-          <textarea className="chat-input" placeholder="Type a message"></textarea>
+          <button className="smiley-button">
+            <i className="material-icons">&#xe7f2;</i>
+          </button>
+          <textarea
+            onKeyUp={() => displaySendButton('.chat-input', setSendButtonIsActive)}
+            className="chat-input"
+            placeholder="Type a message"
+            autoFocus
+          >
+          </textarea>
           <button className="clip-button"><i className="fa fa-paperclip"></i></button>
         </div>
         <div>
-          <button className="record-button"><i className="fa fa-microphone"></i></button>
-          <div className="send-chat-container">
-            <button className="send-button"><i className="material-icons">&#xe163;</i></button>
-            <div>
-              <button className="person-one-button">Person1</button>
-              <button className="person-two-button">Person2</button>
+          {sendButtonIsActive && (
+            <div className="send-button-container">
+              <button className="send-button">
+                <i className="material-icons">&#xe163;</i>
+              </button>
+              <div className="persons-button-container">
+                <button className="person-one">Person1</button>
+                <button className="person-two">Person2</button>
+              </div>
             </div>
-          </div>
+          )}
+          {!sendButtonIsActive && (
+            <button className="record-button">
+              <i className="fa fa-microphone"></i>
+            </button>
+          )}
         </div>
       </div>
     </div>

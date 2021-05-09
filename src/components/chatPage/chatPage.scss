@@ -166,6 +166,7 @@
     height: auto;
     max-height: 10em;
     min-height: 4em;
+    padding: 0.5em 0;
     z-index: 1;
     background-color: aqua;
 
@@ -173,44 +174,36 @@
       display: flex;
       align-items: center;
       flex: 1;
-
-      .chat-input {
-        width: 100%;
-        border-radius: 1.5em;
-        resize: none;
-        border: unset;
-        padding: 0.8em 3em 0;
-        font-size: 1.1em;
-        outline: none;
-      }
-
-      .smiley-button {
-        position: relative;
-        left: 3em;
-      }
-
-      .clip-button {
-        position: relative;
-        right: 3em;
-
-        i {
-          font-size: 1.5em;
-        }
-      }
     }
 
-    .send-chat-container {
-      display: none;
+    .chat-input {
+      width: 100%;
+      border-radius: 1.5em;
+      resize: none;
+      border: unset;
+      padding: 0.8em 3em 0;
+      font-size: 1.1em;
+      outline: none;
+      max-height: 8em;
     }
 
-    button {
-      @extend %remove-default;
-      color: #000;
+    .smiley-button {
+      position: relative;
+      left: 3em;
+    }
+
+    .clip-button {
+      position: relative;
+      right: 3em;
+
+      i {
+        font-size: 1.5em;
+      }
     }
 
     .record-button {
-      width: 3em;
-      height: 3em;
+      width: 3.5em;
+      height: 3.5em;
       border-radius: 50%;
       background-color: $primaryColor;
       margin-right: 1em;
@@ -219,6 +212,49 @@
         font-size: 1.5em;
         color: $textPrimaryColor;
       }
+    }
+
+    .send-button-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .send-button {
+      @extend .record-button;
+
+      i {
+        vertical-align: middle;
+      }
+    }
+
+    .persons-button-container {
+      position: absolute;
+      bottom: 3em;
+      right: 2em;
+      background-color: #f9f9f9;
+      box-shadow: 0px 8px 16px 0px #00000033;
+      z-index: 1;
+      padding: 0.5em;
+      border-radius: 0.8em;
+      border-bottom-right-radius: 0;
+
+      button {
+        display: block;
+        color: #fff;
+        padding: 0.5em 0.8em;
+        font-weight: 600;
+        border-radius: 0.5em;
+        background: $primaryColor;
+      }
+
+      .person-one {
+        margin-bottom: 0.5em;
+      }
+    }
+
+    button {
+      @extend %remove-default;
+      color: #000;
     }
   }
 }
