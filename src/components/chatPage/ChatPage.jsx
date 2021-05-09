@@ -32,27 +32,29 @@ const ChatPage = () => {
       </div>
       <div className="chat-container">
         <div className="chat-item-wrapper">
-          <div className="chat-item-overlay"></div>
-          <div className="arrow-right"></div>
-          <div className="person-two chat-item">
-            <div>
-              <p className="chat-text">This is a text chat</p>
-              <div className="chat-time">
-                <sub>4:00 pm</sub>
-                <i className="material-icons">&#xe877;</i>
+          <div className="chat-item-overlay">
+            <div className="arrow-left"></div>
+            <div className="person-one chat-item">
+              <div className="content">
+                <p className="chat-text">This is a text chat</p>
+                <div className="chat-time">
+                  <small>4:00 PM</small>
+                  <i className="material-icons">&#xe877;</i>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="chat-item-wrapper">
-          <div className="chat-item-overlay"></div>
-          <div className="arrow-right"></div>
-          <div className="person-one chat-item">
-            <div>
-              <p className="chat-text">This is a second person test chat</p>
-              <div className="chat-time">
-                <sub>4:00 pm</sub>
-                <i className="material-icons">&#xe877;</i>
+          <div className="chat-item-overlay">
+            <div className="arrow-right"></div>
+            <div className="person-two chat-item">
+              <div className="content">
+                <p className="chat-text">This is a second person text chat</p>
+                <div className="chat-time">
+                  <small>4:00 PM</small>
+                  <i className="material-icons">&#xe877;</i>
+                </div>
               </div>
             </div>
           </div>

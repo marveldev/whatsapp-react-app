@@ -71,60 +71,87 @@
 
   .chat-container {
     position: relative;
-    top: 4em;
+    top: 3.5em;
+    padding-top: 0.5em;
+    height: auto;
+    max-height: 73%;
+    overflow-y: auto;
 
     .chat-item-wrapper {
-      .chat-item {
-        padding: 0.5em 1em;
-        display: flex;
-        //remove this for first person
+      width: 100%;
+      margin-bottom: 0.07em;
+    }
 
-        div {
-          background-color: #E1FFC7;
-          border-radius: 0.3em;
-          padding: 0.3em 0.5em 0.1em;
-          max-width: 18em;
-          width: fit-content;
-          height: auto;
-        }
+    .selected-chat {
+      background-color: #2690b1a2;
+    }
 
-        .chat-text {
-          word-wrap: break-word;
-          display: inline;
-        }
+    .chat-item-overlay {
+      position: relative;
+      z-index: -1;
+    }
 
-        .chat-time {
-          font-size: 0.8em;
-          margin: 0;
-          float: right;
-          color: #9aad88;
+    %style-arrow {
+      position: relative;
+      top: 0.2em;
+      width: 0;
+      height: 0;
+      border-bottom: 1.5em solid transparent;
+    }
 
-          i {
-            color: #38a9f0;
-            vertical-align: text-top;
-            font-size: 1.5em;
-            margin-left: 0.2em;
-          }
-        }
-      }
+    .arrow-right {
+      @extend %style-arrow;
+      right: 1.3em;
+      border-left: 0.8em solid #fff;
+      float: right;
+    }
 
-      .person-one {
-        flex-direction: row-reverse;
-        
-        div {
-          background-color: #fff;
-        }
-      }
+    .arrow-left {
+      @extend %style-arrow;
+      left: 1.3em;
+      border-right: 0.8em solid #E1FFC7;
+      float: left;
+    }
 
-      .arrow-right {
-        position: relative;
-        right: 1.3em;
-        top: 0.5em;
+    .chat-item {
+      padding: 0.2em 1em;
+      display: flex;
+
+      .chat-time {
+        font-size: 0.8em;
+        margin: 0;
         float: right;
-        width: 0;
-        height: 0;
-        border-bottom: 1.5em solid transparent;
-        border-left: 0.8em solid #E1FFC7;
+        color: #9aad88;
+        padding: 0.3em 0.5em 0.1em;
+
+        i {
+          color: #38a9f0;
+          vertical-align: middle;
+          font-size: 1.5em;
+          margin-left: 0.2em;
+        }
+      }
+    }
+
+    .content {
+      border-radius: 0.3em;
+      padding: 0.3em 0.5em 0.1em;
+      max-width: 18em;
+      width: fit-content;
+      height: auto;
+      background-color: #E1FFC7;
+    }
+
+    .chat-text {
+      word-wrap: break-word;
+      display: inline;
+    }
+
+    .person-two {
+      flex-direction: row-reverse;
+
+      div {
+        background-color: #fff;
       }
     }
   }
