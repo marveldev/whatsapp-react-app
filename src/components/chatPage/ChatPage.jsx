@@ -103,6 +103,7 @@ const ChatPage = () => {
               <div className="persons-button-container">
                 <button className="person-one">Person1</button>
                 <button className="person-two">Person2</button>
+                <div className="arrow-down"></div>
               </div>
             </div>
           )}
