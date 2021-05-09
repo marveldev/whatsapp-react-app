@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import { CONSTANTS } from '../../common/constants'
+import { Smileys } from '../../common/components'
 import { displaySendButton } from './events'
 import './chatPage.scss'
 
 const ChatPage = () => {
   const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
+  const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
+  const [postCaptionValue, setPostCaptionValue] = useState('')
   const { goBack } = useHistory()
 
   return (
@@ -65,13 +68,27 @@ const ChatPage = () => {
       </div>
       <div className="chat-input-container">
         <div className="chat-input-options">
-          <button className="smiley-button">
-            <i className="material-icons">&#xe7f2;</i>
-          </button>
+          <div className="smiley-container">
+            <button
+              onClick={() => setSmileyModalIsOpen(!smileyModalIsOpen)}
+              className="smiley-button"
+            >
+              <i className="material-icons">&#xe7f2;</i>
+            </button>
+            {smileyModalIsOpen &&
+              <Smileys
+                setPostCaptionValue={setPostCaptionValue}
+                postCaptionValue={postCaptionValue}
+                setSendButtonIsActive={setSendButtonIsActive}
+              />
+            }
+          </div>
           <textarea
             onKeyUp={() => displaySendButton('.chat-input', setSendButtonIsActive)}
             className="chat-input"
+            value={postCaptionValue}
             placeholder="Type a message"
+            onChange={event => setPostCaptionValue(event.target.value)}
             autoFocus
           >
           </textarea>

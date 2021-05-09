@@ -1,0 +1,70 @@
+.smileys {
+  position: absolute;
+  bottom: 3em;
+  left: 1em;
+  width: 20em;
+  height: 15em;
+  background-color: #444141;
+  border-radius: 1.5em;
+  padding: 0.5em 0;
+
+  .smiley-list {
+    display: grid;
+    grid-template-columns: repeat(5, 3.3em);
+    justify-content: center;
+    overflow-y: auto;
+    max-height: 80%;
+    overflow-x: hidden;
+
+    .smiley {
+      font-size: 1.7em;
+
+      &:active {
+        transform: translateY(0.1em);
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    padding-right: 1em;
+
+    span {
+      position: relative;
+      left: 1.5em;
+    }
+
+    .search-input {
+      width: 90%;
+      padding: 0.5em 3em;
+      border: unset;
+      border-radius: 1.5em;
+    }
+  }
+
+  .arrow-down {
+    position: relative;
+    left: 1em;
+    top: 1.3em;
+    width: 0;
+    height: 0;
+    border-left: 1.3em solid transparent;
+    border-right: 1.3em solid transparent;
+    border-top: 1.5em solid #444141;
+  }
+
+  .smiley-list::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .smiley-list::-webkit-scrollbar-track {
+    background: #444141;
+  }
+
+  .smiley-list::-webkit-scrollbar-thumb {
+    background: #BCC0C4;
+    border-radius: 0.5em;
+  }
+}

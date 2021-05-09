@@ -256,5 +256,10 @@
       @extend %remove-default;
       color: #000;
     }
+
+    .smiley-container {
+      position: relative;
+      display: inline-block;
+    }
   }
 }

@@ -9,5 +9,4 @@ const displaySendButton = (selector, setSendButtonIsActive) => {
   }
 }
 
-
 export { displaySendButton }
