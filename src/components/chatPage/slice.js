@@ -6,8 +6,8 @@ const chatSlice = createSlice({
     chatData: []
   },
   reducers: {
-    setChatData: (state, { payload }) => {
-      state.chatData = [...state.posts, payload]
+    addChat: (state, { payload }) => {
+      state.chatData = [...state.chatData, payload]
     }
   }
 })

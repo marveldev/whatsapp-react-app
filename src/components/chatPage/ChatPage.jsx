@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
 import { CONSTANTS } from '../../common/constants'
 import { Smileys } from '../../common/components'
-import { displaySendButton } from './events'
+import { addChatItemToDom, displaySendButton } from './events'
 import './chatPage.scss'
 
 const ChatPage = () => {
@@ -10,6 +11,26 @@ const ChatPage = () => {
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
   const [postCaptionValue, setPostCaptionValue] = useState('')
   const { goBack } = useHistory()
+  const dispatch = useDispatch()
+  const chatState = useSelector(state => state.chat)
+  const { chatData } = chatState
+
+  const chatItems = chatData?.map(({id, person, chatTime, chatInputValue}) => (
+    <div key={id} className="chat-item-wrapper">
+      <div className="chat-item-overlay">
+        <div className={person === 'person-one' ? 'arrow-left' : 'arrow-right'}></div>
+        <div className={`${person} chat-item`}>
+          <div className="content">
+            <p className="chat-text">{chatInputValue}</p>
+            <div className="chat-time">
+              <small>{chatTime}</small>
+              <i className="material-icons">&#xe877;</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))
 
   return (
     <div className="chat-page">
@@ -37,34 +58,7 @@ const ChatPage = () => {
         </div>
       </div>
       <div className="chat-container">
-        <div className="chat-item-wrapper">
-          <div className="chat-item-overlay">
-            <div className="arrow-left"></div>
-            <div className="person-one chat-item">
-              <div className="content">
-                <p className="chat-text">This is a text chat</p>
-                <div className="chat-time">
-                  <small>4:00 PM</small>
-                  <i className="material-icons">&#xe877;</i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="chat-item-wrapper">
-          <div className="chat-item-overlay">
-            <div className="arrow-right"></div>
-            <div className="person-two chat-item">
-              <div className="content">
-                <p className="chat-text">This is a second person text chat</p>
-                <div className="chat-time">
-                  <small>4:00 PM</small>
-                  <i className="material-icons">&#xe877;</i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {chatItems}
       </div>
       <div className="chat-input-container">
         <div className="chat-input-options">
@@ -92,7 +86,9 @@ const ChatPage = () => {
             autoFocus
           >
           </textarea>
-          <button className="clip-button"><i className="fa fa-paperclip"></i></button>
+          <button className="clip-button">
+            <i className="fa fa-paperclip"></i>
+          </button>
         </div>
         <div>
           {sendButtonIsActive && (
@@ -101,8 +97,18 @@ const ChatPage = () => {
                 <i className="material-icons">&#xe163;</i>
               </button>
               <div className="persons-button-container">
-                <button className="person-one">Person1</button>
-                <button className="person-two">Person2</button>
+                <button
+                  onClick={() => addChatItemToDom('.chat-input', 'person-one', dispatch)}
+                  className="person-one"
+                >
+                  Person1
+                </button>
+                <button
+                  onClick={() => addChatItemToDom('.chat-input', 'person-two', dispatch)}
+                  className="person-two"
+                >
+                  Person2
+                </button>
                 <div className="arrow-down"></div>
               </div>
             </div>
