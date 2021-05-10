@@ -101,20 +101,20 @@
 
     .arrow-right {
       @extend %style-arrow;
-      right: 1.3em;
+      right: 0.4em;
       border-left: 0.8em solid #fff;
       float: right;
     }
 
     .arrow-left {
       @extend %style-arrow;
-      left: 1.3em;
+      left: 0.4em;
       border-right: 0.8em solid #E1FFC7;
       float: left;
     }
 
     .chat-item {
-      padding: 0.2em 1em;
+      padding: 0.2em;
       display: flex;
 
       .chat-time {
@@ -136,10 +136,14 @@
     .content {
       border-radius: 0.3em;
       padding: 0.3em 0.5em 0.1em;
-      max-width: 18em;
+      max-width: 50%;
       width: fit-content;
       height: auto;
       background-color: #E1FFC7;
+
+      @media screen and (max-width: 768px) {
+        max-width: 70%;
+      }
     }
 
     .chat-text {

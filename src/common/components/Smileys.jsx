@@ -3,12 +3,12 @@ import smileyList from '../smileyList'
 import '../smileys.scss'
 
 export const Smileys = ({
-  setPostCaptionValue, postCaptionValue, setSendButtonIsActive
+  setChatInputValue, chatInputValue, setSendButtonIsActive
 }) => {
   const [filteredSmiley, setFilteredSmiley] = useState(smileyList)
 
   const addSmiley = smiley => {
-    setPostCaptionValue(postCaptionValue + smiley)
+    setChatInputValue(chatInputValue + smiley)
     setSendButtonIsActive(true)
   }
 

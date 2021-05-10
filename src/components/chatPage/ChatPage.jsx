@@ -3,27 +3,51 @@ import { useHistory } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { CONSTANTS } from '../../common/constants'
 import { Smileys } from '../../common/components'
-import { addChatItemToDom, displaySendButton } from './events'
+import { displaySendButton } from './events'
+import { chatActions } from './slice'
 import './chatPage.scss'
 
 const ChatPage = () => {
   const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
-  const [postCaptionValue, setPostCaptionValue] = useState('')
+  const [selectedChat, setSelectedChat] = useState(false)
+  const [chatInputValue, setChatInputValue] = useState('')
   const { goBack } = useHistory()
   const dispatch = useDispatch()
   const chatState = useSelector(state => state.chat)
   const { chatData } = chatState
 
-  const chatItems = chatData?.map(({id, person, chatTime, chatInputValue}) => (
-    <div key={id} className="chat-item-wrapper">
+  const addChatItemToDom = person => {
+    const chatContainer = document.querySelector('.chat-container')
+    const chatInput = document.querySelector('.chat-input')
+    const chatTime = new Date().toLocaleString('en-US',
+      { hour: 'numeric', minute: 'numeric', hour12: true }
+    )
+
+    const chatObject = {
+      person,
+      chatTime,
+      chatInputValue
+    }
+
+    chatContainer.scrollTop = chatContainer.scrollHeight
+    chatInput.style.height = ''
+    dispatch(chatActions.addChat(chatObject))
+    setChatInputValue('')
+    setSendButtonIsActive(false)
+    setSmileyModalIsOpen(false)
+    chatInput.focus()
+  }
+
+  const chatItems = chatData?.map((chat, index) => (
+    <div key={index} className="chat-item-wrapper">
       <div className="chat-item-overlay">
-        <div className={person === 'person-one' ? 'arrow-left' : 'arrow-right'}></div>
-        <div className={`${person} chat-item`}>
+        <div className={chat.person === 'person-one' ? 'arrow-left' : 'arrow-right'}></div>
+        <div className={`${chat.person} chat-item`}>
           <div className="content">
-            <p className="chat-text">{chatInputValue}</p>
+            <p className="chat-text">{chat.chatInputValue}</p>
             <div className="chat-time">
-              <small>{chatTime}</small>
+              <small>{chat.chatTime}</small>
               <i className="material-icons">&#xe877;</i>
             </div>
           </div>
@@ -71,8 +95,8 @@ const ChatPage = () => {
             </button>
             {smileyModalIsOpen &&
               <Smileys
-                setPostCaptionValue={setPostCaptionValue}
-                postCaptionValue={postCaptionValue}
+                setChatInputValue={setChatInputValue}
+                chatInputValue={chatInputValue}
                 setSendButtonIsActive={setSendButtonIsActive}
               />
             }
@@ -80,9 +104,9 @@ const ChatPage = () => {
           <textarea
             onKeyUp={() => displaySendButton('.chat-input', setSendButtonIsActive)}
             className="chat-input"
-            value={postCaptionValue}
+            value={chatInputValue}
             placeholder="Type a message"
-            onChange={event => setPostCaptionValue(event.target.value)}
+            onChange={event => setChatInputValue(event.target.value)}
             autoFocus
           >
           </textarea>
@@ -98,13 +122,13 @@ const ChatPage = () => {
               </button>
               <div className="persons-button-container">
                 <button
-                  onClick={() => addChatItemToDom('.chat-input', 'person-one', dispatch)}
+                  onClick={() => addChatItemToDom('person-one')}
                   className="person-one"
                 >
                   Person1
                 </button>
                 <button
-                  onClick={() => addChatItemToDom('.chat-input', 'person-two', dispatch)}
+                  onClick={() => addChatItemToDom('person-two')}
                   className="person-two"
                 >
                   Person2
@@ -120,6 +144,23 @@ const ChatPage = () => {
           )}
         </div>
       </div>
+      {selectedChat && (
+        <>
+          <div className="selected-chat-options">
+            <span>2</span>
+            <button><i className="material-icons">&#xe5c4</i></button>
+            <button><i className="fa fa-star"></i></button>
+            <button><i className="fa fa-trash"></i></button>
+            <button><i className="material-icons">&#xe14d</i></button>
+            <button><i className="fa fa-mail-forward"></i></button>
+          </div>
+          <div className="delete-modal">
+            <p>Delete message?</p>
+            <button>CANCEL</button>
+            <button>DELETE FOR ME</button>
+          </div>
+        </>
+      )}
     </div>
   )
 }
