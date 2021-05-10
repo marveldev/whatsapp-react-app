@@ -10,24 +10,51 @@ import './chatPage.scss'
 const ChatPage = () => {
   const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
-  const [selectedChat, setSelectedChat] = useState(false)
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
+  const [selectedChatCount, setSelectedChatCount] = useState(0)
   const [chatInputValue, setChatInputValue] = useState('')
-  const { goBack } = useHistory()
-  const dispatch = useDispatch()
   const chatState = useSelector(state => state.chat)
   const { chatData } = chatState
+  const { goBack } = useHistory()
+  const dispatch = useDispatch()
+
+  const markAsSelected = index => {
+    const selectedChat = chatData[index]
+    const newData = {...selectedChat, selected: !selectedChat.selected}
+    const mutableChatData = [...chatData]
+    mutableChatData.splice(index, 1, newData)
+    dispatch(chatActions.addMultipleChat(mutableChatData))
+
+    if (selectedChat.selected === false) {
+      setSelectedChatCount(selectedChatCount + 1)
+    } else {
+      setSelectedChatCount(selectedChatCount - 1)
+    }
+  }
+
+  const deleteSelectedChat = () => {
+    const newData = chatData.filter(
+      chat => !chat.selected
+    )
+
+    dispatch(chatActions.addMultipleChat(newData))
+    setSelectedChatCount(0)
+  }
 
   const addChatItemToDom = person => {
     const chatContainer = document.querySelector('.chat-container')
     const chatInput = document.querySelector('.chat-input')
+    const id = 'id' + Date.parse(new Date()).toString()
     const chatTime = new Date().toLocaleString('en-US',
       { hour: 'numeric', minute: 'numeric', hour12: true }
     )
 
     const chatObject = {
+      id,
       person,
       chatTime,
-      chatInputValue
+      chatInputValue,
+      selected: false
     }
 
     chatContainer.scrollTop = chatContainer.scrollHeight
@@ -40,7 +67,10 @@ const ChatPage = () => {
   }
 
   const chatItems = chatData?.map((chat, index) => (
-    <div key={index} className="chat-item-wrapper">
+    <div key={index} id={chat.id}
+      onClick={() => markAsSelected(index)}
+      className={chat.selected ? 'selected chat-item-wrapper' : 'chat-item-wrapper'}
+    >
       <div className="chat-item-overlay">
         <div className={chat.person === 'person-one' ? 'arrow-left' : 'arrow-right'}></div>
         <div className={`${chat.person} chat-item`}>
@@ -144,22 +174,28 @@ const ChatPage = () => {
           )}
         </div>
       </div>
-      {selectedChat && (
-        <>
-          <div className="selected-chat-options">
-            <span>2</span>
-            <button><i className="material-icons">&#xe5c4</i></button>
-            <button><i className="fa fa-star"></i></button>
-            <button><i className="fa fa-trash"></i></button>
-            <button><i className="material-icons">&#xe14d</i></button>
-            <button><i className="fa fa-mail-forward"></i></button>
-          </div>
+      {selectedChatCount >= 1 && (
+        <div className="selected-chat-options">
+          <button className="back-button">
+            <i className="material-icons">&#xe5c4;</i>
+          </button>
+          <span>{selectedChatCount}</span>
+          <button><i className="fa fa-star"></i></button>
+          <button onClick={() => setDeleteModalIsOpen(true)}>
+            <i className="fa fa-trash"></i>
+          </button>
+          <button><i className="material-icons">&#xe14d;</i></button>
+          <button><i className="fa fa-mail-forward"></i></button>
+        </div>
+      )}
+      {deleteModalIsOpen && (
+        <div onClick={() => setDeleteModalIsOpen(false)} className="overlay">
           <div className="delete-modal">
             <p>Delete message?</p>
             <button>CANCEL</button>
-            <button>DELETE FOR ME</button>
+            <button onClick={() => deleteSelectedChat()}>DELETE FOR ME</button>
           </div>
-        </>
+        </div>
       )}
     </div>
   )

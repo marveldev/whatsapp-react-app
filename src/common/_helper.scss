@@ -36,6 +36,13 @@ $secondaryColor: #00E676;
   }
 }
 
+%center-modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
 @mixin display($value) {
   display: flex;
   justify-content: $value;
