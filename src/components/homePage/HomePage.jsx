@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import CallsPage from '../callsPage/CallsPage'
-import ContactListPage from '../chatPage/ContactListPage'
+import ContactListPage from '../contactListPage/ContactListPage'
 import StatusPage from '../statusPage/StatusPage'
 import TopNav from '../topNav/TopNav'
 

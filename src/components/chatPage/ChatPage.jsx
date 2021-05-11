@@ -14,6 +14,7 @@ const ChatPage = () => {
   const [selectedChatCount, setSelectedChatCount] = useState(0)
   const [chatInputValue, setChatInputValue] = useState('')
   const chatState = useSelector(state => state.chat)
+  const { selectedContact } = useSelector(state => state.contact)
   const { chatData } = chatState
   const { goBack } = useHistory()
   const dispatch = useDispatch()
@@ -25,7 +26,7 @@ const ChatPage = () => {
     mutableChatData.splice(index, 1, newData)
     dispatch(chatActions.addMultipleChat(mutableChatData))
 
-    if (selectedChat.selected === false) {
+    if (!selectedChat.selected) {
       setSelectedChatCount(selectedChatCount + 1)
     } else {
       setSelectedChatCount(selectedChatCount - 1)
@@ -94,13 +95,13 @@ const ChatPage = () => {
             <i className="material-icons">&#xe5c4;</i>
           </button>
           <div className="photo-container">
-            <img src={CONSTANTS.PHOTOURL}
+            <img src={selectedContact.profilePhoto || CONSTANTS.PHOTOURL}
               className="contact-photo" alt="contactPhoto"
             />
           </div>
         </div>
         <div className="chat-person-info">
-          <p className="name">Jack Williams</p>
+          <p className="name">{selectedContact.name || 'Jane Doe'}</p>
           <p>online</p>
         </div>
         <div className="button-container">

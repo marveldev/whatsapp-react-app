@@ -39,8 +39,6 @@
     .photo-container {
       @extend %photo-size;
       @include display(center);
-      background: #000000;
-      font-size: 0.8em;
     }
 
     .contact-photo {
@@ -172,7 +170,6 @@
     min-height: 4em;
     padding: 0.5em 0;
     z-index: 1;
-    background-color: aqua;
 
     .chat-input-options {
       display: flex;
