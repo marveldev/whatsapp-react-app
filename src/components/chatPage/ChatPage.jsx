@@ -55,6 +55,7 @@ const ChatPage = () => {
       person,
       chatTime,
       chatInputValue,
+      contactId: selectedContact.id,
       selected: false
     }
 
@@ -67,7 +68,9 @@ const ChatPage = () => {
     chatInput.focus()
   }
 
-  const chatItems = chatData?.map((chat, index) => (
+  const filteredChatData = chatData.filter(item => item.contactId === selectedContact.id)
+
+  const chatItems = filteredChatData?.map((chat, index) => (
     <div key={index} id={chat.id}
       onClick={() => markAsSelected(index)}
       className={chat.selected ? 'selected chat-item-wrapper' : 'chat-item-wrapper'}
