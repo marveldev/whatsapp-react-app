@@ -5,8 +5,8 @@ import './topNav.scss'
 
 const TopNav = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
-  const dispatch = useDispatch()
   const { currentPage } = useSelector(state => state.currentPage)
+  const dispatch = useDispatch()
 
   const switchCurrentPage = page => {
     dispatch(currentPageActions.setCurrentPage(page))

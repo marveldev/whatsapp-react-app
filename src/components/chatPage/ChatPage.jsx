@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { CONSTANTS } from '../../common/constants'
 import { Smileys } from '../../common/components'
 import { displaySendButton } from './events'
 import { chatActions } from './slice'
+import contactList from '../contactListPage/contactList'
 import './chatPage.scss'
 
 const ChatPage = () => {
@@ -14,16 +15,17 @@ const ChatPage = () => {
   const [selectedChatCount, setSelectedChatCount] = useState(0)
   const [chatInputValue, setChatInputValue] = useState('')
   const chatState = useSelector(state => state.chat)
-  const { selectedContact } = useSelector(state => state.contact)
   const { chatData } = chatState
   const { goBack } = useHistory()
   const dispatch = useDispatch()
+  const { selectedContactIndex } = useParams()
+  const selectedContact = contactList[selectedContactIndex]
 
-  const markAsSelected = index => {
-    const selectedChat = chatData[index]
+  const markAsSelected = selectedChat => {
     const newData = {...selectedChat, selected: !selectedChat.selected}
     const mutableChatData = [...chatData]
-    mutableChatData.splice(index, 1, newData)
+    const selectedChatIndex = mutableChatData.indexOf(selectedChat)
+    mutableChatData[selectedChatIndex] = newData
     dispatch(chatActions.addMultipleChat(mutableChatData))
 
     if (!selectedChat.selected) {
@@ -40,6 +42,15 @@ const ChatPage = () => {
 
     dispatch(chatActions.addMultipleChat(newData))
     setSelectedChatCount(0)
+  }
+
+  const markAsUnselected = () => {
+    const newData = chatData.map(chat => {
+      return {...chat, selected: false}
+    })
+
+    setSelectedChatCount(0)
+    dispatch(chatActions.addMultipleChat(newData))
   }
 
   const addChatItemToDom = person => {
@@ -72,7 +83,7 @@ const ChatPage = () => {
 
   const chatItems = filteredChatData?.map((chat, index) => (
     <div key={index} id={chat.id}
-      onClick={() => markAsSelected(index)}
+      onClick={() => markAsSelected(chat)}
       className={chat.selected ? 'selected chat-item-wrapper' : 'chat-item-wrapper'}
     >
       <div className="chat-item-overlay">
@@ -180,7 +191,7 @@ const ChatPage = () => {
       </div>
       {selectedChatCount >= 1 && (
         <div className="selected-chat-options">
-          <button className="back-button">
+          <button onClick={markAsUnselected} className="back-button">
             <i className="material-icons">&#xe5c4;</i>
           </button>
           <span>{selectedChatCount}</span>
@@ -197,7 +208,7 @@ const ChatPage = () => {
           <div className="delete-modal">
             <p>Delete message?</p>
             <button>CANCEL</button>
-            <button onClick={() => deleteSelectedChat()}>DELETE FOR ME</button>
+            <button onClick={deleteSelectedChat}>DELETE FOR ME</button>
           </div>
         </div>
       )}

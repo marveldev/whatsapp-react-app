@@ -8,7 +8,7 @@ const App = () => {
       <div className="app-layer">
         <Switch>
           <Route path="/" component={HomePage} exact />
-          <Route path="/chatPage" component={ChatPage} />
+          <Route path="/chatPage/:selectedContactIndex" component={ChatPage} />
         </Switch>
       </div>
     </BrowserRouter>
@@ -16,4 +16,3 @@ const App = () => {
 }
 
 export default App
-
