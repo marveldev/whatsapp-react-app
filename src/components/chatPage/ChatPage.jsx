@@ -214,7 +214,9 @@ const ChatPage = () => {
           </div>
         </div>
       )}
-      {chatDropdownIsOpen && <ChatDropdown />}
+      {chatDropdownIsOpen &&
+        <ChatDropdown setChatDropdownIsOpen={setChatDropdownIsOpen} />
+      }
     </div>
   )
 }

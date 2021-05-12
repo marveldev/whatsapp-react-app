@@ -323,7 +323,55 @@
     }
   }
 
+  .dropdown-overlay {
+    @extend %fixed-position;
+    height: 100%;
+    background-color: transparent;
+  }
+
   .chat-dropdown {
-    
+    @extend %style-dropdown;
+  }
+
+  .wallpaper-options {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 2em 1.5em;
+    background-color: #fff;
+    text-align: center;
+    color: #000;
+
+    p {
+      margin-top: 0;
+      font-weight: 600;
+      text-align: left;
+      font-size: 1.1em;
+    }
+
+    i {
+      margin-right: 0.5em;
+      vertical-align: middle;
+      font-size: 1.2em;
+    }
+
+    button {
+      @extend %remove-default;
+      width: 7em;
+      height: 3em;
+      vertical-align: middle;
+      border-radius: 0.5em;
+      background: #a76046ef;
+      margin: 0 0.5em;
+      font-weight: 600;
+    }
+
+    .default-button {
+      background: #186d60bc;
+    }
+
+    #wallpaperPicker {
+      display: none;
+    }
   }
 }

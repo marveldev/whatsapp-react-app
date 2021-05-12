@@ -44,25 +44,7 @@
     background-color: transparent;
 
     .dropdown {
-      display: flex;
-      flex-direction: column;
-      width: 11em;
-      padding-bottom: 0.5em;
-      margin: 0.2em 0 0 auto;
-      background-color: $textPrimaryColor;
-      box-shadow: 0 0.2em 1em 0em #00000060;
-
-      button {
-        @extend %remove-default;
-        color: #000;
-        padding: 0.8em 1em;
-        font-size: 0.9em;
-        text-align: left;
-
-        &:active {
-          background-color: #dcdcdca2;
-        }
-      }
+      @extend %style-dropdown;
     }
   }
 }
