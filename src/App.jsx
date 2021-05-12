@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { ChatPage, HomePage } from './components'
+import { ChatPage, HomePage, SettingsPage } from './components'
 import './index.scss'
 
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/chatPage/:selectedContactIndex" component={ChatPage} />
+          <Route path="/settingsPage" component={SettingsPage} />
         </Switch>
       </div>
     </BrowserRouter>

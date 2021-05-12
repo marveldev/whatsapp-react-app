@@ -1,3 +1,4 @@
+import { CONSTANTS } from '../../common/constants'
 import './statusPage.scss'
 
 const StatusPage = () => {
@@ -9,8 +10,7 @@ const StatusPage = () => {
           htmlFor="addStatusFilePicker" role="button" tabIndex="0"
         >
           <div className="photo-container">
-            <img src="https://images.pexels.com/photos/4119310/pexels-photo-4119310.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              className="photo" alt="profile" />
+            <img src={CONSTANTS.PHOTOURL} className="photo" alt="profile" />
           </div>
           <span className="material-icons plus-icon">&#xe145;</span>
           <div className="status-message">
@@ -20,8 +20,7 @@ const StatusPage = () => {
         </label>
         <div className="view-status-container" role="button" tabIndex="0">
           <div className="photo-container">
-            <img src="https://images.pexels.com/photos/4119310/pexels-photo-4119310.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              className="photo" alt="profile" />
+            <img src={CONSTANTS.PHOTOURL} className="photo" alt="profile" />
           </div>
           <div></div>
           <div className="status-message">

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 import { currentPageActions } from '../homePage/slice'
 import './topNav.scss'
 
@@ -7,6 +8,7 @@ const TopNav = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
   const { currentPage } = useSelector(state => state.currentPage)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const switchCurrentPage = page => {
     dispatch(currentPageActions.setCurrentPage(page))
@@ -49,7 +51,7 @@ const TopNav = () => {
             <button>New broadcast</button>
             <button>WhatsApp Web</button>
             <button>Starred messages</button>
-            <button>Settings</button>
+            <button onClick={() => history.push('/settingsPage')}>Settings</button>
           </div>
         </div>
       )}
