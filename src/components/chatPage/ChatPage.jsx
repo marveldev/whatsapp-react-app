@@ -5,6 +5,7 @@ import { CONSTANTS } from '../../common/constants'
 import { Smileys } from '../../common/components'
 import { displaySendButton } from './events'
 import { chatActions } from './slice'
+import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
 import './chatPage.scss'
 
@@ -13,6 +14,7 @@ const ChatPage = () => {
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
   const [selectedChatCount, setSelectedChatCount] = useState(0)
+  const [chatDropdownIsOpen, setChatDropdownIsOpen] = useState(false)
   const [chatInputValue, setChatInputValue] = useState('')
   const chatState = useSelector(state => state.chat)
   const { chatData } = chatState
@@ -121,7 +123,7 @@ const ChatPage = () => {
         <div className="button-container">
           <button><i className="fa fa-video-camera"></i></button>
           <button><i className="fa fa-phone"></i></button>
-          <button>
+          <button onClick={() => setChatDropdownIsOpen(true)}>
             <i className="material-icons">&#xe5d4;</i>
           </button>
         </div>
@@ -212,6 +214,7 @@ const ChatPage = () => {
           </div>
         </div>
       )}
+      {chatDropdownIsOpen && <ChatDropdown />}
     </div>
   )
 }
