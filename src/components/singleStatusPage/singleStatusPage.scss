@@ -1,0 +1,84 @@
+@import '../../common/helper';
+
+.single-status-page {
+  .header {
+    @extend %style-header;
+  }
+
+  .content {
+    position: relative;
+    top: 3.5em;
+
+    .single-status-entry {
+      display: flex;
+      align-items: center;
+    }
+
+    .photo-container {
+      @extend %photo-size;
+      background: #000000;
+
+      .photo {
+        @extend %photo-size;
+        object-fit: cover;
+      }
+    }
+
+    .status-info {
+      width: 100%;
+      padding: 1em;
+
+      span {
+        font-weight: 550;
+      }
+
+      p {
+        font-size: 0.9em;
+        margin: 0;
+        margin-top: 0.5em;
+      }
+    }
+
+    .dropdown-button {
+      @extend %remove-default;
+      color: $secondaryColor;
+    }
+
+    .toaster {
+      text-align: center;
+      font-size: 0.9em;
+    }
+  }
+
+  .text-icon {
+    @extend %remove-default;
+    @include display(center);
+    position: fixed;
+    bottom: 8em;
+    right: 2em;
+    color: #000;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    background-color: #f0e9e9;
+    box-shadow: 0 0.2em 0.4em 0em #000000d5;
+  }
+
+  .photo-icon {
+    @extend %style-icon;
+  }
+
+  .overlay {
+    @extend %fixed-position;
+    height: 100%;
+    background-color: transparent;
+  }
+
+  #addStatusFilePicker {
+    display: none;
+  }
+
+  .dropdown {
+    @extend %style-dropdown;
+  }
+}

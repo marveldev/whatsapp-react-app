@@ -1,7 +1,10 @@
+import { useHistory } from 'react-router'
 import { CONSTANTS } from '../../common/constants'
 import './statusPage.scss'
 
 const StatusPage = () => {
+  const history = useHistory()
+  
   return (
     <div className="status-page">
       <div>
@@ -27,7 +30,11 @@ const StatusPage = () => {
             <span>My status</span>
             <p>Tap to view status update</p>
           </div>
-          <button className="more-button"><i className="material-icons">&#xe5d3;</i></button>
+          <button onClick={() => history.push('/singleStatusPage')}
+            className="more-button"
+          >
+            <i className="material-icons">&#xe5d3;</i>
+          </button>
         </div>
       </div>
       <button className="text-icon"><i className="material-icons">&#xe3c9;</i></button>

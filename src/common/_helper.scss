@@ -65,6 +65,7 @@ $secondaryColor: #00E676;
   font-size: 1.2em;
   background-color: $secondaryColor;
   box-shadow: 0 0.2em 0.2em 0em #00000060;
+  -webkit-tap-highlight-color: transparent;
 
   i {
     font-size: 1.3em;
@@ -72,6 +73,21 @@ $secondaryColor: #00E676;
 
   &:active {
     transform: translateY(0.2em);
+  }
+}
+
+%style-header {
+  @extend %fixed-position;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  height: 3.5em;
+  font-size: 1.1em;
+
+  button {
+    @extend %remove-default;
+    width: 3em;
+    -webkit-tap-highlight-color: #DCDCDC;
   }
 }
 

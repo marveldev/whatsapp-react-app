@@ -1,20 +1,5 @@
 @import '../../common/helper';
 
-%style-header {
-  @extend %fixed-position;
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  height: 3.5em;
-  font-size: 1.1em;
-
-  button {
-    @extend %remove-default;
-    width: 3em;
-    -webkit-tap-highlight-color: #DCDCDC;
-  }
-}
-
 %style-container {
   display: flex;
   align-items: center;
