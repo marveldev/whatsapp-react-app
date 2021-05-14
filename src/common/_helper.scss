@@ -148,3 +148,41 @@ $secondaryColor: #00E676;
     border-radius: 50%;
   }
 }
+
+%style-radio-button {
+  label input {
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: relative;
+    height: 1em;
+    width: 1em;
+    border: 2px solid #080505;
+    border-radius: 1.5em;
+  }
+
+  label input:checked ~ .checkmark {
+    border: 2px solid #075E54;
+  }
+
+  label input:checked ~ .checkmark:after {
+    display: block;
+    background: #075E54;
+  }
+
+  label .checkmark:after {
+    top: 0.15em;
+    left: 0.15em;
+    width: 0.75em;
+    height: 0.75em;
+    border-radius: 50%;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+}

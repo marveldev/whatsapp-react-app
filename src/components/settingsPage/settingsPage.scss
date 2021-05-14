@@ -89,7 +89,7 @@
       @extend %style-container;
       @extend %remove-default;
       gap: 0 1.5em;
-      height: 3.8em;
+      height: 4.3em;
     }
   }
 }
@@ -160,5 +160,47 @@
         font-size: 0.8em;
       }
     }
+  }
+
+  .overlay {
+    @extend %fixed-position;
+    height: 100%;
+    background-color: #00000066;
+  }
+
+  .theme-modal {
+    @extend %center-modal;
+    padding: 1em;
+    width: 75%;
+    background: #fff;
+    color: #000;
+    border-radius: 0.2em;
+    text-align: right;
+
+    h3 {
+      margin: 0;
+      padding-left: 1em;
+      text-align: left;
+    }
+
+    button {
+      @extend %remove-default;
+      color: $primaryColor;
+      font-weight: 600;
+    }
+
+    .options {
+      @extend %style-radio-button;
+    }
+
+    .options > * {
+      display: flex;
+      align-items: center;
+      gap: 0 1em;
+    }
+  }
+
+  .font-modal {
+    @extend .theme-modal;
   }
 }
