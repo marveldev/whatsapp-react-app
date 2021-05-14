@@ -1,19 +1,49 @@
 @import '../../common/helper';
 
+%style-header {
+  @extend %fixed-position;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  height: 3.5em;
+  font-size: 1.1em;
+
+  button {
+    @extend %remove-default;
+    width: 3em;
+    -webkit-tap-highlight-color: #DCDCDC;
+  }
+}
+
+%style-container {
+  display: flex;
+  align-items: center;
+  gap: 0 2.5em;
+  color: #000;
+  width: 100%;
+  font-size: 1em;
+  text-align: left;
+  height: 4.5em;
+  -webkit-tap-highlight-color: #DCDCDC;
+
+  i {
+    font-size: 1.5em;
+    color: $primaryColor;
+  }
+
+  p {
+    margin: 0;
+    margin-bottom: 0.2em;
+  }
+
+  span {
+    font-size: 0.8em;
+  }
+}
+
 .settings-page {
   .header {
-    @extend %fixed-position;
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    height: 3.5em;
-    font-size: 1.1em;
-
-    button {
-      @extend %remove-default;
-      width: 3em;
-      -webkit-tap-highlight-color: #DCDCDC;
-    }
+    @extend %style-header;
   }
 
   .content {
@@ -52,30 +82,83 @@
     }
   }
 
-  .settings-option-button {
-    @extend %remove-default;
-    display: flex;
-    align-items: center;
-    gap: 0 2.5em;
-    color: #000;
-    width: 100%;
-    font-size: 1em;
-    text-align: left;
-    height: 4.5em;
-    -webkit-tap-highlight-color: #DCDCDC;
+  .settings-options {
+    padding-left: 1em;
 
-    i {
-      font-size: 1.5em;
-      margin-left: 0.5em;
+    button {
+      @extend %style-container;
+      @extend %remove-default;
+      gap: 0 1.5em;
+      height: 3.8em;
     }
+  }
+}
 
-    p {
-      margin: 0;
-      margin-bottom: 0.5em;
-    }
+.display-settings-page {
+  .header {
+    @extend %style-header;
+  }
 
-    span {
+  .content {
+    position: relative;
+    top: 3.5em;
+  }
+
+  .display-setting {
+    border-bottom: 1px solid #DCDCDC;
+    padding-left: 1em;
+
+    h4 {
+      color: $primaryColor;
+      margin-bottom: 0.2em;
       font-size: 0.8em;
+    }
+
+    button {
+      @extend %style-container;
+      @extend %remove-default;
+      gap: 0 1.5em;
+      height: 3.5em;
+    }
+  }
+
+  .chat-settings {
+    @extend %style-slider;
+    border-bottom: 1px solid #DCDCDC;
+    padding-left: 1em;
+
+    h4 {
+      color: $primaryColor;
+      margin-bottom: 0.2em;
+      font-size: 0.8em;
+    }
+
+    label {
+      @extend %style-container;
+      gap: 0;
+      width: 70%;
+      padding-left: 3em;
+      height: 4.3em;
+    }
+
+    button {
+      @extend %remove-default;
+      padding-left: 3em;
+      color: #000;
+      width: 100%;
+      font-size: 1em;
+      text-align: left;
+      height: 4.5em;
+      -webkit-tap-highlight-color: #DCDCDC;
+
+      p {
+        margin: 0;
+        margin-bottom: 0.2em;
+      }
+
+      span {
+        font-size: 0.8em;
+      }
     }
   }
 }
