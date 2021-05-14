@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { ChatPage, HomePage, SettingsPage, DisplaySettingsPage } from './components'
+import { ChatPage, HomePage,
+  SettingsPage, DisplaySettingsPage, SingleStatusPage
+} from './components'
 import './index.scss'
 
 const App = () => {
@@ -11,6 +13,7 @@ const App = () => {
           <Route path="/chatPage/:selectedContactIndex" component={ChatPage} />
           <Route path="/settingsPage" component={SettingsPage} />
           <Route path="/displaySettingsPage" component={DisplaySettingsPage} />
+          <Route path="/singleStatusPage" component={SingleStatusPage} />
         </Switch>
       </div>
     </BrowserRouter>
