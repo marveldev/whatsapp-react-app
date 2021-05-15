@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { ChatPage, HomePage,
-  SettingsPage, DisplaySettingsPage, SingleStatusPage
+  SettingsPage, DisplaySettingsPage, SingleStatusPage, ProfilePage
 } from './components'
 import './index.scss'
 
@@ -14,6 +14,7 @@ const App = () => {
           <Route path="/settingsPage" component={SettingsPage} />
           <Route path="/displaySettingsPage" component={DisplaySettingsPage} />
           <Route path="/singleStatusPage" component={SingleStatusPage} />
+          <Route path="/profilePage" component={ProfilePage} />
         </Switch>
       </div>
     </BrowserRouter>
