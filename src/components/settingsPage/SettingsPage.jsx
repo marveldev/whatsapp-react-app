@@ -12,7 +12,9 @@ const SettingsPage = () => {
         <p>Settings</p>
       </div>
       <div className="content">
-        <div className="user-profile">
+        <div onClick={() => history.push('/profilePage')}
+          className="user-profile" role="button" tabIndex="0"
+        >
           <div className="photo-container">
             <img src={CONSTANTS.PHOTOURL}
               className="photo" alt="profile" />

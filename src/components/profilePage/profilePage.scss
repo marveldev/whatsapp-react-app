@@ -1,0 +1,102 @@
+@import '../../common/helper';
+
+.profile-page {
+  .header {
+    @extend %style-header;
+  }
+
+  .content {
+    position: relative;
+    top: 5em;
+  }
+
+  .profile-photo-container {
+    @include display(center);
+    margin-bottom: 1.5em;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .photo-container {
+    height: 8em;
+    width: 8em;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #000000;
+
+    .photo {
+      height: 8em;
+      width: 8em;
+      cursor: pointer;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  #addProfileFilePicker {
+    display: none;
+  }
+
+  .photo-icon {
+    @include display(center);
+    position: relative;
+    top: 2.5em;
+    right: 2.5em;
+    color: $textPrimaryColor;
+    width: 2.5em;
+    height: 2.5em;
+    border: unset;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: $primaryColor;
+  }
+
+  .input-container {
+    @include display(space-around);
+    margin: 0.5em 0 1em 1em;
+
+    div {
+      @include display(space-between);
+      width: 100%;
+      border-bottom: 0.1em solid #dcdcdc;
+
+      i {
+        font-size: 1.1em;
+      }
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      flex: 0.8;
+
+      span {
+        font-size: 0.8em;
+      }
+    }
+
+    input {
+      border: none;
+      padding: 0.3em 0 0.8em;
+      outline: none;
+      font-size: 1em;
+    }
+
+    i {
+      color: $primaryColor;
+      width: 2em;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 2em 1em 0 0;
+
+    button {
+      @extend %remove-default;
+      color: $primaryColor;
+      font-size: 1em;
+      font-weight: 600;
+    }
+  }
+}
