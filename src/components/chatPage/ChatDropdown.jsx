@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { chatActions } from './slice'
+import defaultWallpaper from '../../common/lightThemeChatWallpaper.jpg'
 
-const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
+const ChatDropdown = ({
+  setChatDropdownIsOpen, selectedContact, setChatWallpaper
+}) => {
   const [currentContent, setCurrentContent] = useState('dropdown')
   const chatState = useSelector(state => state.chat)
   const { chatData } = chatState
@@ -11,6 +14,23 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
   const clearChat = () => {
     const newChatData = chatData.filter(item => item.contactId !== selectedContact.id)
     dispatch(chatActions.addMultipleChat(newChatData))
+  }
+
+  const addGalleryWallpaper = event => {
+    const photoReader = new FileReader()
+    photoReader.readAsDataURL(event.target.files[0])
+    photoReader.addEventListener('load', () => {
+      setChatWallpaper(photoReader.result)
+      localStorage.setItem('storedWallpaper', photoReader.result)
+    })
+
+    setChatDropdownIsOpen(false)
+  }
+
+  const addDefaultWallpaper = () => {
+    setChatWallpaper(defaultWallpaper)
+    localStorage.setItem('storedWallpaper', defaultWallpaper)
+    setChatDropdownIsOpen(false)
   }
 
   return (
@@ -42,22 +62,25 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
         </div>
       )}
       {currentContent === 'wallpaper-options' && (
-        <div onClick={() => setChatDropdownIsOpen(false)} className="overlay">
+        <>
+          <div onClick={() => setChatDropdownIsOpen(false)} className="overlay"></div>
           <div className="wallpaper-options">
             <p>Wallpaper</p>
-            <button className="default-button">
+            <button onClick={addDefaultWallpaper} className="default-button">
               <i className="material-icons">&#xe5d5;</i>
               <span>Default</span>
             </button>
             <button>
-              <input type="file" id="wallpaperPicker" />
+              <input type="file" id="wallpaperPicker"
+                onChange={(event) => addGalleryWallpaper(event)}
+              />
               <label htmlFor="wallpaperPicker">
                 <i className="fa fa-photo"></i>
                 <span>Gallery</span>
               </label>
             </button>
           </div>
-        </div>
+        </>
       )}
     </div>
   )

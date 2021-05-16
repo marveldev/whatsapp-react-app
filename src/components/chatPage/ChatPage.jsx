@@ -7,9 +7,12 @@ import { displaySendButton } from './events'
 import { chatActions } from './slice'
 import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
+import defaultWallpaper from '../../common/lightThemeChatWallpaper.jpg'
 import './chatPage.scss'
 
 const ChatPage = () => {
+  const storedWallpaper = localStorage.getItem('storedWallpaper') || defaultWallpaper
+  const [chatWallpaper, setChatWallpaper] = useState(storedWallpaper)
   const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
@@ -104,7 +107,7 @@ const ChatPage = () => {
   ))
 
   return (
-    <div className="chat-page">
+    <div className="chat-page" style={{backgroundImage: `url(${chatWallpaper})`}}>
       <div className="header">
         <div onClick={() => goBack()} className="back-button-container">
           <button>
@@ -218,6 +221,7 @@ const ChatPage = () => {
         <ChatDropdown
           setChatDropdownIsOpen={setChatDropdownIsOpen}
           selectedContact={selectedContact}
+          setChatWallpaper={setChatWallpaper}
         />
       }
     </div>
