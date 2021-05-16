@@ -1,12 +1,23 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { chatActions } from './slice'
 
-const ChatDropdown = ({ setChatDropdownIsOpen }) => {
+const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
   const [currentContent, setCurrentContent] = useState('dropdown')
+  const chatState = useSelector(state => state.chat)
+  const { chatData } = chatState
+  const dispatch = useDispatch()
+
+  const clearChat = () => {
+    const newChatData = chatData.filter(item => item.contactId !== selectedContact.id)
+    dispatch(chatActions.addMultipleChat(newChatData))
+  }
 
   return (
     <div>
       {currentContent === 'dropdown' && (
-        <div className="dropdown-overlay">
+        <>
+          <div onClick={() => setChatDropdownIsOpen(false)} className="dropdown-overlay"></div>
           <div className="chat-dropdown">
             <button>View contact</button>
             <button>Media, links, and docs</button>
@@ -19,19 +30,19 @@ const ChatDropdown = ({ setChatDropdownIsOpen }) => {
               Clear chat
             </button>
           </div>
-        </div>
+        </>
       )}
       {currentContent === 'delete-modal' && (
-        <div className="overlay">
+        <div onClick={() => setChatDropdownIsOpen(false)} className="overlay">
           <div className="delete-modal">
             <p>Are you sure you want to clear messages in this chat?</p>
             <button>CANCEL</button>
-            <button>CLEAR</button>
+            <button onClick={clearChat}>CLEAR</button>
           </div>
         </div>
       )}
       {currentContent === 'wallpaper-options' && (
-        <div className="overlay">
+        <div onClick={() => setChatDropdownIsOpen(false)} className="overlay">
           <div className="wallpaper-options">
             <p>Wallpaper</p>
             <button className="default-button">

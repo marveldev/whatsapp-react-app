@@ -215,7 +215,10 @@ const ChatPage = () => {
         </div>
       )}
       {chatDropdownIsOpen &&
-        <ChatDropdown setChatDropdownIsOpen={setChatDropdownIsOpen} />
+        <ChatDropdown
+          setChatDropdownIsOpen={setChatDropdownIsOpen}
+          selectedContact={selectedContact}
+        />
       }
     </div>
   )

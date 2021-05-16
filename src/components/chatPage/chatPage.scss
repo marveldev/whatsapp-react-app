@@ -332,6 +332,10 @@
 
   .chat-dropdown {
     @extend %style-dropdown;
+    position: fixed;
+    right: 0;
+    top: 0.2em;
+    z-index: 1;
   }
 
   .wallpaper-options {
