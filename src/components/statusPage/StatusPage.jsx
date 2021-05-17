@@ -1,44 +1,82 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { CONSTANTS } from '../../common/constants'
+import { statusActions } from './slice'
 import './statusPage.scss'
 
 const StatusPage = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
+  const { statusData } = useSelector(state => state.status)
+
+  const addStatusFilePicker = event => {
+    const id = 'id' + Date.parse(new Date()).toString()
+    const timeOfEntry = new Date().toLocaleString('en-US',
+      { hour: 'numeric', minute: 'numeric', hour12: true }
+    )
+    const photoReader = new FileReader()
+    photoReader.readAsDataURL(event.target.files[0])
+    photoReader.addEventListener('load', () => {
+      const statusObject = {
+        id,
+        timeOfEntry,
+        photoSource: photoReader.result,
+      }
+
+      dispatch(statusActions.addStatus(statusObject))
+    })
+  }
+
+  const lastStatusEntry = statusData[statusData.length - 1]
 
   return (
     <div className="status-page">
       <div>
-        <input type="file" id="addStatusFilePicker" />
-        <label className="add-status-container"
-          htmlFor="addStatusFilePicker" role="button" tabIndex="0"
-        >
-          <div className="photo-container">
-            <img src={CONSTANTS.PHOTOURL} className="photo" alt="profile" />
-          </div>
-          <span className="material-icons plus-icon">&#xe145;</span>
-          <div className="status-message">
-            <span>My status</span>
-            <p>Tap to add status update</p>
-          </div>
-        </label>
-        <div
-          onClick={() => history.push('/viewStatusEntry')}
-          className="view-status-container" role="button" tabIndex="0"
-        >
-          <div className="photo-container">
-            <img src={CONSTANTS.PHOTOURL} className="photo" alt="profile" />
-          </div>
-          <div></div>
-          <div className="status-message">
-            <span>My status</span>
-            <p>Tap to view status update</p>
-          </div>
-          <button onClick={(event) => {event.stopPropagation(); history.push('/statusGallery')}}
-            className="more-button"
+        <input
+          type="file"
+          id="addStatusFilePicker"
+          accept="image/*"
+          onChange={(event) => addStatusFilePicker(event)}
+        />
+        {statusData.length < 1 && (
+          <label className="add-status-container"
+            htmlFor="addStatusFilePicker" role="button" tabIndex="0"
           >
-            <i className="material-icons">&#xe5d3;</i>
-          </button>
-        </div>
+            <div className="photo-container">
+              <img src={CONSTANTS.PHOTOURL} className="photo" alt="profile" />
+            </div>
+            <span className="material-icons plus-icon">&#xe145;</span>
+            <div className="status-message">
+              <span>My status</span>
+              <p>Tap to add status update</p>
+            </div>
+          </label>
+        )}
+        {statusData.length >= 1 && (
+          <div
+            onClick={() => history.push('/viewStatusEntry')}
+            className="view-status-container" role="button" tabIndex="0"
+          >
+            <div className="photo-container">
+              <img src={lastStatusEntry?.photoSource}
+                className="photo" alt="profile"
+              />
+            </div>
+            <div></div>
+            <div className="status-message">
+              <span>My status</span>
+              <p>Tap to view status update</p>
+            </div>
+            <button
+              onClick={(event) => {
+                event.stopPropagation(); history.push('/statusGallery')
+              }}
+              className="more-button"
+            >
+              <i className="material-icons">&#xe5d3;</i>
+            </button>
+          </div>
+        )}
       </div>
       <button className="text-icon"><i className="material-icons">&#xe3c9;</i></button>
       <label htmlFor="addStatusFilePicker">

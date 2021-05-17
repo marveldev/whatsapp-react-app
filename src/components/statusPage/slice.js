@@ -7,7 +7,7 @@ const statusSlice = createSlice({
   },
   reducers: {
     addStatus: (state, { payload }) => {
-      state.chatData = [...state.chatData, payload]
+      state.statusData = [...state.statusData, payload]
     }
   }
 })

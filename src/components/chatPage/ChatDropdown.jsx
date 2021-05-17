@@ -71,7 +71,7 @@ const ChatDropdown = ({
               <span>Default</span>
             </button>
             <button>
-              <input type="file" id="wallpaperPicker"
+              <input type="file" id="wallpaperPicker" accept="image/*"
                 onChange={(event) => addGalleryWallpaper(event)}
               />
               <label htmlFor="wallpaperPicker">
