@@ -4,7 +4,7 @@ import './statusPage.scss'
 
 const StatusPage = () => {
   const history = useHistory()
-  
+
   return (
     <div className="status-page">
       <div>
@@ -30,7 +30,7 @@ const StatusPage = () => {
             <span>My status</span>
             <p>Tap to view status update</p>
           </div>
-          <button onClick={() => history.push('/singleStatusPage')}
+          <button onClick={() => history.push('/statusGallery')}
             className="more-button"
           >
             <i className="material-icons">&#xe5d3;</i>

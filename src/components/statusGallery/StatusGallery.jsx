@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import { CONSTANTS } from '../../common/constants'
-import './singleStatusPage.scss'
+import './statusGallery.scss'
 
-const SingleStatusPage = () => {
+const StatusGallery = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState()
   const { goBack } = useHistory()
 
   return (
-    <div className="single-status-page">
+    <div className="status-gallery">
       <div className="header">
         <button onClick={goBack} className="material-icons">&#xe5c4;</button>
         <p>My status</p>
@@ -52,4 +52,4 @@ const SingleStatusPage = () => {
   )
 }
 
-export default SingleStatusPage
+export default StatusGallery
