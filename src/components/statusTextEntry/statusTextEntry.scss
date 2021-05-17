@@ -2,7 +2,6 @@
 
 .status-text-entry {
   @extend %absolute-position;
-  background: green;
 
   .input-container {
     @include display(center)
@@ -55,7 +54,6 @@
   }
 
   .smileys {
-    left: (123px - 70px);
     bottom: 5.5em;
 
     .arrow-down {

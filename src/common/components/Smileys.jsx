@@ -5,7 +5,7 @@ import '../smileys.scss'
 
 export const Smileys = ({
   setChatInputValue, chatInputValue, setSendButtonIsActive,
-  setStatusInputValue, statusInputValue
+  setStatusInputValue, statusInputValue, cursorPosition
 }) => {
   const [filteredSmiley, setFilteredSmiley] = useState(smileyList)
   const location = useLocation()
@@ -27,7 +27,7 @@ export const Smileys = ({
   }
 
   return (
-    <div className="smileys">
+    <div className="smileys" style={{left: (cursorPosition - 70 + 'px')}}>
       <div className="search-container">
         <span className="material-icons">&#xe8b6;</span>
         <input type="text"
