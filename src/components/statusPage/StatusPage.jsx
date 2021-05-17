@@ -21,7 +21,10 @@ const StatusPage = () => {
             <p>Tap to add status update</p>
           </div>
         </label>
-        <div className="view-status-container" role="button" tabIndex="0">
+        <div
+          onClick={() => history.push('/viewStatusEntry')}
+          className="view-status-container" role="button" tabIndex="0"
+        >
           <div className="photo-container">
             <img src={CONSTANTS.PHOTOURL} className="photo" alt="profile" />
           </div>
@@ -30,7 +33,7 @@ const StatusPage = () => {
             <span>My status</span>
             <p>Tap to view status update</p>
           </div>
-          <button onClick={() => history.push('/statusGallery')}
+          <button onClick={(event) => {event.stopPropagation(); history.push('/statusGallery')}}
             className="more-button"
           >
             <i className="material-icons">&#xe5d3;</i>

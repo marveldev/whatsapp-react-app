@@ -27,6 +27,10 @@
 }
 
 .settings-page {
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+
   .header {
     @extend %style-header;
   }
