@@ -1,20 +1,27 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router'
 import smileyList from '../smileyList'
 import '../smileys.scss'
 
 export const Smileys = ({
-  setChatInputValue, chatInputValue, setSendButtonIsActive
+  setChatInputValue, chatInputValue, setSendButtonIsActive,
+  setStatusInputValue, statusInputValue
 }) => {
   const [filteredSmiley, setFilteredSmiley] = useState(smileyList)
+  const location = useLocation()
 
   const addSmiley = smiley => {
-    setChatInputValue(chatInputValue + smiley)
-    setSendButtonIsActive(true)
+    if (location.pathname === '/statusTextEntry') {
+      setStatusInputValue(statusInputValue + smiley)
+    } else {
+      setChatInputValue(chatInputValue + smiley)
+      setSendButtonIsActive(true)
+    }
   }
 
   const filterSmileyList = value => {
     const newSmileyList = smileyList.filter(
-      (smiley => smiley.description.includes(value))
+      (smiley => smiley.description.toLowerCase().includes(value.toLowerCase()))
     )
     setFilteredSmiley(newSmileyList)
   }

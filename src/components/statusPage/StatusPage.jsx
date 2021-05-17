@@ -78,7 +78,9 @@ const StatusPage = () => {
           </div>
         )}
       </div>
-      <button className="text-icon"><i className="material-icons">&#xe3c9;</i></button>
+      <button onClick={() => history.push('/statusTextEntry')} className="text-icon">
+        <i className="material-icons">&#xe3c9;</i>
+      </button>
       <label htmlFor="addStatusFilePicker">
         <span className="photo-icon"><i className="fa fa-camera"></i></span>
       </label>

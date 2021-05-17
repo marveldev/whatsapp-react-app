@@ -17,6 +17,15 @@ $secondaryColor: #00E676;
   top: 6em;
 }
 
+%absolute-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
 %photo-size {
   height: 3.5em;
   width: 3.5em;

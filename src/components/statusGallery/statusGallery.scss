@@ -1,9 +1,7 @@
 @import '../../common/helper';
 
 .status-gallery {
-  overflow-y: auto;
-  width: 100%;
-  height: 100%;
+  @extend %absolute-position;
 
   .header {
     @extend %style-header;
