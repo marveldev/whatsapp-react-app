@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
-import { CONSTANTS } from '../../common/constants'
+import { constants } from '../../common'
 import './statusGallery.scss'
 
 const StatusGallery = () => {
@@ -17,7 +17,7 @@ const StatusGallery = () => {
         <div>
           <div className="single-status-entry">
             <div className="photo-container">
-              <img src={CONSTANTS.PHOTOURL} className="photo" alt="profile" />
+              <img src={constants.PHOTOURL} className="photo" alt="profile" />
             </div>
             <div className="status-info">
               <span>18 views</span>

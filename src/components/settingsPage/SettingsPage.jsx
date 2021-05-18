@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router'
-import { CONSTANTS } from '../../common/constants'
+import { constants } from '../../common'
 import './settingsPage.scss'
 
 const SettingsPage = () => {
@@ -16,7 +16,7 @@ const SettingsPage = () => {
           className="user-profile" role="button" tabIndex="0"
         >
           <div className="photo-container">
-            <img src={CONSTANTS.PHOTOURL}
+            <img src={constants.PHOTOURL}
               className="photo" alt="profile" />
           </div>
           <div className="info">

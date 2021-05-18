@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router'
-import { CONSTANTS } from '../../common/constants'
+import { constants } from '../../common'
 import './viewStatusEntry.scss'
 
 const ViewStatusEntry = () => {
@@ -12,7 +12,7 @@ const ViewStatusEntry = () => {
         <div onClick={goBack} className="user-profile">
           <button className="material-icons">&#xe5c4;</button>
           <div className="photo-container">
-            <img src={CONSTANTS.PHOTOURL} className="photo" alt="profile" />
+            <img src={constants.PHOTOURL} className="photo" alt="profile" />
           </div>
           <div className="info">
             <p>My status</p>
@@ -22,7 +22,7 @@ const ViewStatusEntry = () => {
       </div>
       <div className="content">
         <div className="status-entry-container">
-          <img src={CONSTANTS.PHOTOURL} alt="status" />
+          <img src={constants.PHOTOURL} alt="status" />
         </div>
         <button className="previous-button">previous</button>
         <button className="next-button">next</button>

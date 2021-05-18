@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router'
-import { CONSTANTS } from '../../common/constants'
+import { constants } from '../../common'
 import './profilePage.scss'
 
 const ProfilePage = () => {
@@ -14,7 +14,7 @@ const ProfilePage = () => {
       <div className="content">
         <div className="profile-photo-container">
           <div className="photo-container">
-            <img src={CONSTANTS.PHOTOURL} className="photo" alt="profile" />
+            <img src={constants.PHOTOURL} className="photo" alt="profile" />
           </div>
           <label>
             <input type="file" id="addProfileFilePicker" />
