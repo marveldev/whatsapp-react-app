@@ -7,7 +7,7 @@ const StatusTextEntry = () => {
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
   const [statusInputValue, setStatusInputValue] = useState('')
   const [cursorPosition, setCursorPosition] = useState()
-  // const randomColor = Math.floor(Math.random()*16777215).toString(16)
+  const randomColor = Math.floor(Math.random()*16777215).toString(16)
   const [backgroundColor, setBackgroundColor] = useState("#")
   const { goBack } = useHistory()
 
