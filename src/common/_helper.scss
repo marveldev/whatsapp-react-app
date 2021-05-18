@@ -38,6 +38,7 @@ $secondaryColor: #00E676;
   background-color: transparent;
   color: $textPrimaryColor;
   cursor: pointer;
+  outline: none;
 
   &:active {
     transform: translateY(0.1em);
