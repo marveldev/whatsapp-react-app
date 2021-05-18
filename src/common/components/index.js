@@ -1,1 +1,0 @@
-export { Smileys } from './Smileys'

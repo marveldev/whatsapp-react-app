@@ -1,17 +1,15 @@
 import { useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import { CONSTANTS } from '../../common/constants'
-import { Smileys } from '../../common/components'
-import { displaySendButton } from './events'
+import { constants, Smileys, lightThemeWallpaper } from '../../common'
+import { displaySendButton } from './helper'
 import { chatActions } from './slice'
 import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
-import defaultWallpaper from '../../common/lightThemeChatWallpaper.jpg'
 import './chatPage.scss'
 
 const ChatPage = () => {
-  const storedWallpaper = localStorage.getItem('storedWallpaper') || defaultWallpaper
+  const storedWallpaper = localStorage.getItem('storedWallpaper') || lightThemeWallpaper
   const [chatWallpaper, setChatWallpaper] = useState(storedWallpaper)
   const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
@@ -19,8 +17,7 @@ const ChatPage = () => {
   const [selectedChatCount, setSelectedChatCount] = useState(0)
   const [chatDropdownIsOpen, setChatDropdownIsOpen] = useState(false)
   const [chatInputValue, setChatInputValue] = useState('')
-  const chatState = useSelector(state => state.chat)
-  const { chatData } = chatState
+  const { chatData } = useSelector(state => state.chat)
   const { goBack } = useHistory()
   const dispatch = useDispatch()
   const { selectedContactIndex } = useParams()
@@ -114,7 +111,7 @@ const ChatPage = () => {
             <i className="material-icons">&#xe5c4;</i>
           </button>
           <div className="photo-container">
-            <img src={selectedContact.profilePhoto || CONSTANTS.PHOTOURL}
+            <img src={selectedContact.profilePhoto || constants.PHOTOURL}
               className="contact-photo" alt="contactPhoto"
             />
           </div>

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router'
 import smileyList from '../smileyList'
 import '../smileys.scss'
 
-export const Smileys = ({
+const Smileys = ({
   setChatInputValue, chatInputValue, setSendButtonIsActive,
   setStatusInputValue, statusInputValue, cursorPosition
 }) => {
@@ -50,3 +50,5 @@ export const Smileys = ({
     </div>
   )
 }
+
+export default Smileys
