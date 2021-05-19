@@ -56,6 +56,18 @@
       @extend %remove-default;
       color: $secondaryColor;
     }
+
+    .text-input {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3.5em;
+      min-width: 3.5em;
+      max-width: 3.5em;
+      border-radius: 50%;
+      color: #fff;
+      word-break: break-all;
+    }
   }
 
   .photo-icon {
