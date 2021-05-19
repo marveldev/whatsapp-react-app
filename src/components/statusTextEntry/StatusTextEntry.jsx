@@ -1,16 +1,19 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Smileys } from '../../common'
+import { statusActions } from '../statusPage/slice'
 import './statusTextEntry.scss'
 
 const StatusTextEntry = () => {
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
+  const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
   const [statusInputValue, setStatusInputValue] = useState('')
   const [cursorPosition, setCursorPosition] = useState()
-  const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16)
-  const [backgroundColor, setBackgroundColor] = useState(randomColor)
+  const [backgroundColor, setBackgroundColor] = useState("#005284")
   const [fontFamily, setFontFamily] = useState()
-  const { goBack } = useHistory()
+  const history = useHistory()
+  const dispatch = useDispatch()
 
   const toggleSmileyModalDisplay = event => {
     setCursorPosition(event.pageX)
@@ -19,7 +22,7 @@ const StatusTextEntry = () => {
 
   const changeBackgroundColor = () => {
     let randomColor = '#'
-    for (var i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
       randomColor += Math.floor(Math.random() * 10);
     }
 
@@ -34,8 +37,33 @@ const StatusTextEntry = () => {
       "Brush Script MT", "Copperplate", "Courier New"
     ]
     const index = Math.floor(Math.random()*fontFamilyList.length)
-    console.log(fontFamilyList[index])
     setFontFamily(fontFamilyList[index])
+  }
+
+  const handleInputEvent = event => {
+    setStatusInputValue(event.target.value)
+    if (event.target.value.trim().length >= 1) {
+      setSendButtonIsActive(true)
+    } else {
+      setSendButtonIsActive(false)
+    }
+  }
+
+  const addStatusTextEntry = () => {
+    const id = 'id' + Date.parse(new Date()).toString()
+    const timeOfEntry = new Date().toLocaleString('en-US',
+      { hour: 'numeric', minute: 'numeric', hour12: true }
+    )
+    const statusObject = {
+      id,
+      timeOfEntry,
+      backgroundColor,
+      fontFamily,
+      statusInputValue
+    }
+
+    dispatch(statusActions.addStatus(statusObject))
+    history.push('/')
   }
 
   return (
@@ -43,7 +71,7 @@ const StatusTextEntry = () => {
       <div className="input-container">
         <textarea
           value={statusInputValue}
-          onChange={event => setStatusInputValue(event.target.value)}
+          onChange={event => handleInputEvent(event)}
           placeholder="Type a status"
           style={{fontFamily}}
           autoFocus
@@ -51,7 +79,7 @@ const StatusTextEntry = () => {
         </textarea>
       </div>
       <div className="status-input-options">
-        <button onClick={(event) => toggleSmileyModalDisplay(event)}>
+        <button onClick={event => toggleSmileyModalDisplay(event)}>
           <i className="material-icons">&#xe7f2;</i>
         </button>
         <button onClick={changeFontfamily} className="material-icons">
@@ -61,12 +89,14 @@ const StatusTextEntry = () => {
           &#xe40a;
         </button>
       </div>
-      <button onClick={goBack} className="back-button">
+      <button onClick={history.goBack} className="back-button">
         <i className="material-icons">&#xe5c4;</i>
       </button>
-      <button className="send-button">
-        <i className="material-icons">&#xe163;</i>
-      </button>
+      {sendButtonIsActive && (
+        <button onClick={addStatusTextEntry} className="send-button">
+          <i className="material-icons">&#xe163;</i>
+        </button>
+      )}
       {smileyModalIsOpen &&
         <Smileys
           setStatusInputValue={setStatusInputValue}
