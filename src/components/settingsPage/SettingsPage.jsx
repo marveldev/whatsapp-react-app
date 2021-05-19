@@ -8,7 +8,7 @@ const SettingsPage = () => {
   return (
     <div className="settings-page">
       <div className="header">
-        <button onClick={() => history.goBack()} className="material-icons">&#xe5c4;</button>
+        <button onClick={history.goBack} className="material-icons">&#xe5c4;</button>
         <p>Settings</p>
       </div>
       <div className="content">

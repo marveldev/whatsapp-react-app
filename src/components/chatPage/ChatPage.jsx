@@ -106,7 +106,7 @@ const ChatPage = () => {
   return (
     <div className="chat-page" style={{backgroundImage: `url(${chatWallpaper})`}}>
       <div className="header">
-        <div onClick={() => goBack()} className="back-button-container">
+        <div onClick={goBack} className="back-button-container">
           <button>
             <i className="material-icons">&#xe5c4;</i>
           </button>
