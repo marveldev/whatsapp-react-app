@@ -8,6 +8,11 @@ const StatusPage = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const { statusData } = useSelector(state => state.status)
+  const lastStatusEntry = statusData[statusData.length - 1]
+  const textStyleObject = {
+    backgroundColor: lastStatusEntry?.backgroundColor,
+    fontFamily: lastStatusEntry?.fontFamily
+  }
 
   const addStatusFilePicker = event => {
     const id = 'id' + Date.parse(new Date()).toString()
@@ -26,8 +31,6 @@ const StatusPage = () => {
       dispatch(statusActions.addStatus(statusObject))
     })
   }
-
-  const lastStatusEntry = statusData[statusData.length - 1]
 
   return (
     <div className="status-page">
@@ -57,12 +60,18 @@ const StatusPage = () => {
             onClick={() => history.push('/viewStatusEntry')}
             className="view-status-container" role="button" tabIndex="0"
           >
-            <div className="photo-container">
-              <img src={lastStatusEntry?.photoSource}
-                className="photo" alt="profile"
-              />
-            </div>
-            <div></div>
+            {lastStatusEntry?.photoSource && (
+              <div className="photo-container">
+                <img src={lastStatusEntry.photoSource}
+                  className="photo" alt="profile"
+                />
+              </div>
+            )}
+            {lastStatusEntry?.statusInputValue && (
+              <div className="text-input" style={textStyleObject}>
+                {lastStatusEntry.statusInputValue}
+              </div>
+            )}
             <div className="status-message">
               <span>My status</span>
               <p>Tap to view status update</p>
