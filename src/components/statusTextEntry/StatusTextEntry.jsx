@@ -10,8 +10,8 @@ const StatusTextEntry = () => {
   const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
   const [statusInputValue, setStatusInputValue] = useState('')
   const [cursorPosition, setCursorPosition] = useState()
-  const [backgroundColor, setBackgroundColor] = useState("#005284")
-  const [fontFamily, setFontFamily] = useState()
+  const [backgroundColor, setBackgroundColor] = useState('#005284')
+  const [fontFamily, setFontFamily] = useState('Courier New')
   const history = useHistory()
   const dispatch = useDispatch()
 
@@ -22,8 +22,8 @@ const StatusTextEntry = () => {
 
   const changeBackgroundColor = () => {
     let randomColor = '#'
-    for (let i = 0; i < 6; i++) {
-      randomColor += Math.floor(Math.random() * 10);
+    for (let index = 0; index < 6; index++) {
+      randomColor += Math.floor(Math.random() * 10)
     }
 
     setBackgroundColor(randomColor)
@@ -31,12 +31,13 @@ const StatusTextEntry = () => {
 
   const changeFontfamily = () => {
     const fontFamilyList = [ 
-      "Zapf-Chancery", "Verdana", "Helvetica", "Roboto", "sans-serif",
-      "Times New Roman", "Courier", "Arial Narrow", "Candara",
-      "Calibri", "Garamond", "cursive", "Monaco",
-      "Brush Script MT", "Copperplate", "Courier New"
+      "Courier New", "Zapf-Chancery", "Verdana", "sans-serif",
+      "Times New Roman", "Courier", "Arial Narrow", "Candara", "fangsong",
+      "Calibri", "Garamond", "cursive", "Optima", "monospace", "fantasy",
     ]
-    const index = Math.floor(Math.random()*fontFamilyList.length)
+
+    let index = fontFamilyList.indexOf(fontFamily) + 1
+    if (index === fontFamilyList.length) index = 0
     setFontFamily(fontFamilyList[index])
   }
 
