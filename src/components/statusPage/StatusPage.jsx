@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { constants } from '../../common'
-import { statusActions } from './slice'
+import { addStatusFilePicker } from '../../common/helper'
 import './statusPage.scss'
 
 const StatusPage = () => {
@@ -14,24 +14,6 @@ const StatusPage = () => {
     fontFamily: lastStatusEntry?.fontFamily
   }
 
-  const addStatusFilePicker = event => {
-    const id = 'id' + Date.parse(new Date()).toString()
-    const timeOfEntry = new Date().toLocaleString('en-US',
-      { hour: 'numeric', minute: 'numeric', hour12: true }
-    )
-    const photoReader = new FileReader()
-    photoReader.readAsDataURL(event.target.files[0])
-    photoReader.addEventListener('load', () => {
-      const statusObject = {
-        id,
-        timeOfEntry,
-        photoSource: photoReader.result,
-      }
-
-      dispatch(statusActions.addStatus(statusObject))
-    })
-  }
-
   return (
     <div className="status-page">
       <div>
@@ -39,7 +21,7 @@ const StatusPage = () => {
           type="file"
           id="addStatusFilePicker"
           accept="image/*"
-          onChange={(event) => addStatusFilePicker(event)}
+          onChange={event => addStatusFilePicker(event, dispatch)}
         />
         {statusData.length < 1 && (
           <label className="add-status-container"
