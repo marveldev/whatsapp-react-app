@@ -1,39 +1,62 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { constants } from '../../common'
+import { addStatusFilePicker } from '../../common/helper'
 import './statusGallery.scss'
 
 const StatusGallery = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState()
-  const { goBack } = useHistory()
+  const { statusData } = useSelector(state => state.status)
+  const history = useHistory()
+  const dispatch = useDispatch()
+
+  const statusItems = statusData.map((status, index) => (
+    <div key={index} id={status.id} className="single-status-entry">
+      {status.photoSource && (
+        <div className="photo-container">
+          <img src={status.photoSource} className="photo" alt="profile" />
+        </div>
+      )}
+      {status.statusInputValue && (
+        <div className="text-input"
+          style={{backgroundColor: status.backgroundColor, fontFamily: status.fontFamily}}
+        >
+          {status.statusInputValue}
+        </div>
+      )}
+      <div className="status-info">
+        <span>1 views</span>
+        <p>Today {status.timeOfEntry}</p>
+      </div>
+      <button onClick={() => setDropdownIsOpen(true)}
+        className="dropdown-button"
+      >
+        <i className="material-icons">&#xe5d4;</i>
+      </button>
+    </div>
+  ))
 
   return (
     <div className="status-gallery">
       <div className="header">
-        <button onClick={goBack} className="material-icons">&#xe5c4;</button>
+        <button onClick={history.goBack} className="material-icons">&#xe5c4;</button>
         <p>My status</p>
       </div>
       <div className="content">
-        <div>
-          <div className="single-status-entry">
-            <div className="photo-container">
-              <img src={constants.PHOTOURL} className="photo" alt="profile" />
-            </div>
-            <div className="status-info">
-              <span>18 views</span>
-              <p>Today 06:03</p>
-            </div>
-            <button onClick={() => setDropdownIsOpen(true)}
-              className="dropdown-button"
-            >
-              <i className="material-icons">&#xe5d4;</i>
-            </button>
-          </div>
+        <div className="status-output">
+          {statusItems}
         </div>
         <p className="toaster">Your status updates will disappear after 24 hours.</p>
-        <button className="text-icon"><i className="material-icons">&#xe3c9;</i></button>
+        <button onClick={() => history.push('/statusTextEntry')} className="text-icon">
+          <i className="material-icons">&#xe3c9;</i>
+        </button>
         <label>
-          <input type="file" id="addStatusFilePicker" />
+          <input
+            type="file" 
+            id="addStatusFilePicker"
+            accept="image/*"
+            onChange={event => addStatusFilePicker(event, dispatch)}
+          />
           <span className="photo-icon"><i className="fa fa-camera"></i></span>
         </label>
       </div>
