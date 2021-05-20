@@ -9,23 +9,20 @@ const ViewStatusEntry = () => {
   const { statusData, currentStatusIndex } = useSelector(state => state.status)
   const { goBack } = useHistory()
   const dispatch = useDispatch()
-  
-  useEffect(() => {
-    const progressBars = document.querySelectorAll('.progress-bar')
-    console.log(progressBars);
-    // let interval
-    // for (let index = 0; index < bars.length; index++) {
-    //   const bar = bars[index]
-    //   let width = 1
-    //   setInterval(() => {
-    //     if (width >= 100) {
 
-    //     } else {
-    //       width++
-    //       bar.style.width = width + '%'
-    //     }
-    //   }, 30)
-    // }
+  useEffect(() => {
+    const statusBars = document.querySelectorAll('.bar')
+    statusBars.forEach((statusBar, index) => {
+      let width = 1
+      const delay = (index*3000)
+      const incrementWidth = () => setInterval(() => {
+        if (width < 100) {
+          width++
+          statusBar.style.width = width + '%'
+        }
+      }, 30)
+      setTimeout(incrementWidth, delay)
+    })
   }, [])
 
   const displayNextStatus = () => {
@@ -47,7 +44,7 @@ const ViewStatusEntry = () => {
   return (
     <div className="view-status-entry">
       <div className="header">
-        <div>
+        <div className="bar-container">
           {statusData.map((item, index) => (
             <div key={index} className="progress-bar">
               <div className="bar"></div>
