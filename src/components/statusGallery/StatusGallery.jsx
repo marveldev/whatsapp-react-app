@@ -70,7 +70,6 @@ const StatusGallery = () => {
           </div>
         </div>
       )}
-
     </div>
   )
 }

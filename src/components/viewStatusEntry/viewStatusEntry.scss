@@ -6,6 +6,11 @@
 
   .header {
     background: #7fff00;
+
+    & > * {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .progress-bar {
@@ -20,8 +25,6 @@
   }
 
   .user-profile {
-    display: flex;
-    align-items: center;
     gap: 0 1em;
     height: 4em;
     color: $textPrimaryColor;
@@ -72,23 +75,18 @@
       }
     }
 
-    .previous-button {
+    & > button {
       position: absolute;
       top: 6em;
       height: 80%;
       width: 5em;
       cursor: pointer;
       opacity: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .next-button {
-      position: absolute;
-      top: 6em;
       right: 0;
-      height: 80%;
-      width: 5em;
-      cursor: pointer;
-      opacity: 0;
     }
   }
 }

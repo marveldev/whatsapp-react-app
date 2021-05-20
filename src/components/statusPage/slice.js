@@ -3,11 +3,15 @@ import { createSlice } from '@reduxjs/toolkit'
 const statusSlice = createSlice({
   name: 'status',
   initialState: {
-    statusData: []
+    statusData: [],
+    currentStatusIndex: 0
   },
   reducers: {
     addStatus: (state, { payload }) => {
       state.statusData = [...state.statusData, payload]
+    },
+    setCurrentStatusIndex: (state, { payload }) => {
+      state.currentStatusIndex = payload
     }
   }
 })
