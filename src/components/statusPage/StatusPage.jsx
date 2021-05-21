@@ -18,10 +18,11 @@ const StatusPage = () => {
     <div className="status-page">
       <div>
         <input
+          onChange={event => addStatusFilePicker(event, dispatch)}
           type="file"
           id="addStatusFilePicker"
           accept="image/*"
-          onChange={event => addStatusFilePicker(event, dispatch)}
+          multiple
         />
         {statusData.length < 1 && (
           <label className="add-status-container"

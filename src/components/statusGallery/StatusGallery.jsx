@@ -52,10 +52,11 @@ const StatusGallery = () => {
         </button>
         <label>
           <input
+            onChange={event => addStatusFilePicker(event, dispatch)}
             type="file" 
             id="addStatusFilePicker"
             accept="image/*"
-            onChange={event => addStatusFilePicker(event, dispatch)}
+            multiple
           />
           <span className="photo-icon"><i className="fa fa-camera"></i></span>
         </label>

@@ -5,17 +5,25 @@ const addStatusFilePicker = (event, dispatch) => {
   const timeOfEntry = new Date().toLocaleString('en-US',
     { hour: 'numeric', minute: 'numeric', hour12: true }
   )
-  const photoReader = new FileReader()
-  photoReader.readAsDataURL(event.target.files[0])
-  photoReader.addEventListener('load', () => {
-    const statusObject = {
-      id,
-      timeOfEntry,
-      photoSource: photoReader.result,
-    }
 
-    dispatch(statusActions.addStatus(statusObject))
-  })
+  const files = event.target.files
+  if (files.length <= 5) {
+    for (let index = 0; index < files.length; index++) {
+      const photoReader = new FileReader()
+      photoReader.readAsDataURL(files[index])
+      photoReader.addEventListener('load', () => {
+        const statusObject = {
+          id,
+          timeOfEntry,
+          photoSource: photoReader.result,
+        }
+
+        dispatch(statusActions.addStatus(statusObject))
+      })
+    }
+  } else {
+    alert("length exceeded; select a maximum of five images only")
+  }
 }
 
 export { addStatusFilePicker }
