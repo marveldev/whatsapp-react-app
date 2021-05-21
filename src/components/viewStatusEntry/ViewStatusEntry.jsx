@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -9,28 +10,19 @@ const ViewStatusEntry = () => {
   const { statusData, currentStatusIndex } = useSelector(state => state.status)
   const history = useHistory()
   const dispatch = useDispatch()
+  const [stuff, setStuff] = useState(0)
 
   useEffect(() => {
-    const statusBars = document.querySelectorAll('.bar')
-    statusBars.forEach((statusBar, index) => {
-      let width = 1
-      const delay = (index*3000)
-      const incrementWidth = () => {
-        const interval = setInterval(() => {
-          if (width >= 100 && index === statusBars.length - 1) {
-            clearInterval(interval)
-            dispatch(statusActions.setCurrentStatusIndex(0))
-            history.push('/')
-          } else {
-            width++
-            statusBar.style.width = width + '%'
-          }
-        }, 30)
+    const timeout = setTimeout(() => {
+      if (stuff < statusData.length - 1) setStuff(stuff + 1)
+      else {
+        setStuff(0)
+        history.push('/')
       }
+    }, 3000)
 
-      setTimeout(incrementWidth, delay)
-    })
-  }, [currentStatusIndex, dispatch, history])
+    return () => clearTimeout(timeout)
+  }, [stuff, history, statusData, dispatch])
 
   const displayNextStatus = () => {
     if (currentStatusIndex === statusData.length - 1) {
@@ -71,7 +63,7 @@ const ViewStatusEntry = () => {
       </div>
       <div className="content">
         <div className="status-entry-container">
-          <img src={statusData[currentStatusIndex]?.photoSource} alt="status" />
+          <img src={statusData[stuff]?.photoSource} alt="status" />
         </div>
         <button onClick={displayPreviousStatus} className="previous-button">previous</button>
         <button onClick={displayNextStatus} className="next-button">next</button>
