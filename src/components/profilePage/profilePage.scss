@@ -1,7 +1,6 @@
 @import '../../common/helper';
 
 .profile-page {
-  overflow-y: auto;
   width: 100%;
   height: 100%;
 
@@ -91,16 +90,25 @@
     }
   }
 
-  .button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin: 2em 1em 0 0;
+  .save-button {
+    @extend %remove-default;
+    color: $primaryColor;
+    font-size: 1em;
+    font-weight: 600;
+    float: right;
+    margin: 1em 1em 0 0;
+  }
 
-    button {
-      @extend %remove-default;
-      color: $primaryColor;
-      font-size: 1em;
-      font-weight: 600;
-    }
+  .toaster {
+    @include display(center);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $secondaryColor;
+    color: $textPrimaryColor;
+    z-index: 1;
+    height: 2em;
+    width: 100%;
+    font-size: 1.1em;
   }
 }

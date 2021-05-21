@@ -1,9 +1,42 @@
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { constants } from '../../common'
+import { profileActions } from './slice'
 import './profilePage.scss'
 
 const ProfilePage = () => {
+  const [toasterIsOpen, setToasterIsOpen] = useState(false)
+  const { profileObject } = useSelector(state => state.profile)
+  const [profilePhoto, setProfilePhoto] = 
+    useState(profileObject?.profilePhoto || constants.PHOTOURL)
   const { goBack } = useHistory()
+  const dispatch = useDispatch()
+
+  const addPhotoFilePicker = event => {
+    const photoReader = new FileReader()
+    photoReader.readAsDataURL(event.target.files[0])
+    photoReader.addEventListener('load', () => {
+      setProfilePhoto(photoReader.result)
+    })
+  }
+
+  const updateProfile = () => {
+    const name = document.querySelector('#name').value
+    const about = document.querySelector('#about').value
+    const profileObject = {
+      name,
+      about,
+      profilePhoto,
+    }
+
+    dispatch(profileActions.setProfile(profileObject))
+    setToasterIsOpen(true)
+
+    setTimeout(() => {
+      setToasterIsOpen(false)
+    }, 2000)
+  }
 
   return (
     <div className="profile-page">
@@ -14,10 +47,15 @@ const ProfilePage = () => {
       <div className="content">
         <div className="profile-photo-container">
           <div className="photo-container">
-            <img src={constants.PHOTOURL} className="photo" alt="profile" />
+            <img src={profilePhoto} className="photo" alt="profile" />
           </div>
           <label>
-            <input type="file" id="addProfileFilePicker" />
+            <input 
+              onChange={event => addPhotoFilePicker(event)}
+              type="file" 
+              id="addProfileFilePicker"
+              accept="image/*"
+            />
             <span className="photo-icon"><i className="fa fa-camera"></i></span>
           </label>
         </div>
@@ -27,7 +65,11 @@ const ProfilePage = () => {
             <div>
               <label>
                 <span>Name</span>
-                <input type="text" placeholder="Add name..."/>
+                <input type="text" id="name" 
+                  placeholder="Add name..."
+                  defaultValue={profileObject?.name} 
+                  autoFocus
+                />
               </label>
               <i className="material-icons">&#xe3c9;</i>
             </div>
@@ -37,7 +79,10 @@ const ProfilePage = () => {
             <div>
               <label>
                 <span>About</span>
-                <input type="text" placeholder="Add about..."/>
+                <input type="text" id="about"
+                  placeholder="Add about..."
+                  defaultValue={profileObject?.about}
+                />
               </label>
               <i className="material-icons">&#xe3c9;</i>
             </div>
@@ -53,11 +98,11 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className="button-container">
-          <button>Cancel</button>
-          <button>Save</button>
-        </div>
+        <button className="save-button" onClick={updateProfile}>Save</button>
       </div>
+      {toasterIsOpen && (
+        <div className="toaster">Profile was Successfully added</div>
+      )}
     </div>
   )
 }
