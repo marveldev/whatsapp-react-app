@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { constants } from '../../common'
 import { statusActions } from '../statusPage/slice'
 import './viewStatusEntry.scss'
 
 const ViewStatusEntry = () => {
+  const { profileObject } = useSelector(state => state.profile)
   const { statusData, currentStatusIndex } = useSelector(state => state.status)
   const history = useHistory()
   const dispatch = useDispatch()
@@ -53,7 +53,7 @@ const ViewStatusEntry = () => {
         <div onClick={history.goBack} className="user-profile">
           <button className="material-icons">&#xe5c4;</button>
           <div className="photo-container">
-            <img src={constants.PHOTOURL} className="photo" alt="profile" />
+            <img src={profileObject?.profilePhoto} className="photo" alt="profile" />
           </div>
           <div className="info">
             <p>My status</p>

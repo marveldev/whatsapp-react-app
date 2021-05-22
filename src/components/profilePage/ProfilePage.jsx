@@ -1,15 +1,13 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { constants } from '../../common'
 import { profileActions } from './slice'
 import './profilePage.scss'
 
 const ProfilePage = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState(false)
   const { profileObject } = useSelector(state => state.profile)
-  const [profilePhoto, setProfilePhoto] = 
-    useState(profileObject?.profilePhoto || constants.PHOTOURL)
+  const [profilePhoto, setProfilePhoto] = useState(profileObject?.profilePhoto)
   const { goBack } = useHistory()
   const dispatch = useDispatch()
 

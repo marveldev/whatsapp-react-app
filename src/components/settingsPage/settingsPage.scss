@@ -45,10 +45,13 @@
     align-items: center;
     border-bottom: 1px solid #DCDCDC;
     cursor: pointer;
+    height: 5em;
+    padding-left: 1em;
+    gap: 0 1em;
+    -webkit-tap-highlight-color: transparent;
 
     .info {
       width: 100%;
-      padding: 1em;
 
       span {
         font-size: 0.8em;
@@ -56,7 +59,7 @@
 
       p {
         margin: 0;
-        margin-bottom: 0.5em;
+        margin-bottom: 0.2em;
       }
     }
   }

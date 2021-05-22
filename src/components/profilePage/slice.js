@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { constants } from '../../common'
 
 const profileSlice = createSlice({
   name: 'profile',
   initialState: {
-    profileObject: {}
+    profileObject: {
+      profilePhoto: constants.PHOTOURL,
+      name: 'Add profile'
+    }
   },
   reducers: {
     setProfile: (state, { payload }) => {
