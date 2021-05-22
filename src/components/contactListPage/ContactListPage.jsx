@@ -10,7 +10,7 @@ const ContactListPage = () => {
       <div className="contact-list">
         {contactList.map((contact, index) => (
           <div key={contact.id} className="contact" role="button" tabIndex="0">
-            <div className="photo-container">
+            <div onClick={() => history.push('/contactInfoPage')} className="photo-container">
               <img src={contact.profilePhoto} className="contact-photo" alt="contact" />
             </div>
             <div onClick={() => history.push(`/chatPage/${index}`)} className="info">

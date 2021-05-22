@@ -1,0 +1,53 @@
+@import '../../common/helper';
+
+.contact-info-page {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  .header {
+    height: 18em;
+    width: 100%;
+
+    .photo-container {
+      position: absolute;
+      top: 0;
+      height: 18em;
+      width: 100%;
+      background: #000;
+    }
+
+    .photo {
+      height: 18em;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .fade-in-info {
+      display: none;
+    }
+
+    .button-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 3em;
+    }
+
+    button {
+      @extend %remove-default;
+      width: 4em;
+    }
+
+    .contact-name {
+      position: relative;
+      top: 6em;
+      color: #fff;
+      font-size: 1.8em;
+      padding: 0.5em 0.5em;
+      background-color: #00000065;
+    }
+  }
+}
