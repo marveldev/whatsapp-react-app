@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { currentPageActions } from '../homePage/slice'
@@ -6,9 +6,21 @@ import './topNav.scss'
 
 const TopNav = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
+  const [navHeaderIsActive, setNavHeaderIsActive] = useState(true)
   const { currentPage } = useSelector(state => state.currentPage)
   const dispatch = useDispatch()
   const history = useHistory()
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset
+      if (currentScroll >= 80) {
+        setNavHeaderIsActive(false)
+      } else {
+        setNavHeaderIsActive(true)
+      }
+    })
+  }, [])
 
   const switchCurrentPage = page => {
     dispatch(currentPageActions.setCurrentPage(page))
@@ -17,15 +29,17 @@ const TopNav = () => {
 
   return (
     <div className="top-nav">
-      <div className="header">
-        <h3>WhatsApp</h3>
-        <div>
-          <button><i className="fa fa-search"></i></button>
-          <button onClick={() => setDropdownIsOpen(true)}>
-            <i className="material-icons">&#xe5d4;</i>
-          </button>
+      {navHeaderIsActive && (
+        <div className="header">
+          <h3>WhatsApp</h3>
+          <div>
+            <button><i className="fa fa-search"></i></button>
+            <button onClick={() => setDropdownIsOpen(true)}>
+              <i className="material-icons">&#xe5d4;</i>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
       <nav className="nav">
         <button><i className="fa fa-camera"></i></button>
         <button onClick={() => switchCurrentPage('contactList')}
