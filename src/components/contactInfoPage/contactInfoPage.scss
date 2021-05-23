@@ -1,9 +1,8 @@
 @import '../../common/helper';
 
 .contact-info-page {
-  position: absolute;
-  left: 0;
-  top: 0;
+  @extend %absolute-position;
+  background: #EDEDED;
 
   .header {
     height: 18em;
@@ -28,11 +27,9 @@
     }
 
     .button-container {
+      @include display(space-between);
       position: relative;
       z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       height: 3em;
     }
 
@@ -44,10 +41,83 @@
     .contact-name {
       position: relative;
       top: 6em;
-      color: #fff;
+      color: $textPrimaryColor;
       font-size: 1.8em;
       padding: 0.5em 0.5em;
       background-color: #00000065;
+    }
+  }
+
+  .content {
+    padding-bottom: 1em;
+
+    .wrapper {
+      margin-top: 0.8em;
+      background: $textPrimaryColor;
+      padding: 0 1em;
+      box-shadow: 0 0 1px 0 #000000a4;
+
+      & > * {
+        @include display(space-between);
+        padding: 1em 0;
+        border-bottom: 1px solid #E1E1E1;
+        margin: 0;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      .message {
+        padding: 0.7em 0;
+      }
+  
+      button {
+        @extend %remove-default;
+        color: $primaryColor;
+        vertical-align: middle;
+      }
+
+      i {
+        font-size: 1.5em;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .about {
+      display: block;
+    }
+
+    h4 {
+      color: $primaryColor;
+      font-weight: 400;
+      margin: 0 0 0.5em;
+    }
+  }
+
+  .button {
+    @extend %remove-default;
+    display: flex;
+    align-items: center;
+    gap: 0 1.5em;
+    height: 3em;
+    background-color: #fff;
+    width: 100%;
+    color: #CB0909;
+    padding: 0 1.5em;
+    margin-top: 0.8em;
+    font-size: 1em;
+    box-shadow: 0 0 1px 0 #000000a4;
+  }
+
+  .switch-wrapper {
+    @extend %style-slider;
+
+    .switch {
+      margin: 0 2.5em 1em auto;
     }
   }
 }
