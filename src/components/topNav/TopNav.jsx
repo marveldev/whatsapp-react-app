@@ -14,7 +14,8 @@ const TopNav = () => {
   useEffect(() => {
     const toggleLogoDisplay = () => {
       const currentScroll = window.pageYOffset
-      if (currentScroll >= 80) {
+      const checkpoint = 80
+      if (currentScroll >= checkpoint) {
         setLogoIsActive(false)
       } else {
         setLogoIsActive(true)

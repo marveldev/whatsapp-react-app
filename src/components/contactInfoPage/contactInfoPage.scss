@@ -3,6 +3,7 @@
 .contact-info-page {
   @extend %absolute-position;
   background: #EDEDED;
+  height: unset;
 
   .header {
     height: 18em;
@@ -22,8 +23,16 @@
       object-fit: cover;
     }
 
-    .fade-in-info {
-      display: none;
+    .fade-in-header {
+      @include display(space-between);
+      position: fixed;
+      top: 0;
+      background-color: $primaryColor;
+      width: 100%;
+      height: 3em;
+      color: $textPrimaryColor;
+      font-weight: 600;
+      z-index: 1;
     }
 
     .button-container {

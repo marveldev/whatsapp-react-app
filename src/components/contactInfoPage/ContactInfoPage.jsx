@@ -1,10 +1,31 @@
+import { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import contactList from '../contactListPage/contactList'
 import './contactInfoPage.scss'
 
 const ContactInfoPage = () => {
+  const [opacity, setOpacity] = useState()
+  const [fadeInHeaderisOpen, setFadeInHeaderIsOpen] = useState()
   const { goBack } = useHistory()
   const { selectedContactIndex } = useParams()
+
+  useEffect(() => {
+    const toggleHeaderDisplay = () => {
+      const currentScroll = window.scrollY
+      const checkpoint = 300
+      if (currentScroll <= checkpoint) {
+        setOpacity (1 - currentScroll / checkpoint)
+        setFadeInHeaderIsOpen(false)
+      } else {
+        setOpacity(0)
+        setFadeInHeaderIsOpen(true)
+      }
+    }
+
+    window.addEventListener('scroll', toggleHeaderDisplay)
+
+    return () => window.removeEventListener('scroll', toggleHeaderDisplay)
+  }, [])
 
   return (
     <div className="contact-info-page">
@@ -13,17 +34,19 @@ const ContactInfoPage = () => {
           <button onClick={goBack}><i className="material-icons">&#xe5c4;</i></button>
           <button><i className="material-icons">&#xe5d4;</i></button>
         </div>
-        <div className="photo-container">
+        <div className="photo-container" style={{opacity}}>
           <img src={contactList[selectedContactIndex].profilePhoto}
             className="photo" alt="contact"
           />
         </div>
         <div className="contact-name">{contactList[selectedContactIndex].name}</div>
-        <div className="fade-in-info">
-          <button><i className="material-icons">&#xe5c4;</i></button>
-          <span>Jack Williams</span>
-          <button><i className="material-icons">&#xe5d4;</i></button>
-        </div>
+        {fadeInHeaderisOpen && (
+          <div className="fade-in-header">
+            <button onClick={goBack}><i className="material-icons">&#xe5c4;</i></button>
+            <span>{contactList[selectedContactIndex].name}</span>
+            <button><i className="material-icons">&#xe5d4;</i></button>
+          </div>
+        )}
       </div>
       <div className="content">
         <div className="wrapper">
