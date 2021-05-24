@@ -1,9 +1,10 @@
-import { useHistory } from 'react-router-dom'
-import { constants } from '../../common'
+import { useHistory, useParams } from 'react-router-dom'
+import contactList from '../contactListPage/contactList'
 import './contactInfoPage.scss'
 
 const ContactInfoPage = () => {
   const { goBack } = useHistory()
+  const { selectedContactIndex } = useParams()
 
   return (
     <div className="contact-info-page">
@@ -13,9 +14,11 @@ const ContactInfoPage = () => {
           <button><i className="material-icons">&#xe5d4;</i></button>
         </div>
         <div className="photo-container">
-          <img src={constants.PHOTOURL} className="photo" alt="contact" />
+          <img src={contactList[selectedContactIndex].profilePhoto}
+            className="photo" alt="contact"
+          />
         </div>
-        <div className="contact-name">Jack Williams</div>
+        <div className="contact-name">{contactList[selectedContactIndex].name}</div>
         <div className="fade-in-info">
           <button><i className="material-icons">&#xe5c4;</i></button>
           <span>Jack Williams</span>

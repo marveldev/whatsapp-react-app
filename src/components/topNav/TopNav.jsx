@@ -12,14 +12,18 @@ const TopNav = () => {
   const history = useHistory()
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
+    const toggleLogoDisplay = () => {
       const currentScroll = window.pageYOffset
       if (currentScroll >= 80) {
         setLogoIsActive(false)
       } else {
         setLogoIsActive(true)
       }
-    })
+    }
+
+    window.addEventListener('scroll', toggleLogoDisplay)
+
+    return () => window.removeEventListener('scroll', toggleLogoDisplay)
   }, [])
 
   const switchCurrentPage = page => {

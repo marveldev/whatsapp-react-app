@@ -17,7 +17,7 @@ const App = () => {
           <Route path="/profilePage" component={ProfilePage} />
           <Route path="/viewStatusEntry" component={ViewStatusEntry} />
           <Route path="/statusTextEntry" component={StatusTextEntry} />
-          <Route path="/contactInfoPage" component={ContactInfoPage} />
+          <Route path="/contactInfoPage/:selectedContactIndex" component={ContactInfoPage} />
         </Switch>
       </div>
     </BrowserRouter>
