@@ -6,7 +6,7 @@ import './topNav.scss'
 
 const TopNav = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
-  const [navHeaderIsActive, setNavHeaderIsActive] = useState(true)
+  const [logoIsActive, setLogoIsActive] = useState(true)
   const { currentPage } = useSelector(state => state.currentPage)
   const dispatch = useDispatch()
   const history = useHistory()
@@ -15,9 +15,9 @@ const TopNav = () => {
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset
       if (currentScroll >= 80) {
-        setNavHeaderIsActive(false)
+        setLogoIsActive(false)
       } else {
-        setNavHeaderIsActive(true)
+        setLogoIsActive(true)
       }
     })
   }, [])
@@ -29,7 +29,7 @@ const TopNav = () => {
 
   return (
     <div className="top-nav">
-      {navHeaderIsActive && (
+      {logoIsActive && (
         <div className="header">
           <h3>WhatsApp</h3>
           <div>
