@@ -27,7 +27,7 @@
       @include display(space-between);
       position: fixed;
       top: 0;
-      background-color: $primaryColor;
+      background-color: var(--primary-background-color);
       width: 100%;
       height: 3em;
       color: $textPrimaryColor;
@@ -83,7 +83,7 @@
 
       button {
         @extend %remove-default;
-        color: $primaryColor;
+        color: var(--primary-background-color);
         vertical-align: middle;
       }
 
@@ -101,7 +101,7 @@
     }
 
     h4 {
-      color: $primaryColor;
+      color: var(--primary-background-color);
       font-weight: 400;
       margin: 0 0 0.5em;
     }

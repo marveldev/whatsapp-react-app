@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   gap: 0 2.5em;
-  color: #000;
+  color: #000; //switch based on theme.
   width: 100%;
   font-size: 1em;
   text-align: left;
@@ -13,7 +13,7 @@
 
   i {
     font-size: 1.5em;
-    color: $primaryColor;
+    color: var(--primary-background-color);
   }
 
   p {
@@ -101,7 +101,7 @@
     padding-left: 1em;
 
     h4 {
-      color: $primaryColor;
+      color: var(--primary-background-color);
       margin-bottom: 0.2em;
       font-size: 0.8em;
     }
@@ -120,7 +120,7 @@
     padding-left: 1em;
 
     h4 {
-      color: $primaryColor;
+      color: var(--primary-background-color);
       margin-bottom: 0.2em;
       font-size: 0.8em;
     }
@@ -179,7 +179,7 @@
 
     button {
       @extend %remove-default;
-      color: $primaryColor;
+      color: var(--primary-background-color);
       font-weight: 600;
     }
 

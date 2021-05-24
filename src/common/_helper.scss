@@ -1,6 +1,9 @@
-$primaryColor: #1D7063;
 $textPrimaryColor: #fff;
 $secondaryColor: #00E676;
+
+.app-layer {
+  --secondary-background-color: #00E676;
+}
 
 %fixed-position {
   position: fixed;
@@ -8,7 +11,7 @@ $secondaryColor: #00E676;
   left: 0;
   width: 100%;
   z-index: 1;
-  background-color: $primaryColor;
+  background-color: var(--primary-background-color);
   color: $textPrimaryColor;
 }
 
@@ -155,7 +158,7 @@ $secondaryColor: #00E676;
   }
 
   input:checked + .slider:before {
-    background-color: $primaryColor;
+    background-color: var(--primary-background-color);
     transform: translateX(0.8em);
   }
 

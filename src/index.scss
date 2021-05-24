@@ -1,5 +1,13 @@
+@import './common/theme.scss';
+
 .app-layer {
+  --primary-background-color: #1D7063;
   margin: 0;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif, Helvetica;
 }
