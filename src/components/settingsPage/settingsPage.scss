@@ -162,12 +162,14 @@
 
   .theme-modal {
     @extend %center-modal;
+    position: absolute;
     padding: 1em;
     width: 75%;
     background: #fff;
     color: #000;
     border-radius: 0.2em;
     text-align: right;
+    z-index: 1;
 
     h3 {
       margin: 0;

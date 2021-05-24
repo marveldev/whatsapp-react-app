@@ -1,10 +1,21 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { themeActions } from './slice'
 
 const DisplaySettingsPage = () => {
   const [themeModalIsOpen, setThemeModalIsOpen] = useState(false)
   const [fontModalIsOpen, setFontModalIsOpen] = useState(false)
+  const [themeValue, setThemeValue] = useState()
+  const { theme } = useSelector(state => state.theme)
   const { goBack } = useHistory()
+  const dispatch = useDispatch()
+
+  const changeTheme = () => {
+    dispatch(themeActions.setTheme(themeValue))
+    localStorage.setItem('storedTheme', themeValue)
+    setThemeModalIsOpen(false)
+  }
 
   return (
     <div className="display-settings-page">
@@ -19,7 +30,7 @@ const DisplaySettingsPage = () => {
             <i className="material-icons">&#xe3ab;</i>
             <div>
               <p>Theme</p>
-              <span>Light</span>
+              <span>{theme}</span>
             </div>
           </button>
           <button>
@@ -58,30 +69,37 @@ const DisplaySettingsPage = () => {
         </div>
       </div>
       {themeModalIsOpen && (
-        <div onClick={() => setThemeModalIsOpen(false)} className="overlay">
+        <>
+          <div onClick={() => setThemeModalIsOpen(false)} className="overlay"></div>
           <div className="theme-modal">
             <h3>Choose theme</h3>
             <div className="options">
-              <label>
-                <input type="radio" name="radio" />
+              <label onChange={() => setThemeValue('System default')}>
+                <input type="radio" name="theme"
+                  defaultChecked={theme === 'System default' ? true : false}
+                />
                 <span className="checkmark"></span>
                 <p>System default</p>
               </label>
-              <label>
-                <input type="radio" name="radio" />
+              <label onChange={() => setThemeValue('Light')}>
+                <input type="radio" name="theme"
+                  defaultChecked={theme === 'Light' ? true : false}
+                />
                 <span className="checkmark"></span>
                 <p>Light</p>
               </label>
-              <label>
-                <input type="radio" name="radio" />
+              <label onChange={() => setThemeValue('Dark')}>
+                <input type="radio" name="theme"
+                  defaultChecked={theme === 'Dark' ? true : false}
+                />
                 <span className="checkmark"></span>
                 <p>Dark</p>
               </label>
             </div>
-            <button>CANCEL</button>
-            <button>OK</button>
+            <button onClick={() => setThemeModalIsOpen(false)}>CANCEL</button>
+            <button onClick={changeTheme}>OK</button>
           </div>
-        </div>
+        </>
       )}
       {fontModalIsOpen && (
         <div onClick={() => setFontModalIsOpen(false)} className="overlay">
@@ -89,17 +107,17 @@ const DisplaySettingsPage = () => {
             <h3>Font-size</h3>
             <div className="options">
               <label>
-                <input type="radio" name="radio" />
+                <input type="radio" name="font-size" />
                 <span className="checkmark"></span>
                 <p>Small</p>
               </label>
               <label>
-                <input type="radio" name="radio" />
+                <input type="radio" name="font-size" />
                 <span className="checkmark"></span>
                 <p>Medium</p>
               </label>
               <label>
-                <input type="radio" name="radio" />
+                <input type="radio" name="font-size" />
                 <span className="checkmark"></span>
                 <p>Large</p>
               </label>

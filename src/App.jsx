@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { ChatPage, HomePage, ViewStatusEntry, StatusTextEntry,
   SettingsPage, DisplaySettingsPage, StatusGallery, ProfilePage, ContactInfoPage
@@ -5,9 +6,11 @@ import { ChatPage, HomePage, ViewStatusEntry, StatusTextEntry,
 import './index.scss'
 
 const App = () => {
+  const { theme } = useSelector(state => state.theme)
+
   return (
     <BrowserRouter>
-      <div className="app-layer">
+      <div className={`app-layer ${theme.toLowerCase()}`}>
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/chatPage/:selectedContactIndex" component={ChatPage} />
