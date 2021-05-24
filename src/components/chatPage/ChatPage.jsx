@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import { constants, Smileys, lightThemeWallpaper } from '../../common'
+import { Smileys, lightThemeWallpaper } from '../../common'
 import { displaySendButton } from './helper'
 import { chatActions } from './slice'
 import ChatDropdown from './ChatDropdown'
@@ -18,7 +18,7 @@ const ChatPage = () => {
   const [chatDropdownIsOpen, setChatDropdownIsOpen] = useState(false)
   const [chatInputValue, setChatInputValue] = useState('')
   const { chatData } = useSelector(state => state.chat)
-  const { goBack } = useHistory()
+  const history = useHistory()
   const dispatch = useDispatch()
   const { selectedContactIndex } = useParams()
   const selectedContact = contactList[selectedContactIndex]
@@ -106,18 +106,20 @@ const ChatPage = () => {
   return (
     <div className="chat-page" style={{backgroundImage: `url(${chatWallpaper})`}}>
       <div className="header">
-        <div onClick={goBack} className="back-button-container">
+        <div onClick={history.goBack} className="back-button-container">
           <button>
             <i className="material-icons">&#xe5c4;</i>
           </button>
           <div className="photo-container">
-            <img src={selectedContact.profilePhoto || constants.PHOTOURL}
+            <img src={selectedContact?.profilePhoto}
               className="contact-photo" alt="contactPhoto"
             />
           </div>
         </div>
-        <div className="chat-person-info">
-          <p className="name">{selectedContact.name || 'Jane Doe'}</p>
+        <div onClick={() => history.push(`/contactInfoPage/${selectedContactIndex}`)}
+          className="chat-person-info"
+        >
+          <p className="name">{selectedContact?.name}</p>
           <p>online</p>
         </div>
         <div className="button-container">
