@@ -1,0 +1,78 @@
+$primaryColor: #222D36;
+$textPrimaryColor: #fff;
+$secondaryColor: #00AF9C;
+$primaryBackgroundColor: #101D24;
+
+.dark {
+  background: $primaryBackgroundColor;
+  color: $textPrimaryColor;
+
+  .status-page {
+    .status-message {
+      border-bottom: 1px solid #29333A;
+    }
+
+    .plus-icon {
+      background: $secondaryColor;
+    }
+
+    .photo-icon {
+      background-color: $secondaryColor;
+    }
+
+    .text-icon {
+      background: $primaryColor;
+      color: $textPrimaryColor;
+    }
+
+    .more-button {
+      color: $secondaryColor;
+    }
+  }
+
+  .phone-icon {
+    background-color: $secondaryColor;
+  }
+
+  .header {
+    background: $primaryColor;
+  }
+
+  .user-profile {
+    border-bottom: 1px solid #29333A;
+  }
+
+  .settings-options {
+    button {
+      color: $textPrimaryColor;
+
+      i {
+        color: $textPrimaryColor;
+      }
+    }
+  }
+
+  .nav {
+    background: $primaryColor;
+  }
+
+  .display-settings-page {
+    @extend .settings-options;
+
+    label {
+      color: $textPrimaryColor;
+    }
+
+    h4 {
+      color: $secondaryColor;
+    }
+
+    .chat-settings {
+      border-bottom: 1px solid #29333A;
+    }
+
+    .display-setting {
+      border-bottom: 1px solid #29333A;
+    }
+  }
+}

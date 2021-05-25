@@ -7,10 +7,11 @@ import './index.scss'
 
 const App = () => {
   const { theme } = useSelector(state => state.theme)
+  const currentTheme = theme?.toLowerCase()
 
   return (
     <BrowserRouter>
-      <div className={`app-layer ${theme.toLowerCase()}`}>
+      <div className={`app-layer ${currentTheme}`}>
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/chatPage/:selectedContactIndex" component={ChatPage} />
