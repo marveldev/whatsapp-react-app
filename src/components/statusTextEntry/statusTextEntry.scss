@@ -28,12 +28,12 @@
   .back-button {
     @extend %style-icon;
     left: 1em;
-    background-color: $primaryColor;
+    background-color: var(--primary-background-color);
   }
 
   .send-button {
     @extend %style-icon;
-    background-color: $primaryColor;
+    background-color: var(--primary-background-color);
   }
 
   .status-input-options {

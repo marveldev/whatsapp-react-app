@@ -50,7 +50,7 @@
     border: unset;
     border-radius: 50%;
     cursor: pointer;
-    background-color: $primaryColor;
+    background-color: var(--primary-background-color);
   }
 
   .input-container {
@@ -85,14 +85,14 @@
     }
 
     i {
-      color: $primaryColor;
+      color: var(--primary-background-color);
       width: 2em;
     }
   }
 
   .save-button {
     @extend %remove-default;
-    color: $primaryColor;
+    color: var(--primary-background-color);
     font-size: 1em;
     font-weight: 600;
     float: right;
