@@ -1,10 +1,9 @@
 $primaryColor: #222D36;
 $textPrimaryColor: #fff;
 $secondaryColor: #00AF9C;
-$primaryBackgroundColor: #101D24;
 
 .dark {
-  background: $primaryBackgroundColor;
+  background: #101D24;
   color: $textPrimaryColor;
 
   .status-page {
@@ -17,7 +16,7 @@ $primaryBackgroundColor: #101D24;
     }
 
     .photo-icon {
-      background-color: $secondaryColor;
+      background: $secondaryColor;
     }
 
     .text-icon {
@@ -31,7 +30,7 @@ $primaryBackgroundColor: #101D24;
   }
 
   .phone-icon {
-    background-color: $secondaryColor;
+    background: $secondaryColor;
   }
 
   .header {
@@ -69,10 +68,40 @@ $primaryBackgroundColor: #101D24;
 
     .chat-settings {
       border-bottom: 1px solid #29333A;
+
+      input:checked + .slider:before {
+        background-color: $secondaryColor;
+      }
     }
 
     .display-setting {
       border-bottom: 1px solid #29333A;
     }
+  }
+
+  .theme-modal {
+    background: $primaryColor;
+
+    .options {
+      label input:checked ~ .checkmark {
+        border: 2px solid $secondaryColor;
+      }
+
+      label input:checked ~ .checkmark:after {
+        background: $secondaryColor;
+      }
+
+      .checkmark {
+        border: 2px solid #fff;
+      }
+    }
+
+    button {
+      color: $secondaryColor;
+    }
+  }
+
+  .font-modal {
+    @extend .theme-modal;
   }
 }

@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   gap: 0 2.5em;
-  color: #000; //switch based on theme.
+  color: #000;
   width: 100%;
   font-size: 1em;
   text-align: left;
@@ -13,7 +13,7 @@
 
   i {
     font-size: 1.5em;
-    color: var(--primary-background-color);
+    color: $primaryColor;
   }
 
   p {
@@ -101,7 +101,7 @@
     padding-left: 1em;
 
     h4 {
-      color: var(--primary-background-color);
+      color: $primaryColor;
       margin-bottom: 0.2em;
       font-size: 0.8em;
     }
@@ -120,7 +120,7 @@
     padding-left: 1em;
 
     h4 {
-      color: var(--primary-background-color);
+      color: $primaryColor;
       margin-bottom: 0.2em;
       font-size: 0.8em;
     }
@@ -166,7 +166,6 @@
     padding: 1em;
     width: 75%;
     background: #fff;
-    color: #000;
     border-radius: 0.2em;
     text-align: right;
     z-index: 1;
@@ -179,7 +178,7 @@
 
     button {
       @extend %remove-default;
-      color: var(--primary-background-color);
+      color: $primaryColor;
       font-weight: 600;
     }
 
