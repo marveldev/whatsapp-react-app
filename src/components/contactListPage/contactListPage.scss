@@ -2,6 +2,8 @@
 
 .contact-list-page {
   @extend %relative-position;
+  box-sizing: border-box;
+  padding: 0 1em;
 
   .contact-list {
     padding-bottom: 0.5em;
@@ -13,7 +15,7 @@
 
       .info {
         width: 100%;
-        border-bottom: 0.1em solid #DCDCDC;
+        border-bottom: 1px solid #DCDCDC;
         padding: 0.5em 1em 0.5em 0;
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;

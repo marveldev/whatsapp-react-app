@@ -53,6 +53,25 @@ $secondaryColor: #00AF9C;
 
   .nav {
     background: $primaryColor;
+
+    .active {
+      color: $secondaryColor;
+      border-bottom: 0.2em solid $secondaryColor;
+    }
+  }
+
+  .overlay {
+    .dropdown {
+      background: $primaryColor;
+
+      button {
+        color: $textPrimaryColor;
+
+        &:active {
+          background-color: #6b70755e;
+        }
+      }
+    }
   }
 
   .display-settings-page {
@@ -103,5 +122,81 @@ $secondaryColor: #00AF9C;
 
   .font-modal {
     @extend .theme-modal;
+  }
+
+  .profile-page {
+    .photo-icon {
+      background: $secondaryColor;
+    }
+
+    .input-container {
+      div {
+        border-bottom: 0.1em solid #29333A;
+      }
+
+      input {
+        background: #101D24;
+        color: #fff;
+      }
+
+      i {
+        color: $secondaryColor;
+      }
+    }
+
+    .save-button {
+      color: $secondaryColor;
+    }
+
+    .toaster {
+      background: $secondaryColor;
+    }
+  }
+
+  .contact-list-page {
+    background: #101D24;
+
+    .contact {
+      .info {
+        border-bottom: 1px solid #29333A;
+
+        div {
+          .notification {
+            background: $secondaryColor;
+          }
+        }
+      }
+    }
+
+    .message-icon {
+      background: $secondaryColor;
+    }
+
+    .contact-modal {
+      background: #101D24;
+
+      i {
+        color: $secondaryColor;
+      }
+    }
+  }
+
+  .chat-page {
+    .chat-input {
+      background: $primaryColor;
+      color: $textPrimaryColor;
+    }
+
+    .smiley-button {
+      color: $textPrimaryColor;
+    }
+
+    .clip-button {
+      color: $textPrimaryColor;
+    }
+
+    .record-button {
+      background: $secondaryColor;
+    }
   }
 }
