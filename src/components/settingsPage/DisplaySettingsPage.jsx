@@ -1,20 +1,26 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { themeActions } from './slice'
+import { displaySettingsActions } from './slice'
 
 const DisplaySettingsPage = () => {
   const [themeModalIsOpen, setThemeModalIsOpen] = useState(false)
   const [fontModalIsOpen, setFontModalIsOpen] = useState(false)
   const [themeValue, setThemeValue] = useState()
-  const { theme } = useSelector(state => state.theme)
+  const { theme, fontSize } = useSelector(state => state.displaySettings)
   const { goBack } = useHistory()
   const dispatch = useDispatch()
 
   const changeTheme = () => {
-    dispatch(themeActions.setTheme(themeValue))
+    dispatch(displaySettingsActions.setTheme(themeValue))
     localStorage.setItem('storedTheme', themeValue)
     setThemeModalIsOpen(false)
+  }
+
+  const changeFontSize = value => {
+    dispatch(displaySettingsActions.setFontSize(value))
+    localStorage.setItem('storedFontSize', value)
+    setFontModalIsOpen(false)
   }
 
   return (
@@ -64,7 +70,7 @@ const DisplaySettingsPage = () => {
           </label>
           <button onClick={() => setFontModalIsOpen(true)}>
             <p>Font size</p>
-            <span>Medium</span>
+            <span>{fontSize}</span>
           </button>
         </div>
       </div>
@@ -102,28 +108,35 @@ const DisplaySettingsPage = () => {
         </>
       )}
       {fontModalIsOpen && (
-        <div onClick={() => setFontModalIsOpen(false)} className="overlay">
+        <>
+          <div onClick={() => setFontModalIsOpen(false)} className="overlay"></div>
           <div className="font-modal">
             <h3>Font-size</h3>
             <div className="options">
-              <label>
-                <input type="radio" name="font-size" />
+              <label onChange={() => changeFontSize('Small')}>
+                <input type="radio" name="font-size"
+                  defaultChecked={fontSize === 'Small' ? true : false}
+                />
                 <span className="checkmark"></span>
                 <p>Small</p>
               </label>
-              <label>
-                <input type="radio" name="font-size" />
+              <label onChange={() => changeFontSize('Medium')}>
+                <input type="radio" name="font-size"
+                  defaultChecked={fontSize === 'Medium' ? true : false}
+                />
                 <span className="checkmark"></span>
                 <p>Medium</p>
               </label>
-              <label>
-                <input type="radio" name="font-size" />
+              <label onChange={() => changeFontSize('Large')}>
+                <input type="radio" name="font-size"
+                  defaultChecked={fontSize === 'Large' ? true : false}
+                />
                 <span className="checkmark"></span>
                 <p>Large</p>
               </label>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   )

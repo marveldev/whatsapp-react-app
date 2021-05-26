@@ -1,17 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const themeSlice = createSlice({
-  name: 'theme',
+const displaySettingsSlice = createSlice({
+  name: 'displaySettings',
   initialState: {
-    theme: localStorage.getItem('storedTheme') || 'Light'
+    theme: localStorage.getItem('storedTheme') || 'Light',
+    fontSize: localStorage.getItem('storedFontSize') || 'Medium'
   },
   reducers: {
     setTheme: (state, { payload }) => {
       state.theme = payload
+    },
+    setFontSize: (state, { payload }) => {
+      state.fontSize = payload
     }
   }
 })
 
-const { actions: themeActions, reducer: themeReducers } = themeSlice
+const { actions: displaySettingsActions, reducer: displaySettingsReducers } = displaySettingsSlice
 
-export { themeActions, themeReducers }
+export { displaySettingsActions, displaySettingsReducers }

@@ -6,7 +6,7 @@ import { ChatPage, HomePage, ViewStatusEntry, StatusTextEntry,
 import './index.scss'
 
 const App = () => {
-  const { theme } = useSelector(state => state.theme)
+  const { theme } = useSelector(state => state.displaySettings)
   const currentTheme = theme?.toLowerCase()
 
   return (

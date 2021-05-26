@@ -17,6 +17,7 @@ const ChatPage = () => {
   const [selectedChatCount, setSelectedChatCount] = useState(0)
   const [chatDropdownIsOpen, setChatDropdownIsOpen] = useState(false)
   const [chatInputValue, setChatInputValue] = useState('')
+  const { fontSize } = useSelector(state => state.displaySettings)
   const { chatData } = useSelector(state => state.chat)
   const history = useHistory()
   const dispatch = useDispatch()
@@ -130,7 +131,7 @@ const ChatPage = () => {
           </button>
         </div>
       </div>
-      <div className="chat-container">
+      <div className="chat-container" style={{fontSize}}>
         {chatItems}
       </div>
       <div className="chat-input-container">
