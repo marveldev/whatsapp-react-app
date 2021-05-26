@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import { Smileys, lightThemeWallpaper } from '../../common'
+import { Smileys, lightThemeWallpaper, darkThemeWallpaper } from '../../common'
 import { displaySendButton } from './helper'
 import { chatActions } from './slice'
 import ChatDropdown from './ChatDropdown'
@@ -9,20 +9,22 @@ import contactList from '../contactListPage/contactList'
 import './chatPage.scss'
 
 const ChatPage = () => {
-  const storedWallpaper = localStorage.getItem('storedWallpaper') || lightThemeWallpaper
-  const [chatWallpaper, setChatWallpaper] = useState(storedWallpaper)
   const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
   const [selectedChatCount, setSelectedChatCount] = useState(0)
   const [chatDropdownIsOpen, setChatDropdownIsOpen] = useState(false)
   const [chatInputValue, setChatInputValue] = useState('')
-  const { fontSize } = useSelector(state => state.displaySettings)
+  const { theme, fontSize } = useSelector(state => state.displaySettings)
   const { chatData } = useSelector(state => state.chat)
   const history = useHistory()
   const dispatch = useDispatch()
   const { selectedContactIndex } = useParams()
   const selectedContact = contactList[selectedContactIndex]
+
+  const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
+  const wallpaper = localStorage.getItem('storedWallpaper') || defaultWallpaper
+  const [chatWallpaper, setChatWallpaper] = useState(wallpaper)
 
   const markAsSelected = selectedChat => {
     const newData = {...selectedChat, selected: !selectedChat.selected}

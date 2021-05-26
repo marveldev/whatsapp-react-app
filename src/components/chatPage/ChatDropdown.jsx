@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { chatActions } from './slice'
-import lightThemeChatWallpaper from '../../common/lightThemeChatWallpaper.jpg'
-import darkThemeChatWallpaper from '../../common/darkThemeChatWallpaper.png'
+import { lightThemeWallpaper, darkThemeWallpaper } from '../../common'
 
 const ChatDropdown = ({
   setChatDropdownIsOpen, selectedContact, setChatWallpaper
 }) => {
   const [currentContent, setCurrentContent] = useState('dropdown')
-  const { theme } = useSelector(state => state.theme)
+  const { theme } = useSelector(state => state.displaySettings)
   const chatState = useSelector(state => state.chat)
   const { chatData } = chatState
   const dispatch = useDispatch()
@@ -31,11 +30,11 @@ const ChatDropdown = ({
 
   const addDefaultWallpaper = () => {
     if (theme === 'Dark') {
-      setChatWallpaper(darkThemeChatWallpaper)
-      localStorage.setItem('storedWallpaper', darkThemeChatWallpaper)
+      setChatWallpaper(darkThemeWallpaper)
+      localStorage.setItem('storedWallpaper', darkThemeWallpaper)
     } else {
-      setChatWallpaper(lightThemeChatWallpaper)
-      localStorage.setItem('storedWallpaper', lightThemeChatWallpaper)
+      setChatWallpaper(lightThemeWallpaper)
+      localStorage.setItem('storedWallpaper', lightThemeWallpaper)
     }
 
     setChatDropdownIsOpen(false)
