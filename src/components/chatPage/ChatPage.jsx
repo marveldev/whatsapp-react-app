@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { Smileys, lightThemeWallpaper, darkThemeWallpaper } from '../../common'
 import { displaySendButton } from './helper'
-import { chatActions } from './slice'
+import { chatActions, getChats } from './slice'
 import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
 import database from '../../database'
@@ -17,7 +17,7 @@ const ChatPage = () => {
   const [chatDropdownIsOpen, setChatDropdownIsOpen] = useState(false)
   const [chatInputValue, setChatInputValue] = useState('')
   const { theme, fontSize } = useSelector(state => state.displaySettings)
-  const { chatData } = useSelector(state => state.chat)
+  const { chats } = useSelector(state => state.chat)
   const history = useHistory()
   const dispatch = useDispatch()
   const { selectedContactIndex } = useParams()
@@ -27,9 +27,13 @@ const ChatPage = () => {
   const wallpaper = localStorage.getItem('storedWallpaper') || defaultWallpaper
   const [chatWallpaper, setChatWallpaper] = useState(wallpaper)
 
+  useEffect(() => {
+    dispatch(getChats())
+  }, [dispatch])
+
   const markAsSelected = selectedChat => {
     const newData = {...selectedChat, selected: !selectedChat.selected}
-    const mutableChatData = [...chatData]
+    const mutableChatData = [...chats]
     const selectedChatIndex = mutableChatData.indexOf(selectedChat)
     mutableChatData[selectedChatIndex] = newData
     dispatch(chatActions.addMultipleChat(mutableChatData))
@@ -42,7 +46,7 @@ const ChatPage = () => {
   }
 
   const deleteSelectedChat = () => {
-    const newData = chatData.filter(
+    const newData = chats.filter(
       chat => !chat.selected
     )
 
@@ -51,7 +55,7 @@ const ChatPage = () => {
   }
 
   const markAsUnselected = () => {
-    const newData = chatData.map(chat => {
+    const newData = chats.map(chat => {
       return {...chat, selected: false}
     })
 
@@ -86,7 +90,7 @@ const ChatPage = () => {
     chatInput.focus()
   }
 
-  const filteredChatData = chatData.filter(item => item.contactId === selectedContact.id)
+  const filteredChatData = chats?.filter(item => item.contactId === selectedContact.id)
 
   const chatItems = filteredChatData?.map((chat, index) => (
     <div key={index} id={chat.id}

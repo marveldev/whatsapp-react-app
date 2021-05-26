@@ -8,12 +8,11 @@ const ChatDropdown = ({
 }) => {
   const [currentContent, setCurrentContent] = useState('dropdown')
   const { theme } = useSelector(state => state.displaySettings)
-  const chatState = useSelector(state => state.chat)
-  const { chatData } = chatState
+  const { chats } = useSelector(state => state.chat)
   const dispatch = useDispatch()
 
   const clearChat = () => {
-    const newChatData = chatData.filter(item => item.contactId !== selectedContact.id)
+    const newChatData = chats?.filter(item => item.contactId !== selectedContact.id)
     dispatch(chatActions.addMultipleChat(newChatData))
   }
 
