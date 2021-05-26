@@ -15,18 +15,18 @@ $secondaryColor: #00AF9C;
       background: $secondaryColor;
     }
 
-    .photo-icon {
-      background: $secondaryColor;
-    }
-
-    .text-icon {
-      background: $primaryColor;
-      color: $textPrimaryColor;
-    }
-
     .more-button {
       color: $secondaryColor;
     }
+  }
+
+  .text-icon {
+    background: $primaryColor;
+    color: $textPrimaryColor;
+  }
+
+  .photo-icon {
+    background: $secondaryColor;
   }
 
   .phone-icon {
@@ -287,6 +287,22 @@ $secondaryColor: #00AF9C;
 
     input:checked + .slider:before {
       background-color: $secondaryColor;
+    }
+  }
+
+  .status-text-entry {
+    .back-button {
+      background: $secondaryColor;
+    }
+
+    .send-button {
+      background: $secondaryColor;
+    }
+  }
+
+  .status-gallery {
+    .dropdown-button {
+      color: $secondaryColor;
     }
   }
 }
