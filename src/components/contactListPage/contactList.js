@@ -2,7 +2,7 @@ const contactList = [
   {
     id: 'kjfdnd',
     name: 'Kofi Hawa',
-    profilePhoto: 'https://images.pexels.com/photos/2327283/pexels-photo-2327283.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    profilePhoto: 'https://images.pexels.com/photos/2876486/pexels-photo-2876486.png?auto=compress&cs=tinysrgb&dpr=2&w=500'
   },
   {
     id: 'mzaqrt',
@@ -41,13 +41,13 @@ const contactList = [
   },
   {
     id: 'ejobao',
-    name: 'Dulani Kondo',
-    profilePhoto: 'https://images.pexels.com/photos/3189024/pexels-photo-3189024.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    name: 'Tiwa Savage',
+    profilePhoto: 'https://images.pexels.com/photos/1002687/pexels-photo-1002687.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
   },
   {
     id: 'nfvdnj',
-    name: 'Ehioze Eze',
-    profilePhoto: 'https://images.pexels.com/photos/2480847/pexels-photo-2480847.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    name: 'Tyrion Small',
+    profilePhoto: 'https://images.pexels.com/photos/1322481/pexels-photo-1322481.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
   }
 ]
 
