@@ -6,6 +6,7 @@ import { displaySendButton } from './helper'
 import { chatActions } from './slice'
 import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
+import database from '../../database'
 import './chatPage.scss'
 
 const ChatPage = () => {
@@ -58,7 +59,7 @@ const ChatPage = () => {
     dispatch(chatActions.addMultipleChat(newData))
   }
 
-  const addChatItemToDom = person => {
+  const addChatItemToDom = async person => {
     const chatContainer = document.querySelector('.chat-container')
     const chatInput = document.querySelector('.chat-input')
     const id = 'id' + Date.parse(new Date()).toString()
@@ -75,6 +76,7 @@ const ChatPage = () => {
       selected: false
     }
 
+    await database.chat.add(chatObject)
     chatContainer.scrollTop = chatContainer.scrollHeight
     chatInput.style.height = ''
     dispatch(chatActions.addChat(chatObject))
