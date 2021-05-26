@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { chatActions } from './slice'
 import lightThemeChatWallpaper from '../../common/lightThemeChatWallpaper.jpg'
-import darkThemeChatWallpaper from '../../common/darkThemeChatWallpaper.jpg'
+import darkThemeChatWallpaper from '../../common/darkThemeChatWallpaper.png'
 
 const ChatDropdown = ({
   setChatDropdownIsOpen, selectedContact, setChatWallpaper

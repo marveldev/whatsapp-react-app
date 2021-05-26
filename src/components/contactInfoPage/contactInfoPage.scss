@@ -84,11 +84,11 @@
       button {
         @extend %remove-default;
         color: $primaryColor;
-        vertical-align: middle;
       }
 
       i {
         font-size: 1.5em;
+        vertical-align: middle;
       }
 
       p {

@@ -198,5 +198,95 @@ $secondaryColor: #00AF9C;
     .record-button {
       background: $secondaryColor;
     }
+
+    .chat-dropdown {
+      background: $primaryColor;
+
+      button {
+        color: $textPrimaryColor;
+
+        &:active {
+          background-color: #6b70755e;
+        }
+      }
+    }
+
+    .wallpaper-options {
+      background: $primaryColor;
+      color: $textPrimaryColor;
+    }
+
+    .persons-button-container {
+      background: $primaryColor;
+
+      .arrow-down {
+        border-top: 1.5em solid $primaryColor;
+      }
+    }
+
+    .content {
+      background: $primaryColor;
+    }
+
+    .person-two {
+      div {
+        background: #02473f;
+      }
+    }
+
+    .arrow-left {
+      border-right: 0.8em solid $primaryColor;
+    }
+
+    .arrow-right {
+      border-left: 0.8em solid #02473f;
+    }
+
+    .selected-chat-options {
+      background: $primaryColor;
+    }
+  }
+
+
+  .delete-modal {
+    background: $primaryColor;
+    color: $textPrimaryColor;
+
+    button {
+      color: $secondaryColor;
+    }
+  }
+
+  .contact-info-page {
+    background: #101D24;
+
+    .wrapper {
+      background: $primaryColor;
+
+      & > * {
+        border-bottom: 0.1em solid #29333A;
+      }
+
+      i {
+        color: $secondaryColor;
+      }
+
+      h4 {
+        color: $secondaryColor;
+      }
+    }
+
+    .fade-in-header {
+      background: #202B33;
+    }
+
+    .button {
+      background: $primaryColor;
+      color: #e44848;
+    }
+
+    input:checked + .slider:before {
+      background-color: $secondaryColor;
+    }
   }
 }
