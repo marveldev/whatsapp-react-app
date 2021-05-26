@@ -19,7 +19,7 @@ const ContactListPage = () => {
               <p>{contact.name}</p>
               <div>
                 <span>Hello</span>
-                <span className="notification">2</span>
+                <span className="notification">1</span>
               </div>
             </div>
           </div>
