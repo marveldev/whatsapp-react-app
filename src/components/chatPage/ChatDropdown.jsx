@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { chatActions } from './slice'
 import { lightThemeWallpaper, darkThemeWallpaper } from '../../common'
+import database from '../../database'
 
 const ChatDropdown = ({
   setChatDropdownIsOpen, selectedContact, setChatWallpaper
@@ -11,9 +12,17 @@ const ChatDropdown = ({
   const { chats } = useSelector(state => state.chat)
   const dispatch = useDispatch()
 
-  const clearChat = () => {
-    const newChatData = chats?.filter(item => item.contactId !== selectedContact.id)
-    dispatch(chatActions.addMultipleChat(newChatData))
+  const clearChat = async () => {
+    const newData = chats.filter(item => item.contactId !== selectedContact.id)
+    const selectedChatData = chats.filter(item =>
+      item.contactId === selectedContact.id
+    )
+    dispatch(chatActions.addMultipleChat(newData))
+
+    for (let index = 0; index < selectedChatData.length; index++) {
+      const chatId = selectedChatData[index].id
+      await database.chat.delete(chatId)
+    }
   }
 
   const addGalleryWallpaper = event => {

@@ -45,13 +45,16 @@ const ChatPage = () => {
     }
   }
 
-  const deleteSelectedChat = () => {
-    const newData = chats.filter(
-      chat => !chat.selected
-    )
-
+  const deleteSelectedChat = async () => {
+    const newData = chats.filter(chat => !chat.selected)
+    const selectedChatData = chats.filter(chat => chat.selected)
     dispatch(chatActions.addMultipleChat(newData))
     setSelectedChatCount(0)
+
+    for (let index = 0; index < selectedChatData.length; index++) {
+      const chatId = selectedChatData[index].id
+      await database.chat.delete(chatId)
+    }
   }
 
   const markAsUnselected = () => {
