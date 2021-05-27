@@ -4,9 +4,7 @@ import { chatActions } from './slice'
 import { lightThemeWallpaper, darkThemeWallpaper } from '../../common'
 import database from '../../database'
 
-const ChatDropdown = ({
-  setChatDropdownIsOpen, selectedContact, setChatWallpaper
-}) => {
+const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
   const [currentContent, setCurrentContent] = useState('dropdown')
   const { theme } = useSelector(state => state.displaySettings)
   const { chats } = useSelector(state => state.chat)
@@ -29,7 +27,7 @@ const ChatDropdown = ({
     const photoReader = new FileReader()
     photoReader.readAsDataURL(event.target.files[0])
     photoReader.addEventListener('load', () => {
-      setChatWallpaper(photoReader.result)
+      dispatch(chatActions.setChatWallpaper(photoReader.result))
       localStorage.setItem('storedWallpaper', photoReader.result)
     })
 
@@ -38,10 +36,10 @@ const ChatDropdown = ({
 
   const addDefaultWallpaper = () => {
     if (theme === 'Dark') {
-      setChatWallpaper(darkThemeWallpaper)
+      dispatch(chatActions.setChatWallpaper(darkThemeWallpaper))
       localStorage.setItem('storedWallpaper', darkThemeWallpaper)
     } else {
-      setChatWallpaper(lightThemeWallpaper)
+      dispatch(chatActions.setChatWallpaper(lightThemeWallpaper))
       localStorage.setItem('storedWallpaper', lightThemeWallpaper)
     }
 

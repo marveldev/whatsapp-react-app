@@ -24,8 +24,7 @@ const ChatPage = () => {
   const selectedContact = contactList[selectedContactIndex]
 
   const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
-  const wallpaper = localStorage.getItem('storedWallpaper') || defaultWallpaper
-  const [chatWallpaper, setChatWallpaper] = useState(wallpaper)
+  const chatWallpaper = localStorage.getItem('storedWallpaper') || defaultWallpaper
 
   useEffect(() => {
     dispatch(getChats())
@@ -232,7 +231,6 @@ const ChatPage = () => {
         <ChatDropdown
           setChatDropdownIsOpen={setChatDropdownIsOpen}
           selectedContact={selectedContact}
-          setChatWallpaper={setChatWallpaper}
         />
       }
     </div>
