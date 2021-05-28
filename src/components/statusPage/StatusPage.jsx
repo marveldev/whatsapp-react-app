@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { constants } from '../../common'
 import { addStatusFilePicker } from '../../common/helper'
 import './statusPage.scss'
 
@@ -29,7 +30,9 @@ const StatusPage = () => {
             htmlFor="addStatusFilePicker" role="button" tabIndex="0"
           >
             <div className="photo-container">
-              <img src={profileObject?.profilePhoto} className="photo" alt="profile" />
+              <img src={profileObject?.profilePhoto || constants.PHOTOURL}
+                className="photo" alt="profile"
+              />
             </div>
             <span className="material-icons plus-icon">&#xe145;</span>
             <div className="status-message">

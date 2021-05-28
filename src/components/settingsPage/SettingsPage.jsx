@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { constants } from '../../common'
 import './settingsPage.scss'
 
 const SettingsPage = () => {
@@ -17,11 +18,11 @@ const SettingsPage = () => {
           className="user-profile" role="button" tabIndex="0"
         >
           <div className="photo-container">
-            <img src={profileObject?.profilePhoto}
+            <img src={profileObject?.profilePhoto || constants.PHOTOURL}
               className="photo" alt="profile" />
           </div>
           <div className="info">
-            <p>{profileObject?.name}</p>
+            <p>{profileObject?.name || 'Add Profile'}</p>
             <span>{profileObject?.about}</span>
           </div>
         </div>

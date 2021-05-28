@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { constants } from '../../common'
 import database from '../../database'
 
 const getProfile = createAsyncThunk('chat/getProfile', async () => {
@@ -9,7 +8,7 @@ const getProfile = createAsyncThunk('chat/getProfile', async () => {
 const profileSlice = createSlice({
   name: 'profile',
   initialState: {
-    profileObject: null
+    profileObject: {}
   },
   reducers: {
     setProfile: (state, { payload }) => {

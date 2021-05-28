@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { constants } from '../../common'
 import { profileActions } from './slice'
 import database from '../../database'
 import './profilePage.scss'
@@ -8,23 +9,23 @@ import './profilePage.scss'
 const ProfilePage = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState(false)
   const { profileObject } = useSelector(state => state.profile)
-  const [profilePhoto, setProfilePhoto] = useState(profileObject?.profilePhoto)
   const { goBack } = useHistory()
   const dispatch = useDispatch()
-
-  console.log(profileObject);
 
   const addPhotoFilePicker = event => {
     const photoReader = new FileReader()
     photoReader.readAsDataURL(event.target.files[0])
     photoReader.addEventListener('load', () => {
-      setProfilePhoto(photoReader.result)
+      const profilePhoto = photoReader.result
+      const newData = {...profileObject, profilePhoto}
+      dispatch(profileActions.setProfile(newData))
     })
   }
 
   const updateProfile = async () => {
     const name = document.querySelector('#name').value
     const about = document.querySelector('#about').value
+    const profilePhoto = document.querySelector('#profilePhoto').src
     const profileObject = {
       name,
       about,
@@ -50,7 +51,9 @@ const ProfilePage = () => {
       <div className="content">
         <div className="profile-photo-container">
           <div className="photo-container">
-            <img src={profilePhoto} className="photo" alt="profile" />
+            <img src={profileObject?.profilePhoto || constants.PHOTOURL}
+              id="profilePhoto" className="photo" alt="profile"
+            />
           </div>
           <label>
             <input
