@@ -1,43 +1,61 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { constants } from '../../common'
-import { statusActions } from '../statusPage/slice'
 import './viewStatusEntry.scss'
 
 const ViewStatusEntry = () => {
   const { profile } = useSelector(state => state.profile)
-  const { statusData, currentStatusIndex } = useSelector(state => state.status)
+  const { statusData } = useSelector(state => state.status)
+  const [statusIndex, setStatusIndex] = useState(0)
   const history = useHistory()
-  const dispatch = useDispatch()
-  const [stuff, setStuff] = useState(0)
+  const interval = useRef()
+  const statusBar = useRef()
 
   useEffect(() => {
+    let width = 1
+    const statusBars = document.querySelectorAll('.bar')
+    statusBar.current = statusBars[statusIndex]
+    interval.current = setInterval(() => {
+      if (width < 100) {
+        width++
+        statusBar.current.style.width = width + '%'
+      }
+    }, 20)
+
     const timeout = setTimeout(() => {
-      if (stuff < statusData.length - 1) setStuff(stuff + 1)
+      if (statusIndex < statusData.length - 1) {
+        setStatusIndex(statusIndex + 1)
+      }
       else {
-        setStuff(0)
+        setStatusIndex(0)
+        clearInterval(interval.current)
         history.push('/')
       }
     }, 3000)
 
     return () => clearTimeout(timeout)
-  }, [stuff, history, statusData, dispatch])
+  }, [statusIndex, history, statusData])
 
   const displayNextStatus = () => {
-    if (currentStatusIndex === statusData.length - 1) {
-      dispatch(statusActions.setCurrentStatusIndex(0))
+    clearInterval(interval.current)
+    statusBar.current.style.width = 100 + '%'
+    if (statusIndex === statusData.length - 1) {
+      setStatusIndex(0)
+      history.push('/')
     } else {
-      dispatch(statusActions.setCurrentStatusIndex(currentStatusIndex + 1))
+      setStatusIndex(statusIndex + 1)
     }
   }
 
   const displayPreviousStatus = () => {
-    if (currentStatusIndex === 0) {
-      dispatch(statusActions.setCurrentStatusIndex(statusData.length - 1))
+    clearInterval(interval.current)
+    statusBar.current.style.width = 1 + '%'
+    if (statusIndex === 0) {
+      setStatusIndex(0)
+      history.push('/')
     } else {
-      dispatch(statusActions.setCurrentStatusIndex(currentStatusIndex - 1))
+      setStatusIndex(statusIndex - 1)
     }
   }
 
@@ -66,7 +84,7 @@ const ViewStatusEntry = () => {
       </div>
       <div className="content">
         <div className="status-entry-container">
-          <img src={statusData[stuff]?.photoSource} alt="status" />
+          <img src={statusData[statusIndex]?.photoSource} alt="status" />
         </div>
         <button onClick={displayPreviousStatus} className="previous-button">previous</button>
         <button onClick={displayNextStatus} className="next-button">next</button>
