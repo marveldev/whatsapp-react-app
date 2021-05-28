@@ -1,13 +1,23 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { ChatPage, HomePage, ViewStatusEntry, StatusTextEntry,
   SettingsPage, DisplaySettingsPage, StatusGallery, ProfilePage, ContactInfoPage
 } from './components'
+import { getChats, getWallpaper } from './components/chatPage/slice'
+import { getProfile } from './components/profilePage/slice'
 import './index.scss'
 
 const App = () => {
   const { theme } = useSelector(state => state.displaySettings)
   const currentTheme = theme?.toLowerCase()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getProfile())
+    dispatch(getChats())
+    dispatch(getWallpaper())
+  }, [dispatch])
 
   return (
     <BrowserRouter>

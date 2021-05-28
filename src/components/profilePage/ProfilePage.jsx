@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { profileActions } from './slice'
+import database from '../../database'
 import './profilePage.scss'
 
 const ProfilePage = () => {
@@ -11,6 +12,8 @@ const ProfilePage = () => {
   const { goBack } = useHistory()
   const dispatch = useDispatch()
 
+  console.log(profileObject);
+
   const addPhotoFilePicker = event => {
     const photoReader = new FileReader()
     photoReader.readAsDataURL(event.target.files[0])
@@ -19,7 +22,7 @@ const ProfilePage = () => {
     })
   }
 
-  const updateProfile = () => {
+  const updateProfile = async () => {
     const name = document.querySelector('#name').value
     const about = document.querySelector('#about').value
     const profileObject = {
@@ -30,6 +33,8 @@ const ProfilePage = () => {
 
     dispatch(profileActions.setProfile(profileObject))
     setToasterIsOpen(true)
+    await database.profile.clear()
+    await database.profile.add(profileObject)
 
     setTimeout(() => {
       setToasterIsOpen(false)
@@ -48,9 +53,9 @@ const ProfilePage = () => {
             <img src={profilePhoto} className="photo" alt="profile" />
           </div>
           <label>
-            <input 
+            <input
               onChange={event => addPhotoFilePicker(event)}
-              type="file" 
+              type="file"
               id="addProfileFilePicker"
               accept="image/*"
             />
@@ -63,9 +68,9 @@ const ProfilePage = () => {
             <div>
               <label>
                 <span>Name</span>
-                <input type="text" id="name" 
+                <input type="text" id="name"
                   placeholder="Add name..."
-                  defaultValue={profileObject?.name} 
+                  defaultValue={profileObject?.name}
                   autoFocus
                 />
               </label>

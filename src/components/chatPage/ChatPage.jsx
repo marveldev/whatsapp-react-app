@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { Smileys, lightThemeWallpaper, darkThemeWallpaper } from '../../common'
 import { displaySendButton } from './helper'
-import { chatActions, getChats, getWallpaper } from './slice'
+import { chatActions } from './slice'
 import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
 import database from '../../database'
@@ -18,17 +18,12 @@ const ChatPage = () => {
   const [chatInputValue, setChatInputValue] = useState('')
   const { theme, fontSize } = useSelector(state => state.displaySettings)
   const { chats, wallpaper } = useSelector(state => state.chat)
-  const history = useHistory()
-  const dispatch = useDispatch()
   const { selectedContactIndex } = useParams()
   const selectedContact = contactList[selectedContactIndex]
   const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
   const chatWallpaper = wallpaper || defaultWallpaper
-
-  useEffect(() => {
-    dispatch(getChats())
-    dispatch(getWallpaper())
-  }, [dispatch])
+  const history = useHistory()
+  const dispatch = useDispatch()
 
   const markAsSelected = selectedChat => {
     const newData = {...selectedChat, selected: !selectedChat.selected}

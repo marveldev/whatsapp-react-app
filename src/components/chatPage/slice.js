@@ -31,7 +31,7 @@ const chatSlice = createSlice({
       state.chats = payload
     },
     [getWallpaper.fulfilled]: (state, { payload }) => {
-      state.wallpaper = payload[0].wallpaper
+      state.wallpaper = payload[0]?.wallpaper
     }
   }
 })
