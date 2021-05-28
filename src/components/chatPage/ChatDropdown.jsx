@@ -26,23 +26,24 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
   const addGalleryWallpaper = event => {
     const photoReader = new FileReader()
     photoReader.readAsDataURL(event.target.files[0])
-    photoReader.addEventListener('load', () => {
-      dispatch(chatActions.setChatWallpaper(photoReader.result))
-      localStorage.setItem('storedWallpaper', photoReader.result)
+    photoReader.addEventListener('load', async () => {
+      const wallpaper = photoReader.result
+      dispatch(chatActions.setChatWallpaper(wallpaper))
+      await database.chatWallpaper.clear()
+      await database.chatWallpaper.add({wallpaper})
     })
 
     setChatDropdownIsOpen(false)
   }
 
   const addDefaultWallpaper = () => {
-    if (theme === 'Dark') {
-      dispatch(chatActions.setChatWallpaper(darkThemeWallpaper))
-      localStorage.setItem('storedWallpaper', darkThemeWallpaper)
-    } else {
-      dispatch(chatActions.setChatWallpaper(lightThemeWallpaper))
-      localStorage.setItem('storedWallpaper', lightThemeWallpaper)
+    const setWallpaper = async wallpaper => {
+      dispatch(chatActions.setChatWallpaper(wallpaper))
+      await database.chatWallpaper.clear()
+      await database.chatWallpaper.add({wallpaper})
     }
 
+    theme === 'Dark' ? setWallpaper(darkThemeWallpaper) : setWallpaper(lightThemeWallpaper)
     setChatDropdownIsOpen(false)
   }
 

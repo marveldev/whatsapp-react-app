@@ -5,11 +5,15 @@ const getChats = createAsyncThunk('chat/getChats', async () => {
   return await database.chat.toArray()
 })
 
+const getWallpaper = createAsyncThunk('chat/getWallpaper', async () => {
+  return await database.chatWallpaper.toArray()
+})
+
 const chatSlice = createSlice({
   name: 'chat',
   initialState: {
     chats: [],
-    wallpaper: null
+    wallpaper: ''
   },
   reducers: {
     addChat: (state, { payload }) => {
@@ -25,10 +29,13 @@ const chatSlice = createSlice({
   extraReducers: {
     [getChats.fulfilled]: (state, { payload }) => {
       state.chats = payload
+    },
+    [getWallpaper.fulfilled]: (state, { payload }) => {
+      state.wallpaper = payload[0].wallpaper
     }
   }
 })
 
 const { actions: chatActions, reducer: chatReducers } = chatSlice
 
-export { chatActions, chatReducers, getChats }
+export { chatActions, chatReducers, getChats, getWallpaper }
