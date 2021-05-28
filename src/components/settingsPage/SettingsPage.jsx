@@ -4,7 +4,7 @@ import { constants } from '../../common'
 import './settingsPage.scss'
 
 const SettingsPage = () => {
-  const { profileObject } = useSelector(state => state.profile)
+  const { profile } = useSelector(state => state.profile)
   const history = useHistory()
 
   return (
@@ -18,12 +18,12 @@ const SettingsPage = () => {
           className="user-profile" role="button" tabIndex="0"
         >
           <div className="photo-container">
-            <img src={profileObject?.profilePhoto || constants.PHOTOURL}
+            <img src={profile?.profilePhoto || constants.PHOTOURL}
               className="photo" alt="profile" />
           </div>
           <div className="info">
-            <p>{profileObject?.name || 'Add Profile'}</p>
-            <span>{profileObject?.about}</span>
+            <p>{profile?.name || 'Add Profile'}</p>
+            <span>{profile?.about}</span>
           </div>
         </div>
         <div className="settings-options">

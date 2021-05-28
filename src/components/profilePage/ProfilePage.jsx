@@ -8,7 +8,7 @@ import './profilePage.scss'
 
 const ProfilePage = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState(false)
-  const { profileObject } = useSelector(state => state.profile)
+  const { profile } = useSelector(state => state.profile)
   const { goBack } = useHistory()
   const dispatch = useDispatch()
 
@@ -17,7 +17,7 @@ const ProfilePage = () => {
     photoReader.readAsDataURL(event.target.files[0])
     photoReader.addEventListener('load', () => {
       const profilePhoto = photoReader.result
-      const newData = {...profileObject, profilePhoto}
+      const newData = {...profile, profilePhoto}
       dispatch(profileActions.setProfile(newData))
     })
   }
@@ -51,7 +51,7 @@ const ProfilePage = () => {
       <div className="content">
         <div className="profile-photo-container">
           <div className="photo-container">
-            <img src={profileObject?.profilePhoto || constants.PHOTOURL}
+            <img src={profile?.profilePhoto || constants.PHOTOURL}
               id="profilePhoto" className="photo" alt="profile"
             />
           </div>
@@ -73,7 +73,7 @@ const ProfilePage = () => {
                 <span>Name</span>
                 <input type="text" id="name"
                   placeholder="Add name..."
-                  defaultValue={profileObject?.name}
+                  defaultValue={profile?.name}
                   autoFocus
                 />
               </label>
@@ -87,7 +87,7 @@ const ProfilePage = () => {
                 <span>About</span>
                 <input type="text" id="about"
                   placeholder="Add about..."
-                  defaultValue={profileObject?.about}
+                  defaultValue={profile?.about}
                 />
               </label>
               <i className="material-icons">&#xe3c9;</i>

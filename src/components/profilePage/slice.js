@@ -8,16 +8,16 @@ const getProfile = createAsyncThunk('chat/getProfile', async () => {
 const profileSlice = createSlice({
   name: 'profile',
   initialState: {
-    profileObject: {}
+    profile: {}
   },
   reducers: {
     setProfile: (state, { payload }) => {
-      state.profileObject = payload
+      state.profile = payload
     }
   },
   extraReducers: {
     [getProfile.fulfilled]: (state, { payload }) => {
-      state.profileObject = payload[0]
+      state.profile = payload[0]
     }
   }
 })

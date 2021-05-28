@@ -7,7 +7,7 @@ import './statusPage.scss'
 const StatusPage = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const { profileObject } = useSelector(state => state.profile)
+  const { profile } = useSelector(state => state.profile)
   const { statusData } = useSelector(state => state.status)
   const lastStatusEntry = statusData[statusData.length - 1]
   const textStyleObject = {
@@ -30,7 +30,7 @@ const StatusPage = () => {
             htmlFor="addStatusFilePicker" role="button" tabIndex="0"
           >
             <div className="photo-container">
-              <img src={profileObject?.profilePhoto || constants.PHOTOURL}
+              <img src={profile?.profilePhoto || constants.PHOTOURL}
                 className="photo" alt="profile"
               />
             </div>
