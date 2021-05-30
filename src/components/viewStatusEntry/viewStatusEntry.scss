@@ -91,5 +91,16 @@
     .next-button {
       right: 0;
     }
+
+    .text-input {
+      @include display(center);
+      padding: 0 1em;
+      box-sizing: border-box;
+      max-height: 18em;
+      height: 18em;
+      width: 100%;
+      font-size: 1.5em;
+      word-break: break-all;
+    }
   }
 }

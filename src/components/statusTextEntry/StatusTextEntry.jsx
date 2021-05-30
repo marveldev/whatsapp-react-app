@@ -30,7 +30,7 @@ const StatusTextEntry = () => {
   }
 
   const changeFontfamily = () => {
-    const fontFamilyList = [ 
+    const fontFamilyList = [
       "Courier New", "Zapf-Chancery", "Verdana", "sans-serif",
       "Times New Roman", "Courier", "Arial Narrow", "Candara", "fangsong",
       "Calibri", "Garamond", "cursive", "Optima", "monospace", "fantasy",
@@ -74,6 +74,7 @@ const StatusTextEntry = () => {
           value={statusInputValue}
           onChange={event => handleInputEvent(event)}
           placeholder="Type a status"
+          maxLength="200"
           style={{fontFamily}}
           autoFocus
         >

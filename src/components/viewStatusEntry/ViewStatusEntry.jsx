@@ -59,6 +59,11 @@ const ViewStatusEntry = () => {
     }
   }
 
+  const statusTextStyle = {
+    backgroundColor: statusData[statusIndex]?.backgroundColor,
+    fontFamily: statusData[statusIndex]?.fontFamily
+  }
+
   return (
     <div className="view-status-entry">
       <div className="header">
@@ -84,7 +89,14 @@ const ViewStatusEntry = () => {
       </div>
       <div className="content">
         <div className="status-entry-container">
-          <img src={statusData[statusIndex]?.photoSource} alt="status" />
+          {statusData[statusIndex]?.photoSource && (
+            <img src={statusData[statusIndex]?.photoSource} alt="status" />
+          )}
+          {statusData[statusIndex]?.statusInputValue && (
+            <div className="text-input" style={statusTextStyle}>
+              {statusData[statusIndex]?.statusInputValue}
+            </div>
+          )}
         </div>
         <button onClick={displayPreviousStatus} className="previous-button">previous</button>
         <button onClick={displayNextStatus} className="next-button">next</button>
