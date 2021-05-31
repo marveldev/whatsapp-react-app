@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { constants } from '../../common'
 import { addStatusFilePicker } from '../../common/helper'
+import database from '../../database'
 import './statusPage.scss'
 
 const StatusPage = () => {
@@ -14,6 +15,15 @@ const StatusPage = () => {
     backgroundColor: lastStatusEntry?.backgroundColor,
     fontFamily: lastStatusEntry?.fontFamily
   }
+
+  statusData.map(async ({timeOfEntry, id}) => {
+    const currentTime = new Date().getHours()
+    const storedTime = timeOfEntry.split( ":" )[0]
+    const timeDifference = (currentTime - storedTime)
+    if (timeDifference >= '24') {
+      return await database.status.delete(id)
+    }
+  })
 
   return (
     <div className="status-page">
