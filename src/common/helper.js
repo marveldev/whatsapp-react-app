@@ -2,6 +2,7 @@ import { statusActions } from '../components/statusPage/slice'
 import database from '../database'
 
 const addStatusFilePicker = (event, dispatch) => {
+  const storedTime = new Date().getTime()
   const timeOfEntry = new Date().toLocaleString('en-US',
     { hour: 'numeric', minute: 'numeric', hour12: true }
   )
@@ -16,6 +17,7 @@ const addStatusFilePicker = (event, dispatch) => {
         const statusObject = {
           id,
           timeOfEntry,
+          storedTime,
           photoSource: photoReader.result,
         }
 

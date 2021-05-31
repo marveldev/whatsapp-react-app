@@ -83,7 +83,7 @@ const ViewStatusEntry = () => {
           </div>
           <div className="info">
             <p>My status</p>
-            <span>Today, 06:03 AM</span>
+            <span>Today, {statusData[statusIndex]?.timeOfEntry}</span>
           </div>
         </div>
       </div>

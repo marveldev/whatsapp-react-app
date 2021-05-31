@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { constants } from '../../common'
@@ -16,14 +17,15 @@ const StatusPage = () => {
     fontFamily: lastStatusEntry?.fontFamily
   }
 
-  statusData.map(async ({timeOfEntry, id}) => {
-    const currentTime = new Date().getHours()
-    const storedTime = timeOfEntry.split( ":" )[0]
-    const timeDifference = (currentTime - storedTime)
-    if (timeDifference >= '12') {
-      return await database.status.delete(id)
-    }
-  })
+  useEffect(() => {
+    statusData.map(async ({storedTime, id}) => {
+      const timeDifference = (new Date().getTime() - storedTime)
+      const statusDuration = Math.floor(timeDifference/1000/60/60)
+      if (statusDuration >= '24') {
+        await database.status.delete(id)
+      }
+    })
+  }, [statusData])
 
   return (
     <div className="status-page">
