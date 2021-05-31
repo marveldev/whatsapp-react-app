@@ -20,7 +20,7 @@ const StatusPage = () => {
     const currentTime = new Date().getHours()
     const storedTime = timeOfEntry.split( ":" )[0]
     const timeDifference = (currentTime - storedTime)
-    if (timeDifference >= '24') {
+    if (timeDifference >= '12') {
       return await database.status.delete(id)
     }
   })
