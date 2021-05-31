@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { addStatusFilePicker } from '../../common/helper'
+import database from '../../database'
 import { statusActions } from '../statusPage/slice'
 import './statusGallery.scss'
 
@@ -13,11 +14,12 @@ const StatusGallery = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const deleteStatus = () => {
+  const deleteStatus = async () => {
     const mutableStatusData = [...statusData]
     mutableStatusData.splice(selectedStatusIndex, 1)
     dispatch(statusActions.addMultipleStatus(mutableStatusData))
     statusData.length <= 1 && history.push('/')
+    await database.status.delete(statusData[selectedStatusIndex].id)
   }
 
   const statusItems = statusData.map((status, index) => (

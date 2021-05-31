@@ -1,4 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import database from '../../database'
+
+const getStatus = createAsyncThunk('chat/getStatus', async () => {
+  return await database.status.toArray()
+})
 
 const statusSlice = createSlice({
   name: 'status',
@@ -12,9 +17,14 @@ const statusSlice = createSlice({
     addMultipleStatus: (state, { payload }) => {
       state.statusData = payload
     }
+  },
+  extraReducers: {
+    [getStatus.fulfilled]: (state, { payload }) => {
+      state.statusData = payload
+    }
   }
 })
 
 const { actions: statusActions, reducer: statusReducers } = statusSlice
 
-export { statusActions, statusReducers }
+export { statusActions, statusReducers, getStatus }

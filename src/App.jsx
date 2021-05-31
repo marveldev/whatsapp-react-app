@@ -6,6 +6,7 @@ import { ChatPage, HomePage, ViewStatusEntry, StatusTextEntry,
 } from './components'
 import { getChats, getWallpaper } from './components/chatPage/slice'
 import { getProfile } from './components/profilePage/slice'
+import { getStatus } from './components/statusPage/slice'
 import './index.scss'
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
     dispatch(getProfile())
     dispatch(getChats())
     dispatch(getWallpaper())
+    dispatch(getStatus())
   }, [dispatch])
 
   return (
