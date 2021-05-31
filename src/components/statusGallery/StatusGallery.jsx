@@ -2,13 +2,23 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { addStatusFilePicker } from '../../common/helper'
+import { statusActions } from '../statusPage/slice'
 import './statusGallery.scss'
 
 const StatusGallery = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState()
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
+  const [selectedStatusIndex, setSelectedStatusIndex] = useState()
   const { statusData } = useSelector(state => state.status)
   const history = useHistory()
   const dispatch = useDispatch()
+
+  const deleteStatus = () => {
+    const mutableStatusData = [...statusData]
+    mutableStatusData.splice(selectedStatusIndex, 1)
+    dispatch(statusActions.addMultipleStatus(mutableStatusData))
+    statusData.length <= 1 && history.push('/')
+  }
 
   const statusItems = statusData.map((status, index) => (
     <div key={index} id={status.id} className="single-status-entry">
@@ -28,7 +38,7 @@ const StatusGallery = () => {
         <span>1 views</span>
         <p>Today {status.timeOfEntry}</p>
       </div>
-      <button onClick={() => setDropdownIsOpen(true)}
+      <button onClick={() => {setDropdownIsOpen(true); setSelectedStatusIndex(index)}}
         className="dropdown-button"
       >
         <i className="material-icons">&#xe5d4;</i>
@@ -53,7 +63,7 @@ const StatusGallery = () => {
         <label>
           <input
             onChange={event => addStatusFilePicker(event, dispatch)}
-            type="file" 
+            type="file"
             id="addStatusFilePicker"
             accept="image/*"
             multiple
@@ -67,7 +77,18 @@ const StatusGallery = () => {
             <button>Forward</button>
             <button>Share...</button>
             <button>Share to Facebook</button>
-            <button>Delete</button>
+            <button onClick={() => setDeleteModalIsOpen(true)}>Delete</button>
+          </div>
+        </div>
+      )}
+      {deleteModalIsOpen && (
+        <div onClick={() => setDeleteModalIsOpen(false)} className="overlay">
+          <div className="delete-modal">
+            <p>Delete this status update? It will
+              also be deleted for everyone who received it.
+            </p>
+            <button>CANCEL</button>
+            <button onClick={deleteStatus}>DELETE</button>
           </div>
         </div>
       )}

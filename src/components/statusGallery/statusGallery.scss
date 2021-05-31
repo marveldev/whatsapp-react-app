@@ -99,4 +99,25 @@
   .dropdown {
     @extend %style-dropdown;
   }
+
+  .delete-modal {
+    @extend %center-modal;
+    padding: 1em;
+    width: 75%;
+    background: #fff;
+    color: #000;
+    text-align: right;
+    border-radius: 0.2em;
+
+    p {
+      margin-top: 0;
+      text-align: left;
+    }
+
+    button {
+      @extend %remove-default;
+      color: $primaryColor;
+      font-weight: 600;
+    }
+  }
 }
