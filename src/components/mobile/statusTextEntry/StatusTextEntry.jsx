@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import { Smileys } from '../../common'
-import database from '../../database'
+import { Smileys } from '../../../common'
+import database from '../../../database'
 import { statusActions } from '../statusPage/slice'
 import './statusTextEntry.scss'
 

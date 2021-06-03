@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { constants } from '../../common'
+import { constants } from '../../../common'
 import './settingsPage.scss'
 
 const SettingsPage = () => {

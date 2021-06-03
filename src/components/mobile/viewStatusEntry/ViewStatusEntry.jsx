@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { constants } from '../../common'
+import { constants } from '../../../common'
 import './viewStatusEntry.scss'
 
 const ViewStatusEntry = () => {

@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { constants } from '../../common'
-import { addStatusFilePicker } from '../../common/helper'
-import database from '../../database'
+import { constants } from '../../../common'
+import { addStatusFilePicker } from '../../../common/helper'
+import database from '../../../database'
 import './statusPage.scss'
 
 const StatusPage = () => {
