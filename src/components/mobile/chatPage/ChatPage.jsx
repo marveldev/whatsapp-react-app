@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import { Smileys, lightThemeWallpaper, darkThemeWallpaper } from '../../common'
+import { Smileys, lightThemeWallpaper, darkThemeWallpaper } from '../../../common'
 import { displaySendButton } from './helper'
 import { chatActions } from './slice'
 import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
-import database from '../../database'
+import database from '../../../database'
 import './chatPage.scss'
 
 const ChatPage = () => {

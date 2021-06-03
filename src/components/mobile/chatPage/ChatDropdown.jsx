@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { chatActions } from './slice'
-import { lightThemeWallpaper, darkThemeWallpaper } from '../../common'
-import database from '../../database'
+import { lightThemeWallpaper, darkThemeWallpaper } from '../../../common'
+import database from '../../../database'
 
 const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
   const [currentContent, setCurrentContent] = useState('dropdown')

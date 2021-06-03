@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { constants } from '../../common'
+import { constants } from '../../../common'
 import { profileActions } from './slice'
-import database from '../../database'
+import database from '../../../database'
 import './profilePage.scss'
 
 const ProfilePage = () => {

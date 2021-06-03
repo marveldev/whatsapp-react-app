@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { addStatusFilePicker } from '../../common/helper'
-import database from '../../database'
+import { addStatusFilePicker } from '../../../common/helper'
+import database from '../../../database'
 import { statusActions } from '../statusPage/slice'
 import './statusGallery.scss'
 
