@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { homePageReducers } from './components/desktop/homePage/slice'
 import { chatReducers } from './components/mobile/chatPage/slice'
 import { currentPageReducers } from './components/mobile/homePage/slice'
 import { profileReducers } from './components/mobile/profilePage/slice'
@@ -11,6 +12,7 @@ export default configureStore({
     chat: chatReducers,
     status: statusReducers,
     profile: profileReducers,
-    displaySettings: displaySettingsReducers
+    displaySettings: displaySettingsReducers,
+    homePage: homePageReducers
   }
 })

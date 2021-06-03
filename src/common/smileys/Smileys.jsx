@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router'
-import smileyList from '../smileyList'
-import '../smileys.scss'
+import smileyList from '../smileys/smileyList'
+import './smileys.scss'
 
 const Smileys = ({
   setChatInputValue, chatInputValue, setSendButtonIsActive,

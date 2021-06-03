@@ -1,0 +1,33 @@
+@import '../../../common/helperDesktop';
+
+.default-page {
+  background-color: #F8F9FA;
+  border-bottom: 0.4em solid $secondaryColor;
+  text-align: center;
+
+  div {
+    width: 50%;
+    margin: auto;
+    border-bottom: 1px solid #DCDCDC;
+    padding: 3.5em 0 2em;
+
+    p {
+      font-size: 2em;
+      margin: 0 0 0.5em;
+    }
+
+    span {
+      font-size: 0.9em;
+      line-height: 1.5em;
+    }
+  }
+
+  & > p {
+    font-size: 0.9em;
+    margin-top: 2.5em;
+
+    span {
+      color: $secondaryColor;
+    }
+  }
+}

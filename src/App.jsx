@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Switch } from "react-router-dom"
-import MobileRoutes from './common/components'
+import MobileRoutes from './components/mobile/route'
+import DesktopRoutes from './components/desktop/route'
 import { getChats, getWallpaper } from './components/mobile/chatPage/slice'
 import { getProfile } from './components/mobile/profilePage/slice'
-import { getStatus } from './components/statusPage/slice'
+import { getStatus } from './components/mobile/statusPage/slice'
 import './index.scss'
 
 const App = () => {
@@ -23,8 +24,8 @@ const App = () => {
     <BrowserRouter>
       <div className={`app-layer ${currentTheme}`}>
         <Switch>
-          <MobileRoutes />
-          {/* <DesktopRoutes /> */}
+          {/* <MobileRoutes /> */}
+          <DesktopRoutes />
         </Switch>
       </div>
     </BrowserRouter>

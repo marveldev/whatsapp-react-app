@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom'
 import { ChatPage, DisplaySettingsPage, HomePage, SettingsPage,
   StatusGallery, ProfilePage, ContactInfoPage, ViewStatusEntry, StatusTextEntry
-} from '../../components'
+} from '.'
 
 const MobileRoutes = () => {
   return (

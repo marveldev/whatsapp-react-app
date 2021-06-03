@@ -1,0 +1,107 @@
+@import '../../../common/helperDesktop';
+
+.left-pane {
+  .header {
+    @extend %fixed-position;
+    height: 12em;
+    padding: 1em 0 0 1em;
+    box-sizing: border-box;
+    z-index: 1;
+    background: $primaryBackgroundColor;
+
+    .nav-buttons {
+      @include display(space-between);
+
+      button {
+        width: 4em;
+        height: 3em;
+      }
+    }
+
+    .search-box {
+      margin-top: 1.8em;
+
+      textarea {
+        width: 85%;
+        padding: 1em 0 0 4em;
+        @extend %style-box;
+      }
+
+      i {
+        position: relative;
+        top: 1.6em;
+        left: 0.8em;
+      }
+    }
+  }
+
+  button {
+    @extend %remove-default;
+  }
+
+  .content {
+    position: relative;
+    top: 12em;
+
+    .contact-list {
+      @extend %style-scrollbar;
+      padding-bottom: 0.5em;
+      height: auto;
+      max-height: 28em;
+      overflow-y: auto;
+
+      .contact {
+        display: flex;
+        align-items: center;
+        gap: 0 1em;
+        padding-left: 0.6em;
+
+        &:hover {
+          background: $hoverColor;
+        }
+
+        .info {
+          width: 100%;
+          border-bottom: 1px solid #DCDCDC;
+          padding: 0.5em 1em 0.5em 0;
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+
+          p {
+            margin: 0.5em 0 0 0;
+            font-size: 1.2em;
+          }
+
+          div {
+            @include display(space-between);
+            font-size: 0.9em;
+
+            .notification {
+              background-color: $secondaryColor;
+              padding: 0.5em 0.8em;
+              font-weight: 600;
+              color: $textPrimaryColor;
+              border-radius: 50%;
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+
+      .contact-photo {
+        @extend %photo-size;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .photo-container {
+    @extend %photo-size;
+    background: #000;
+
+    .profile-photo {
+      @extend %photo-size;
+      object-fit: cover;
+    }
+  }
+}
