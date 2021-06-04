@@ -51,7 +51,7 @@ const ChatPage = () => {
   }
 
   return (
-    <div className="chat-page">
+    <div className="desktop-chat-page">
       <div className="header">
         <div className="photo-container">
           <img src={selectedContact.profilePhoto}

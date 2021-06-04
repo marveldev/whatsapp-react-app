@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const ChatItems = () => {
-  const [chatDropdown, setChatDropdown] = useState()
+  const [chatDropdownPosition, setChatDropdownPosition] = useState()
   const { selectedContact } = useSelector(state => state.homePage)
   const { chats } = useSelector(state => state.chat)
 
@@ -11,11 +11,11 @@ const ChatItems = () => {
     dropdownButton.style.display = value
   }
 
-  const displayDropdown = event => {
-    const left = event.clientX - 180
-    const top = event.clientY + 10
-    const positionDropdown = {left, top}
-    setChatDropdown(positionDropdown)
+  const displayDropdown = (event, person) => {
+    const left = person === 'person-one' ? event.clientX : event.clientX - 170
+    const top = event.clientY
+    const position = {left, top}
+    setChatDropdownPosition(position)
   }
 
   const filteredChatData = chats?.filter(item => item.contactId === selectedContact.id)
@@ -47,7 +47,7 @@ const ChatItems = () => {
                   </div>
                 </div>
                 <button
-                  onClick={event => displayDropdown(event)}
+                  onClick={event => displayDropdown(event, chat.person)}
                   className="angle-down-button" property={chat.id}
                 >
                   <i className="fa fa-angle-down"></i>
@@ -57,10 +57,10 @@ const ChatItems = () => {
           </div>
         </div>
       ))}
-      {chatDropdown && (
+      {chatDropdownPosition && (
         <div>
-          <div onClick={() => setChatDropdown(false)} className="overlay"></div>
-          <div className="chat-dropdown" style={chatDropdown}>
+          <div onClick={() => setChatDropdownPosition(false)} className="overlay"></div>
+          <div className="chat-dropdown" style={chatDropdownPosition}>
             <button>Reply</button>
             <button>Forward message</button>
             <button>Star message</button>
