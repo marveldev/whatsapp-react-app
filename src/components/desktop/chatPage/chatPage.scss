@@ -1,6 +1,10 @@
 @import '../../../common/style/helperDesktop';
 
 .desktop {
+  .smileys {
+    bottom: 4.5em;
+  }
+
   .chat-page {
     background-color: #efe7dd;
     background-size: cover;
@@ -94,6 +98,7 @@
       }
 
       .smiley-button {
+        cursor: pointer;
         i {
           font-size: 1.3em;
         }

@@ -69,12 +69,12 @@
 
           p {
             margin: 0.5em 0 0 0;
-            font-size: 1.2em;
+            font-size: 1.1em;
           }
 
           div {
             @include display(space-between);
-            font-size: 0.9em;
+            font-size: 0.88em;
 
             .notification {
               background-color: $secondaryColor;
@@ -82,7 +82,7 @@
               font-weight: 600;
               color: $textPrimaryColor;
               border-radius: 50%;
-              font-size: 0.8em;
+              font-size: 0.75em;
             }
           }
         }
