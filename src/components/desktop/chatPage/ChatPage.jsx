@@ -41,7 +41,7 @@ const ChatPage = () => {
       selected: false
     }
 
-    // chatContainer.scrollTop = chatContainer.scrollHeight
+    chatContainer.scrollTop = chatContainer.scrollHeight
     chatInput.style.height = ''
     dispatch(chatActions.addChat(chatObject))
     setChatInputValue('')

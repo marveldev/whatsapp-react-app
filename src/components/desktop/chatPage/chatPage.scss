@@ -88,10 +88,11 @@
         padding: 1em 1em 0;
         box-sizing: border-box;
         margin: 0 1em;
+        font-size: 1.15em;
 
         &::placeholder {
-          padding-left: 0.2em;
-          font-size: 1.1em;
+          font-size: 1em;
+          padding-left: 0.5em;
         }
       }
 
@@ -164,10 +165,11 @@
     .chat-output-container {
       @extend %style-scrollbar;
       position: relative;
-      top: 5em;
-      max-height: 31em;
+      top: 4em;
+      max-height: 30em;
       overflow-y: auto;
       width: 100%;
+      padding-bottom: 3em;
 
       .content {
         border-radius: 0.3em;
@@ -195,14 +197,14 @@
       .arrow-right {
         @extend %style-arrow;
         right: 0.4em;
-        border-left: 0.8em solid #E1FFC7;
+        border-left: 1em solid #E1FFC7;
         float: right;
       }
 
       .arrow-left {
         @extend %style-arrow;
         left: 0.4em;
-        border-right: 0.8em solid #fff;
+        border-right: 1em solid #fff;
         float: left;
       }
 
