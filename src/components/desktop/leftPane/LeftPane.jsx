@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import contactList from './contactList'
-import constants from '../../../common/constants' //
+import constants from '../../../common/constants'
 import { homePageActions } from '../homePage/slice'
 import './leftPane.scss'
 

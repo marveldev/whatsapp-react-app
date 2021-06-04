@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Switch } from "react-router-dom"
-import MobileRoutes from './components/mobile/route'
-import DesktopRoutes from './components/desktop/route'
+import MobileRoutes from './components/mobile/routes'
+import DesktopRoutes from './components/desktop/routes'
 
 import { getChats, getWallpaper } from './components/mobile/chatPage/slice'
 import { getProfile } from './components/mobile/profilePage/slice'
