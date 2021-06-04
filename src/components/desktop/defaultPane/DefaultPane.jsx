@@ -2,13 +2,13 @@ import { useDispatch } from 'react-redux'
 import contactList from './contactList'
 import constants from '../../../common/constants'
 import { homePageActions } from '../homePage/slice'
-import './leftPane.scss'
+import './defaultPane.scss'
 
-const LeftPane = () => {
+const DefaultPane = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className="left-pane">
+    <div className="default-pane">
       <div className="header">
         <div className="nav-buttons">
           <div className="photo-container">
@@ -52,4 +52,4 @@ const LeftPane = () => {
   )
 }
 
-export default LeftPane
+export default DefaultPane

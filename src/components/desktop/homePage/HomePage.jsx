@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { ChatPage } from '../chatPage'
 import { DefaultPage } from '../defaultPage'
-import { LeftPane } from '../leftPane'
+import { DefaultPane } from '../defaultPane'
 import { ProfilePane } from '../profilePane'
 
 const HomePage = () => {
@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <div>
-        {currentPane === 'leftPane' && <LeftPane />}
+        {currentPane === 'defaultPane' && <DefaultPane />}
         {currentPane === 'profilePane' && <ProfilePane />}
       </div>
       {selectedContact && <ChatPage />}
