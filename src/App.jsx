@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Switch } from "react-router-dom"
 import MobileRoutes from './components/mobile/routes'
@@ -8,7 +8,6 @@ import { getChats, getWallpaper } from './components/mobile/chatPage/slice'
 import { getProfile } from './components/mobile/profilePage/slice'
 import { getStatus } from './components/mobile/statusPage/slice'
 import './index.scss'
-import { useState } from 'react'
 
 const App = () => {
   const [device, setDevice] = useState()
