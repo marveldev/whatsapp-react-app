@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import contactList from './contactList'
-import constants from '../../../common/constants'
+import constants from '../../../common/constants' //
 import { homePageActions } from '../homePage/slice'
 import './leftPane.scss'
 
@@ -30,7 +30,7 @@ const LeftPane = () => {
       <div className="content">
         <div className="contact-list">
           {contactList.map(contact => (
-            <div onClick={() => dispatch(homePageActions.addContact(contact))}
+            <div onClick={() => dispatch(homePageActions.selectContact(contact))}
               key={contact.id} className="contact"
               role="button" tabIndex="0"
             >

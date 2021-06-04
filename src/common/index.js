@@ -1,4 +1,4 @@
-export { default as Smileys } from './smileys/Smileys'
+export { default as Smileys } from './components/smileys/Smileys'
 export { default as constants } from './constants'
 export { default as lightThemeWallpaper } from './assets/lightThemeChatWallpaper.jpg'
 export { default as darkThemeWallpaper } from './assets/darkThemeChatWallpaper.png'

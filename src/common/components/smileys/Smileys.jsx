@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router'
-import smileyList from '../smileys/smileyList'
+import smileyList from './smileyList'
 import './smileys.scss'
 
 const Smileys = ({

@@ -10,7 +10,7 @@ const homePageSlice = createSlice({
     setCurrentPane: (state, { payload }) => {
       state.currentPane = payload
     },
-    addContact: (state, { payload }) => {
+    selectContact: (state, { payload }) => {
       state.selectedContact = payload
     }
   }

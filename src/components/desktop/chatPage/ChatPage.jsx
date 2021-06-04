@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Smileys from '../../../common/smileys/Smileys'
+import Smileys from '../../../common/components/smileys/Smileys'
 import { chatActions } from './slice'
 import ChatItems from './ChatItems'
 import './chatPage.scss'
