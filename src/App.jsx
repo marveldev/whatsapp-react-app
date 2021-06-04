@@ -29,7 +29,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className={`app-layer ${theme?.toLowerCase()}`}>
+      <div className={`app-layer ${theme?.toLowerCase()} ${device}`}>
         <Switch>
           {device === 'mobile' && <MobileRoutes />}
           {device === 'desktop' && <DesktopRoutes />}
