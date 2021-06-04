@@ -110,7 +110,7 @@ const ChatPage = () => {
   ))
 
   return (
-    <div className="chat-page" style={{backgroundImage: `url(${chatWallpaper})`}}>
+    <div className="mobile-chat-page" style={{backgroundImage: `url(${chatWallpaper})`}}>
       <div className="header">
         <div onClick={history.goBack} className="back-button-container">
           <button>

@@ -182,20 +182,7 @@ $secondaryColor: #00AF9C;
     }
   }
 
-  .chat-page {
-    .header {
-      background-color: $primaryColor;
-    }
-
-    .delete-modal {
-      background: $primaryColor;
-      color: $textPrimaryColor;
-
-      button {
-        color: $secondaryColor;
-      }
-    }
-
+  .mobile-chat-page {
     .chat-input-container {
       .chat-input {
         background: $primaryColor;
