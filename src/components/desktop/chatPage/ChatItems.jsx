@@ -21,7 +21,7 @@ const ChatItems = () => {
   const filteredChatData = chats?.filter(item => item.contactId === selectedContact.id)
 
   return (
-    <div>
+    <div className="chat-output-container">
       {filteredChatData?.map((chat, index) => (
         <div key={index} id={chat.id}
           className={chat.selected ? 'selected chat-item-wrapper' : 'chat-item-wrapper'}
@@ -46,8 +46,8 @@ const ChatItems = () => {
                     <i className="material-icons">&#xe877;</i>
                   </div>
                 </div>
-                <button 
-                  onClick={event => displayDropdown(event)} 
+                <button
+                  onClick={event => displayDropdown(event)}
                   className="angle-down-button" property={chat.id}
                 >
                   <i className="fa fa-angle-down"></i>
