@@ -40,7 +40,6 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
     const setWallpaper = async wallpaper => {
       dispatch(chatActions.setChatWallpaper(wallpaper))
       await database.chatWallpaper.clear()
-      await database.chatWallpaper.add({wallpaper})
     }
 
     theme === 'Dark' ? setWallpaper(darkThemeWallpaper) : setWallpaper(lightThemeWallpaper)

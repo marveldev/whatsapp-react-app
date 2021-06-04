@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { chatActions } from '../chatPage/slice'
 import { displaySettingsActions } from './slice'
 
 const DisplaySettingsPage = () => {
@@ -15,6 +16,7 @@ const DisplaySettingsPage = () => {
     dispatch(displaySettingsActions.setTheme(themeValue))
     localStorage.setItem('storedTheme', themeValue)
     setThemeModalIsOpen(false)
+    dispatch(chatActions.setChatWallpaper(null))
   }
 
   const changeFontSize = value => {
