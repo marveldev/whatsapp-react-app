@@ -84,7 +84,7 @@ const StatusGallery = () => {
         </div>
       )}
       {deleteModalIsOpen && (
-        <div onClick={() => setDeleteModalIsOpen(false)} className="overlay">
+        <div onClick={() => setDeleteModalIsOpen(false)} className="modal-overlay">
           <div className="delete-modal">
             <p>Delete this status update? It will
               also be deleted for everyone who received it.

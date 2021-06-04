@@ -67,7 +67,7 @@ const StatusTextEntry = () => {
     }
 
     dispatch(statusActions.addStatus(statusObject))
-    history.push('/')
+    history.goBack()
     await database.status.add(statusObject)
   }
 

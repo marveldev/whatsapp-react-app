@@ -1,6 +1,11 @@
 @import '../../../common/style/helperMobile';
 
 .mobile {
+  .smileys {
+    bottom: 3em;
+    left: 1em;
+  }
+
   .chat-page {
     position: fixed;
     left: 0;

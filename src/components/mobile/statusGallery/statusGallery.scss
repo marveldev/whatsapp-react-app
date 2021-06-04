@@ -92,6 +92,11 @@
     background-color: transparent;
   }
 
+  .modal-overlay {
+    @extend .overlay;
+    background-color: #00000066;
+  }
+
   #addStatusFilePicker {
     display: none;
   }

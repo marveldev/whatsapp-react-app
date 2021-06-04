@@ -183,21 +183,48 @@ $secondaryColor: #00AF9C;
   }
 
   .chat-page {
-    .chat-input {
+    .header {
+      background-color: $primaryColor;
+    }
+
+    .delete-modal {
       background: $primaryColor;
       color: $textPrimaryColor;
+
+      button {
+        color: $secondaryColor;
+      }
     }
 
-    .smiley-button {
-      color: $textPrimaryColor;
-    }
+    .chat-input-container {
+      .chat-input {
+        background: $primaryColor;
+        color: $textPrimaryColor;
+      }
 
-    .clip-button {
-      color: $textPrimaryColor;
-    }
+      .smiley-button {
+        color: $textPrimaryColor;
+      }
 
-    .record-button {
-      background: $secondaryColor;
+      .clip-button {
+        color: $textPrimaryColor;
+      }
+
+      .record-button {
+        background: $secondaryColor;
+      }
+
+      .send-button {
+        background: $secondaryColor;
+      }
+
+      .persons-button-container {
+        background: $primaryColor;
+
+        .arrow-down {
+          border-top: 1.5em solid $primaryColor;
+        }
+      }
     }
 
     .chat-dropdown {
@@ -217,37 +244,30 @@ $secondaryColor: #00AF9C;
       color: $textPrimaryColor;
     }
 
-    .persons-button-container {
-      background: $primaryColor;
-
-      .arrow-down {
-        border-top: 1.5em solid $primaryColor;
+    .chat-container {
+      .content {
+        background: $primaryColor;
       }
-    }
 
-    .content {
-      background: $primaryColor;
-    }
-
-    .person-two {
-      div {
-        background: #02473f;
+      .person-two {
+        div {
+          background: #02473f;
+        }
       }
-    }
 
-    .arrow-left {
-      border-right: 0.8em solid $primaryColor;
-    }
+      .arrow-left {
+        border-right: 0.8em solid $primaryColor;
+      }
 
-    .arrow-right {
-      border-left: 0.8em solid #02473f;
+      .arrow-right {
+        border-left: 0.8em solid #02473f;
+      }
     }
 
     .selected-chat-options {
       background: $primaryColor;
     }
   }
-
 
   .delete-modal {
     background: $primaryColor;
