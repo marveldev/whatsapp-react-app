@@ -1,0 +1,114 @@
+@import '../../../common/style/helperDesktop';
+
+.profile-pane {
+  background: $primaryBackgroundColor;
+  height: 100%;
+
+  .header {
+    height: 7em;
+    background-color: #00BEA4;
+    display: flex;
+    align-items: flex-end;
+    gap: 0 1em;
+
+    button {
+      @extend %remove-default;
+      color: #fff;
+      width: 2em;
+      margin: 0 0 0.8em 0.5em;
+    }
+
+    p {
+      color: #fff;
+      font-size: 1.25em;
+    }
+  }
+
+  .profile-photo-container {
+    @include display(center);
+    margin: 2em 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .photo-container {
+    height: 12em;
+    width: 12em;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #000000;
+
+    .photo {
+      height: 12em;
+      width: 12em;
+      cursor: pointer;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  #addProfileFilePicker {
+    display: none;
+  }
+
+  .photo-icon {
+    @include display(center);
+    position: relative;
+    top: 4em;
+    right: 4em;
+    color: $textPrimaryColor;
+    width: 3.5em;
+    height: 3.5em;
+    border: unset;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: $primaryColor;
+
+    i {
+      font-size: 1.5em;
+    }
+  }
+
+  .input-container {
+    @include display(center);
+    margin-bottom: 1em;
+    height: 6em;
+    background: #fff;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-left: 2em;
+
+      span {
+        font-size: 0.9em;
+        color: #00BEA4;
+      }
+    }
+
+    input {
+      border: none;
+      height: 3em;
+      outline: none;
+      font-size: 1em;
+    }
+
+    i {
+      color: $primaryColor;
+      margin-top: 1em;
+      width: 2em;
+    }
+  }
+
+  .save-button {
+    @extend %remove-default;
+    background: #00BEA4;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    width: 5em;
+    height: 2em;
+    float: right;
+    margin-right: 1em;
+  }
+}
