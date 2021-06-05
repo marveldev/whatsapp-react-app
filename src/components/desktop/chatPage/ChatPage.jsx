@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Smileys } from '../../../common/components'
-import { chatActions } from './slice'
+import database from '../../../database'
+import { chatActions } from '../../mobile/chatPage/slice'
 import ChatItems from './ChatItems'
 import './chatPage.scss'
 
@@ -24,7 +25,7 @@ const ChatPage = () => {
     }
   }
 
-  const addChatItemToDom = person => {
+  const addChatItemToDom = async person => {
     const chatContainer = document.querySelector('.chat-output-container')
     const chatInput = document.querySelector('.chat-input')
     const id = 'id' + Date.parse(new Date()).toString()
@@ -41,6 +42,7 @@ const ChatPage = () => {
       selected: false
     }
 
+    await database.chat.add(chatObject)
     chatContainer.scrollTop = chatContainer.scrollHeight
     chatInput.style.height = ''
     dispatch(chatActions.addChat(chatObject))

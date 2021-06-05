@@ -107,7 +107,7 @@ const ProfilePage = () => {
         <button className="save-button" onClick={updateProfile}>Save</button>
       </div>
       {toasterIsOpen && (
-        <div className="toaster">Profile was Successfully added</div>
+        <div className="toaster">Your profile updated</div>
       )}
     </div>
   )
