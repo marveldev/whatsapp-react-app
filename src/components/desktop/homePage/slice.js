@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const homePageSlice = createSlice({
   name: 'homePage',
   initialState: {
-    currentPane: 'profilePane',
+    currentPane: 'defaultPane',
     selectedContact: null
   },
   reducers: {

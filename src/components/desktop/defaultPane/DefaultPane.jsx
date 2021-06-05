@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import contactList from './contactList'
 import constants from '../../../common/constants'
@@ -5,13 +6,16 @@ import { homePageActions } from '../homePage/slice'
 import './defaultPane.scss'
 
 const DefaultPane = () => {
+  const [dropdownIsOpen, setDropdownIsOpen] = useState()
   const dispatch = useDispatch()
 
   return (
     <div className="default-pane">
       <div className="header">
         <div className="nav-buttons">
-          <div className="photo-container">
+          <div onClick={() => dispatch(homePageActions.setCurrentPane('profilePane'))}
+            className="photo-container"
+          >
             <img src={constants.PHOTOURL}
               className="profile-photo" alt="profile"
             />
@@ -19,7 +23,9 @@ const DefaultPane = () => {
           <div>
             <button><i className="material-icons">&#xe1af;</i></button>
             <button><i className="material-icons">&#xe0b7;</i></button>
-            <button><i className="material-icons">&#xe5d4;</i></button>
+            <button onClick={() => setDropdownIsOpen(true)}>
+              <i className="material-icons">&#xe5d4;</i>
+            </button>
           </div>
         </div>
         <div className="search-box">
@@ -48,6 +54,22 @@ const DefaultPane = () => {
           ))}
         </div>
       </div>
+      {dropdownIsOpen && (
+        <div>
+          <div onClick={() => setDropdownIsOpen(false)} className="overlay"></div>
+          <div className="dropdown">
+            <button>New group</button>
+            <button>Create a room</button>
+            <button onClick={() => dispatch(homePageActions.setCurrentPane('profilePane'))}>
+              Profile
+            </button>
+            <button>Archived</button>
+            <button>Starred</button>
+            <button>Settings</button>
+            <button>Log out</button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

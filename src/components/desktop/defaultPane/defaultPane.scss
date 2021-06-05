@@ -4,7 +4,7 @@
   .header {
     @extend %fixed-position;
     height: 12em;
-    padding: 1em 0 0 1em;
+    padding: 1em 1em 0 1em;
     box-sizing: border-box;
     z-index: 1;
     background: $primaryBackgroundColor;
@@ -13,8 +13,14 @@
       @include display(space-between);
 
       button {
-        width: 4em;
+        width: 3em;
         height: 3em;
+        border-radius: 1.5em;
+        margin: 0 0.5em;
+
+        &:focus {
+          background: #D5D4D4;
+        }
       }
     }
 
@@ -103,5 +109,19 @@
       @extend %photo-size;
       object-fit: cover;
     }
+  }
+
+  .overlay {
+    @extend %style-overlay;
+  }
+
+  .dropdown {
+    @extend %style-dropdown;
+    position: fixed;
+    left: 15em;
+    top: 4.3em;
+    width: 11em;
+    z-index: 1;
+    animation: pop-in 0.3s ease-in-out;
   }
 }

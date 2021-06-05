@@ -1,16 +1,21 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { constants } from '../../../common'
+import { homePageActions } from '../homePage/slice'
 import './profilePane.scss'
 
 const ProfilePane = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState(false)
   const { profile } = useSelector(state => state.profile)
+  const dispatch = useDispatch()
 
   return (
     <div className="profile-pane">
       <div className="header">
-        <button onClick={{}} className="material-icons">&#xe5c4;</button>
+        <button onClick={() => dispatch(homePageActions.setCurrentPane('defaultPane'))}
+          className="material-icons">
+          &#xe5c4;
+        </button>
         <p>Profile</p>
       </div>
       <div className="content">

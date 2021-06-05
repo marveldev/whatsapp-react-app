@@ -143,6 +143,15 @@ $primaryBackgroundColor: #EDEDED;
   100% { opacity: 1; transform: scale(1); }
 }
 
+@keyframes slideIn {
+  0% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 %center-modal {
   position: relative;
   top: 50%;

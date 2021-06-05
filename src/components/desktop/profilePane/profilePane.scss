@@ -3,6 +3,7 @@
 .profile-pane {
   background: $primaryBackgroundColor;
   height: 100%;
+  animation: slideIn 0.3s ease-in-out;
 
   .header {
     height: 7em;
@@ -28,6 +29,7 @@
     @include display(center);
     margin: 2em 0;
     -webkit-tap-highlight-color: transparent;
+    animation: pop-in 0.5s ease-in-out;
   }
 
   .photo-container {
@@ -61,7 +63,7 @@
     border: unset;
     border-radius: 50%;
     cursor: pointer;
-    background-color: $primaryColor;
+    background-color: #00BEA4;
 
     i {
       font-size: 1.5em;
