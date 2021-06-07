@@ -1,11 +1,22 @@
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { constants } from '../../../common'
+import { displaySettingsActions } from '../../mobile/settingsPage/slice'
 import { homePageActions } from '../homePage/slice'
 import './settingsPane.scss'
 
 const SettingsPane = () => {
+  const [themeModalIsOpen, setThemeModalIsOpen] = useState()
+  const [themeValue, setThemeValue] = useState()
   const { profile } = useSelector(state => state.profile)
+  const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
+
+  const changeTheme = () => {
+    dispatch(displaySettingsActions.setTheme(themeValue))
+    localStorage.setItem('storedTheme', themeValue)
+    setThemeModalIsOpen(false)
+  }
 
   return (
     <div className="settings-pane">
@@ -34,7 +45,7 @@ const SettingsPane = () => {
             <span className="material-icons">&#xe7f4;</span>
             <p>Notifications</p>
           </button>
-          <button>
+          <button onClick={() => setThemeModalIsOpen(true)}>
             <span className="material-icons">&#xe3ab;</span>
             <p>Theme</p>
           </button>
@@ -52,6 +63,39 @@ const SettingsPane = () => {
           </button>
         </div>
       </div>
+      {themeModalIsOpen && (
+        <>
+          <div onClick={() => setThemeModalIsOpen(false)} className="overlay"></div>
+          <div className="theme-modal">
+            <p>Choose theme</p>
+            <div className="options">
+              <label onChange={() => setThemeValue('System default')}>
+                <input type="radio" name="theme"
+                  defaultChecked={theme === 'System default' ? true : false}
+                />
+                <span className="checkmark"></span>
+                <p>System default</p>
+              </label>
+              <label onChange={() => setThemeValue('Light')}>
+                <input type="radio" name="theme"
+                  defaultChecked={theme === 'Light' ? true : false}
+                />
+                <span className="checkmark"></span>
+                <p>Light</p>
+              </label>
+              <label onChange={() => setThemeValue('Dark')}>
+                <input type="radio" name="theme"
+                  defaultChecked={theme === 'Dark' ? true : false}
+                />
+                <span className="checkmark"></span>
+                <p>Dark</p>
+              </label>
+            </div>
+            <button onClick={() => setThemeModalIsOpen(false)}>CANCEL</button>
+            <button className="ok-button" onClick={changeTheme}>OK</button>
+          </div>
+        </>
+      )}
     </div>
   )
 }
