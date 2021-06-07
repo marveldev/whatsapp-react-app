@@ -65,7 +65,9 @@ const DefaultPane = () => {
             </button>
             <button>Archived</button>
             <button>Starred</button>
-            <button>Settings</button>
+            <button onClick={() => dispatch(homePageActions.setCurrentPane('settingsPane'))}>
+              Settings
+            </button>
             <button>Log out</button>
           </div>
         </div>

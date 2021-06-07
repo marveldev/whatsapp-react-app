@@ -1,0 +1,59 @@
+import { useDispatch, useSelector } from 'react-redux'
+import { constants } from '../../../common'
+import { homePageActions } from '../homePage/slice'
+import './settingsPane.scss'
+
+const SettingsPane = () => {
+  const { profile } = useSelector(state => state.profile)
+  const dispatch = useDispatch()
+
+  return (
+    <div className="settings-pane">
+      <div className="header">
+        <button onClick={() => dispatch(homePageActions.setCurrentPane('defaultPane'))}>
+          <i className="material-icons">&#xe5c4;</i>
+        </button>
+        <p>Settings</p>
+      </div>
+      <div className="content">
+        <div onClick={() => dispatch(homePageActions.setCurrentPane('profilePane'))}
+          className="profile-settings"
+        >
+          <div className="photo-container">
+            <img src={profile?.profilePhoto || constants.PHOTOURL}
+              id="profilePhoto" className="photo" alt="profile"
+            />
+          </div>
+          <div>
+            <p>Jack Williams</p>
+            <span>Available</span>
+          </div>
+        </div>
+        <div className="settings-button-container">
+          <button>
+            <span className="material-icons">&#xe7f4;</span>
+            <p>Notifications</p>
+          </button>
+          <button>
+            <span className="material-icons">&#xe3ab;</span>
+            <p>Theme</p>
+          </button>
+          <button>
+            <span className="material-icons">&#xe1bc;</span>
+            <p>Chat Wallpaper</p>
+          </button>
+          <button>
+            <span className="material-icons">&#xe14b;</span>
+            <p>Blocked</p>
+          </button>
+          <button>
+            <span className="material-icons">&#xe887;</span>
+            <p>Help</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default SettingsPane
