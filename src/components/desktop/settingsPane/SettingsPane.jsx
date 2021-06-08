@@ -73,21 +73,18 @@ const SettingsPane = () => {
                 <input type="radio" name="theme"
                   defaultChecked={theme === 'System default' ? true : false}
                 />
-                <span className="checkmark"></span>
                 <p>System default</p>
               </label>
               <label onChange={() => setThemeValue('Light')}>
                 <input type="radio" name="theme"
                   defaultChecked={theme === 'Light' ? true : false}
                 />
-                <span className="checkmark"></span>
                 <p>Light</p>
               </label>
               <label onChange={() => setThemeValue('Dark')}>
                 <input type="radio" name="theme"
                   defaultChecked={theme === 'Dark' ? true : false}
                 />
-                <span className="checkmark"></span>
                 <p>Dark</p>
               </label>
             </div>
