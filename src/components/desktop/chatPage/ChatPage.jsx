@@ -11,6 +11,7 @@ const ChatPage = () => {
   const [sendButtonIsActive, setSendButtonIsActive] = useState()
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState()
   const [headerDropdownIsOpen, setHeaderDropdownIsOpen] = useState()
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
   const [chatInputValue, setChatInputValue] = useState('')
   const dispatch = useDispatch()
 
@@ -23,6 +24,10 @@ const ChatPage = () => {
     } else {
       setSendButtonIsActive(false)
     }
+  }
+
+  const clearChat = () => {
+
   }
 
   const addChatItemToDom = async person => {
@@ -129,8 +134,22 @@ const ChatPage = () => {
             <button>Contact info</button>
             <button>Select messages</button>
             <button>Mute notifications</button>
-            <button>Clear messages</button>
+            <button onClick={() => {
+              setDeleteModalIsOpen(true); setHeaderDropdownIsOpen(false)
+            }}>
+              Clear messages
+            </button>
             <button>Delete chat</button>
+          </div>
+        </div>
+      )}
+      {deleteModalIsOpen && (
+        <div className="modal-container">
+          <div onClick={() => setDeleteModalIsOpen(false)} className="overlay"></div>
+          <div className="delete-modal">
+            <p>Are you sure you want to clear messages in this chat?</p>
+            <button onClick={() => setDeleteModalIsOpen(false)}>CANCEL</button>
+            <button onClick={clearChat} className="clear-button">CLEAR</button>
           </div>
         </div>
       )}
