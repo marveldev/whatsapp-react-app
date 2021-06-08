@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { constants } from '../../../common'
-import { displaySettingsActions } from '../../mobile/settingsPage/slice'
+import { displaySettingsActions } from '../../data/settingsSlice'
 import { homePageActions } from '../homePage/slice'
 import './settingsPane.scss'
 

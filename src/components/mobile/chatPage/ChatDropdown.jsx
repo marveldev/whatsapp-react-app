@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { chatActions } from './slice'
+import { chatActions } from '../../data/chatSlice'
 import { lightThemeWallpaper, darkThemeWallpaper } from '../../../common'
 import database from '../../../database'
 

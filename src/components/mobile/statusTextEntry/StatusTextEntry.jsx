@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Smileys } from '../../../common'
 import database from '../../../database'
-import { statusActions } from '../statusPage/slice'
+import { statusActions } from '../../data/statusSlice'
 import './statusTextEntry.scss'
 
 const StatusTextEntry = () => {

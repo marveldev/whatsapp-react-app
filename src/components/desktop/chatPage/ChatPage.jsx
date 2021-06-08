@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Smileys } from '../../../common/components'
 import database from '../../../database'
-import { chatActions } from '../../mobile/chatPage/slice'
+import { chatActions } from '../../data/chatSlice'
 import ChatItems from './ChatItems'
 import './chatPage.scss'
 

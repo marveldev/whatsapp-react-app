@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import database from '../../../database'
+import database from '../../database'
 
 const getChats = createAsyncThunk('chat/getChats', async () => {
   return await database.chat.toArray()

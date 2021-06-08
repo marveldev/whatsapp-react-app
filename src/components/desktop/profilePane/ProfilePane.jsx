@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { constants } from '../../../common'
 import database from '../../../database'
-import { profileActions } from '../../mobile/profilePage/slice'
+import { profileActions } from '../../data/profileSlice'
 import { homePageActions } from '../homePage/slice'
 import './profilePane.scss'
 

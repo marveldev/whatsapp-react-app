@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { chatActions } from '../chatPage/slice'
-import { displaySettingsActions } from './slice'
+import { chatActions } from '../../data/chatSlice'
+import { displaySettingsActions } from '../../data/settingsSlice'
 
 const DisplaySettingsPage = () => {
   const [themeModalIsOpen, setThemeModalIsOpen] = useState(false)
