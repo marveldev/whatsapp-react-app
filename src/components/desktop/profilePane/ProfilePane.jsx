@@ -9,6 +9,7 @@ import './profilePane.scss'
 const ProfilePane = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState(false)
   const { profile } = useSelector(state => state.profile)
+  const { previousPane } = useSelector(state => state.homePage)
   const dispatch = useDispatch()
 
   const addPhotoFilePicker = event => {
@@ -44,7 +45,7 @@ const ProfilePane = () => {
   return (
     <div className="profile-pane">
       <div className="header">
-        <button onClick={() => dispatch(homePageActions.setCurrentPane('defaultPane'))}
+        <button onClick={() => dispatch(homePageActions.setPane(previousPane))}
           className="material-icons">
           &#xe5c4;
         </button>

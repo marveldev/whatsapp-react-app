@@ -4,10 +4,12 @@ const homePageSlice = createSlice({
   name: 'homePage',
   initialState: {
     currentPane: 'defaultPane',
+    previousPane: null,
     selectedContact: null
   },
   reducers: {
-    setCurrentPane: (state, { payload }) => {
+    setPane: (state, { payload }) => {
+      state.previousPane = state.currentPane
       state.currentPane = payload
     },
     selectContact: (state, { payload }) => {

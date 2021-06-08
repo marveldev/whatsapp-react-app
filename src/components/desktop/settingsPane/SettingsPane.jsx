@@ -21,13 +21,13 @@ const SettingsPane = () => {
   return (
     <div className="settings-pane">
       <div className="header">
-        <button onClick={() => dispatch(homePageActions.setCurrentPane('defaultPane'))}>
+        <button onClick={() => dispatch(homePageActions.setPane('defaultPane'))}>
           <i className="material-icons">&#xe5c4;</i>
         </button>
         <p>Settings</p>
       </div>
       <div className="content">
-        <div onClick={() => dispatch(homePageActions.setCurrentPane('profilePane'))}
+        <div onClick={() => dispatch(homePageActions.setPane('profilePane'))}
           className="profile-settings"
         >
           <div className="photo-container">
@@ -36,7 +36,7 @@ const SettingsPane = () => {
             />
           </div>
           <div>
-            <p>Jack Williams</p>
+            <p>{profile?.name || 'Add profile'}</p>
             <span>Available</span>
           </div>
         </div>

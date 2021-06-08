@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import contactList from './contactList'
 import constants from '../../../common/constants'
 import { homePageActions } from '../homePage/slice'
@@ -7,16 +7,17 @@ import './defaultPane.scss'
 
 const DefaultPane = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState()
+  const { profile } = useSelector(state => state.profile)
   const dispatch = useDispatch()
 
   return (
     <div className="default-pane">
       <div className="header">
         <div className="nav-buttons">
-          <div onClick={() => dispatch(homePageActions.setCurrentPane('profilePane'))}
+          <div onClick={() => dispatch(homePageActions.setPane('profilePane'))}
             className="photo-container"
           >
-            <img src={constants.PHOTOURL}
+            <img src={profile?.profilePhoto || constants.PHOTOURL}
               className="profile-photo" alt="profile"
             />
           </div>
@@ -60,12 +61,12 @@ const DefaultPane = () => {
           <div className="dropdown">
             <button>New group</button>
             <button>Create a room</button>
-            <button onClick={() => dispatch(homePageActions.setCurrentPane('profilePane'))}>
+            <button onClick={() => dispatch(homePageActions.setPane('profilePane'))}>
               Profile
             </button>
             <button>Archived</button>
             <button>Starred</button>
-            <button onClick={() => dispatch(homePageActions.setCurrentPane('settingsPane'))}>
+            <button onClick={() => dispatch(homePageActions.setPane('settingsPane'))}>
               Settings
             </button>
             <button>Log out</button>

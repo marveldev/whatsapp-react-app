@@ -1,4 +1,4 @@
-import { statusActions } from '../components/mobile/statusPage/slice'
+import { statusActions } from '../components/data/statusSlice'
 import database from '../database'
 
 const addStatusFilePicker = (event, dispatch) => {
