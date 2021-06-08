@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Smileys } from '../../../common/components'
 import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
+import ChatDropdown from './ChatDropdown'
 import ChatItems from './ChatItems'
 import './chatPage.scss'
 
 const ChatPage = () => {
-  const { selectedContact } = useSelector(state => state.homePage)
   const [sendButtonIsActive, setSendButtonIsActive] = useState()
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState()
-  const [headerDropdownIsOpen, setHeaderDropdownIsOpen] = useState()
-  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
+  const [dropdownIsOpen, setDropdownIsOpen] = useState()
   const [chatInputValue, setChatInputValue] = useState('')
+  const { selectedContact } = useSelector(state => state.homePage)
   const dispatch = useDispatch()
 
   const displaySendButton = event => {
@@ -24,10 +24,6 @@ const ChatPage = () => {
     } else {
       setSendButtonIsActive(false)
     }
-  }
-
-  const clearChat = () => {
-
   }
 
   const addChatItemToDom = async person => {
@@ -71,7 +67,7 @@ const ChatPage = () => {
         </div>
         <div className="button-container">
           <button><i className="material-icons">&#xe8b6;</i></button>
-          <button onClick={() => setHeaderDropdownIsOpen(true)}>
+          <button onClick={() => setDropdownIsOpen(true)}>
             <i className="material-icons">&#xe5d4;</i>
           </button>
         </div>
@@ -127,32 +123,9 @@ const ChatPage = () => {
           )}
         </div>
       </div>
-      {headerDropdownIsOpen && (
-        <div>
-          <div onClick={() => setHeaderDropdownIsOpen(false)} className="overlay"></div>
-          <div className="header-dropdown">
-            <button>Contact info</button>
-            <button>Select messages</button>
-            <button>Mute notifications</button>
-            <button onClick={() => {
-              setDeleteModalIsOpen(true); setHeaderDropdownIsOpen(false)
-            }}>
-              Clear messages
-            </button>
-            <button>Delete chat</button>
-          </div>
-        </div>
-      )}
-      {deleteModalIsOpen && (
-        <div className="modal-container">
-          <div onClick={() => setDeleteModalIsOpen(false)} className="overlay"></div>
-          <div className="delete-modal">
-            <p>Are you sure you want to clear messages in this chat?</p>
-            <button onClick={() => setDeleteModalIsOpen(false)}>CANCEL</button>
-            <button onClick={clearChat} className="clear-button">CLEAR</button>
-          </div>
-        </div>
-      )}
+      {dropdownIsOpen &&
+        <ChatDropdown setDropdownIsOpen={setDropdownIsOpen}/>
+      }
     </div>
   )
 }
