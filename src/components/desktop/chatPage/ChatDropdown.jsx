@@ -7,7 +7,6 @@ const ChatDropdown = ({
   setDropdownIsOpen, setSelectChatModalIsOpen, selectChatModalIsOpen, setDeleteModalIsOpen
 }) => {
   const [currentContent, setCurrentContent] = useState('dropdown')
-
   const { chats, selectedChatCount } = useSelector(state => state.chat)
   const { selectedContact } = useSelector(state => state.homePage)
   const dispatch = useDispatch()
@@ -40,8 +39,6 @@ const ChatDropdown = ({
     setDropdownIsOpen(false)
     setSelectChatModalIsOpen(false)
   }
-
-
 
   return (
     <div>

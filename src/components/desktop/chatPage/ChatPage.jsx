@@ -15,6 +15,7 @@ const ChatPage = () => {
   const [selectChatModalIsOpen, setSelectChatModalIsOpen] = useState()
   const [chatInputValue, setChatInputValue] = useState('')
   const { selectedContact } = useSelector(state => state.homePage)
+  const { chats } = useSelector(state => state.chat)
   const dispatch = useDispatch()
 
   const displaySendButton = event => {
@@ -25,6 +26,20 @@ const ChatPage = () => {
       setSendButtonIsActive(true)
     } else {
       setSendButtonIsActive(false)
+    }
+  }
+
+  const deleteSelectedChat = async () => {
+    const newData = chats.filter(chat => !chat.selected)
+    const selectedChatData = chats.filter(chat => chat.selected)
+    dispatch(chatActions.addMultipleChat(newData))
+    dispatch(chatActions.setSelectedChatCount(0))
+    setDropdownIsOpen(false)
+    setSelectChatModalIsOpen(false)
+
+    for (let index = 0; index < selectedChatData.length; index++) {
+      const chatId = selectedChatData[index].id
+      await database.chat.delete(chatId)
     }
   }
 
@@ -137,6 +152,15 @@ const ChatPage = () => {
           setDeleteModalIsOpen={setDeleteModalIsOpen}
         />
       }
+      {deleteModalIsOpen && (
+        <div onClick={() => setDeleteModalIsOpen(false)} className="modal-overlay">
+          <div className="delete-modal">
+            <p>Delete messages?</p>
+            <button>CANCEL</button>
+            <button onClick={deleteSelectedChat} className="clear-button">CLEAR</button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
