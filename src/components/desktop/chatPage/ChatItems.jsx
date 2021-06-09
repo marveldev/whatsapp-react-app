@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
 
-const ChatItems = ({ selectChatModalIsOpen }) => {
+const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen, deleteModalIsOpen }) => {
   const [chatDropdownPosition, setChatDropdownPosition] = useState()
   const { selectedContact } = useSelector(state => state.homePage)
   const { chats, selectedChatCount } = useSelector(state => state.chat)
@@ -18,6 +19,17 @@ const ChatItems = ({ selectChatModalIsOpen }) => {
     const top = event.clientY
     const position = {left, top}
     setChatDropdownPosition(position)
+  }
+
+  const deleteSelectedChat = async () => {
+    const newData = chats.filter(chat => !chat.selected)
+    const selectedChatData = chats.filter(chat => chat.selected)
+    dispatch(chatActions.addMultipleChat(newData))
+
+    for (let index = 0; index < selectedChatData.length; index++) {
+      const chatId = selectedChatData[index].id
+      await database.chat.delete(chatId)
+    }
   }
 
   const markAsSelected = selectedChat => {
@@ -76,13 +88,22 @@ const ChatItems = ({ selectChatModalIsOpen }) => {
         </div>
       ))}
       {chatDropdownPosition && (
-        <div>
-          <div onClick={() => setChatDropdownPosition(false)} className="overlay"></div>
+        <div onClick={() => setChatDropdownPosition(false)}>
+          <div className="overlay"></div>
           <div className="chat-dropdown" style={chatDropdownPosition}>
             <button>Reply</button>
             <button>Forward message</button>
             <button>Star message</button>
-            <button>Delete message</button>
+            <button onClick={() => setDeleteModalIsOpen(true)}>Delete message</button>
+          </div>
+        </div>
+      )}
+      {deleteModalIsOpen && (
+        <div onClick={() => setDeleteModalIsOpen(false)} className="modal-overlay">
+          <div className="delete-modal">
+            <p>Delete messages?</p>
+            <button>CANCEL</button>
+            <button onClick={deleteSelectedChat} className="clear-button">CLEAR</button>
           </div>
         </div>
       )}

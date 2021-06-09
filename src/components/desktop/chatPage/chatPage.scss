@@ -153,6 +153,12 @@
     @extend %style-overlay;
   }
 
+  .modal-overlay {
+    @extend %style-overlay;
+    background: #fefffecc;
+    z-index: 2;
+  }
+
   .header-dropdown {
     @extend %style-dropdown;
     position: fixed;
@@ -298,7 +304,7 @@
 
     & > p {
       margin-top: 0.5em;
-      text-align: center;
+      text-align: left;
       font-size: 1.2em;
     }
 
@@ -356,5 +362,9 @@
         pointer-events: auto;
       }
     }
+  }
+
+  .delete-modal {
+    @extend .clear-modal;
   }
 }

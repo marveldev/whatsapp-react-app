@@ -4,10 +4,10 @@ import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
 
 const ChatDropdown = ({
-  setDropdownIsOpen, setSelectChatModalIsOpen, selectChatModalIsOpen
+  setDropdownIsOpen, setSelectChatModalIsOpen, selectChatModalIsOpen, setDeleteModalIsOpen
 }) => {
   const [currentContent, setCurrentContent] = useState('dropdown')
-  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
+
   const { chats, selectedChatCount } = useSelector(state => state.chat)
   const { selectedContact } = useSelector(state => state.homePage)
   const dispatch = useDispatch()
@@ -36,9 +36,12 @@ const ChatDropdown = ({
     })
 
     dispatch(chatActions.addMultipleChat(newData))
+    dispatch(chatActions.setSelectedChatCount(0))
     setDropdownIsOpen(false)
     setSelectChatModalIsOpen(false)
   }
+
+
 
   return (
     <div>
@@ -59,10 +62,7 @@ const ChatDropdown = ({
         </div>
       )}
       {currentContent === 'clear-modal' && (
-        <div onClick={() => setDropdownIsOpen(false)}
-          className="overlay"
-          style={{background: '#fefffecc'}}
-        >
+        <div onClick={() => setDropdownIsOpen(false)} className="modal-overlay">
           <div className="clear-modal">
             <p>Are you sure you want to clear messages in this chat?</p>
             <button>CANCEL</button>
@@ -82,20 +82,11 @@ const ChatDropdown = ({
             <span>{selectedChatCount} selected</span>
             <div className={selectedChatCount >= 1 ? 'active' : ''}>
               <button><i className="fa fa-star"></i></button>
-              <button onClick={() => {}}>
+              <button onClick={() => setDeleteModalIsOpen(true)}>
                 <i className="fa fa-trash"></i>
               </button>
               <button><i className="fa fa-mail-forward"></i></button>
             </div>
-          </div>
-        </div>
-      )}
-      {deleteModalIsOpen && (
-        <div onClick={() => setDropdownIsOpen(false)}>
-          <div className="delete-modal">
-            <p>Are you sure you want to clear messages in this chat?</p>
-            <button>CANCEL</button>
-            <button onClick={clearChat} className="delete-button">CLEAR</button>
           </div>
         </div>
       )}
