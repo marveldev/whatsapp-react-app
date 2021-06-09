@@ -2,11 +2,10 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { chatActions } from '../../data/chatSlice'
 
-const ChatItems = () => {
+const ChatItems = ({ selectChatModalIsOpen }) => {
   const [chatDropdownPosition, setChatDropdownPosition] = useState()
-  const [selectedChatCount, setSelectedChatCount] = useState(0)
   const { selectedContact } = useSelector(state => state.homePage)
-  const { chats } = useSelector(state => state.chat)
+  const { chats, selectedChatCount } = useSelector(state => state.chat)
   const dispatch = useDispatch()
 
   const toggleDropdownButton = (selector, value) => {
@@ -21,17 +20,17 @@ const ChatItems = () => {
     setChatDropdownPosition(position)
   }
 
-  const markAsSelected = (selectedChat) => {
+  const markAsSelected = selectedChat => {
     const newData = {...selectedChat, selected: !selectedChat.selected}
     const mutableChatData = [...chats]
     const selectedChatIndex = mutableChatData.indexOf(selectedChat)
     mutableChatData[selectedChatIndex] = newData
     dispatch(chatActions.addMultipleChat(mutableChatData))
 
-    if (!selectedChat.selected) {
-      setSelectedChatCount(selectedChatCount + 1)
+    if (newData.selected) {
+      dispatch(chatActions.setSelectedChatCount(selectedChatCount + 1))
     } else {
-      setSelectedChatCount(selectedChatCount - 1)
+      dispatch(chatActions.setSelectedChatCount(selectedChatCount - 1))
     }
   }
 
@@ -43,12 +42,14 @@ const ChatItems = () => {
         <div key={index} id={chat.id}
           className={chat.selected ? 'selected chat-item-wrapper' : 'chat-item-wrapper'}
         >
-          <div className="checkbox-container">
-            <label className="container">
-              <input type="checkbox" onChange={() => markAsSelected(chat)} />
-              <span className="checkmark"></span>
-            </label>
-          </div>
+          {selectChatModalIsOpen && (
+            <div className="checkbox-container">
+              <label className="container">
+                <input type="checkbox" onChange={() => markAsSelected(chat)} />
+                <span className="checkmark"></span>
+              </label>
+            </div>
+          )}
           <div className="chat-content-wrapper">
             <div className={chat.person === 'person-one' ? 'arrow-left' : 'arrow-right'}></div>
             <div className={`${chat.person} chat-item`}>

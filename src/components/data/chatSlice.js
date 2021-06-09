@@ -13,6 +13,7 @@ const chatSlice = createSlice({
   name: 'chat',
   initialState: {
     chats: [],
+    selectedChatCount: 0,
     wallpaper: ''
   },
   reducers: {
@@ -21,6 +22,9 @@ const chatSlice = createSlice({
     },
     addMultipleChat: (state, { payload }) => {
       state.chats = payload
+    },
+    setSelectedChatCount: (state, { payload }) => {
+      state.selectedChatCount = payload
     },
     setChatWallpaper: (state, { payload }) => {
       state.wallpaper = payload

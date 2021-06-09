@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
 
-const ChatDropdown = ({ setDropdownIsOpen }) => {
+const ChatDropdown = ({
+  setDropdownIsOpen, setSelectChatModalIsOpen, selectChatModalIsOpen
+}) => {
   const [currentContent, setCurrentContent] = useState('dropdown')
-  const { chats } = useSelector(state => state.chat)
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
+  const { chats, selectedChatCount } = useSelector(state => state.chat)
   const { selectedContact } = useSelector(state => state.homePage)
   const dispatch = useDispatch()
 
@@ -22,12 +25,19 @@ const ChatDropdown = ({ setDropdownIsOpen }) => {
     }
   }
 
-  const doStuff = () => {
-    setCurrentContent('select-chat-modal')
-    const stuffs = document.querySelectorAll('.checkbox-container')
-    stuffs?.forEach((stuff) => {
-      stuff.style.display = 'block'
+  const openSelectChatModal = () => {
+    setSelectChatModalIsOpen(true)
+    setCurrentContent()
+  }
+
+  const closeSelectChatModal = () => {
+    const newData = chats.map(chat => {
+      return {...chat, selected: false}
     })
+
+    dispatch(chatActions.addMultipleChat(newData))
+    setDropdownIsOpen(false)
+    setSelectChatModalIsOpen(false)
   }
 
   return (
@@ -37,7 +47,7 @@ const ChatDropdown = ({ setDropdownIsOpen }) => {
           <div onClick={() => setDropdownIsOpen(false)} className="overlay"></div>
           <div className="header-dropdown">
             <button>Contact info</button>
-            <button onClick={() => doStuff()}>
+            <button onClick={openSelectChatModal}>
               Select messages
             </button>
             <button>Mute notifications</button>
@@ -60,19 +70,32 @@ const ChatDropdown = ({ setDropdownIsOpen }) => {
           </div>
         </div>
       )}
-      {currentContent === 'select-chat-modal' && (
+      {selectChatModalIsOpen && (
         <div>
-          <div onClick={() => {}} className="overlay"></div>
+          <div className="overlay"></div>
           <div className="select-chat-modal">
-            <i className="material-icons">&#xe5cd;</i>
-            <span>{1} selected</span>
-            <div>
+            <button onClick={closeSelectChatModal}
+              className="material-icons"
+            >
+              &#xe5cd;
+            </button>
+            <span>{selectedChatCount} selected</span>
+            <div className={selectedChatCount >= 1 ? 'active' : ''}>
               <button><i className="fa fa-star"></i></button>
               <button onClick={() => {}}>
                 <i className="fa fa-trash"></i>
               </button>
               <button><i className="fa fa-mail-forward"></i></button>
             </div>
+          </div>
+        </div>
+      )}
+      {deleteModalIsOpen && (
+        <div onClick={() => setDropdownIsOpen(false)}>
+          <div className="delete-modal">
+            <p>Are you sure you want to clear messages in this chat?</p>
+            <button>CANCEL</button>
+            <button onClick={clearChat} className="delete-button">CLEAR</button>
           </div>
         </div>
       )}

@@ -11,6 +11,7 @@ const ChatPage = () => {
   const [sendButtonIsActive, setSendButtonIsActive] = useState()
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState()
   const [dropdownIsOpen, setDropdownIsOpen] = useState()
+  const [selectChatModalIsOpen, setSelectChatModalIsOpen] = useState()
   const [chatInputValue, setChatInputValue] = useState('')
   const { selectedContact } = useSelector(state => state.homePage)
   const dispatch = useDispatch()
@@ -73,7 +74,7 @@ const ChatPage = () => {
         </div>
       </div>
       <div>
-        <ChatItems />
+        <ChatItems selectChatModalIsOpen={selectChatModalIsOpen}/>
       </div>
       <div className="chat-input-container">
         {smileyModalIsOpen &&
@@ -124,7 +125,11 @@ const ChatPage = () => {
         </div>
       </div>
       {dropdownIsOpen &&
-        <ChatDropdown setDropdownIsOpen={setDropdownIsOpen}/>
+        <ChatDropdown
+          setDropdownIsOpen={setDropdownIsOpen}
+          setSelectChatModalIsOpen={setSelectChatModalIsOpen}
+          selectChatModalIsOpen={selectChatModalIsOpen}
+        />
       }
     </div>
   )

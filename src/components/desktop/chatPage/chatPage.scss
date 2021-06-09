@@ -258,7 +258,6 @@
     }
 
     .checkbox-container {
-      display: none;
       @extend %style-checkbox;
       position: relative;
       z-index: 2;
@@ -343,10 +342,19 @@
 
     div {
       margin: 0 0 0 auto;
+
+      button {
+        width: 4em;
+        opacity: 0.5;
+        pointer-events: none;
+      }
     }
 
-    button {
-      width: 4em;
+    .active {
+      button {
+        opacity: 1;
+        pointer-events: auto;
+      }
     }
   }
 }
