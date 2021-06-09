@@ -1,10 +1,13 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { chatActions } from '../../data/chatSlice'
 
 const ChatItems = () => {
   const [chatDropdownPosition, setChatDropdownPosition] = useState()
+  const [selectedChatCount, setSelectedChatCount] = useState(0)
   const { selectedContact } = useSelector(state => state.homePage)
   const { chats } = useSelector(state => state.chat)
+  const dispatch = useDispatch()
 
   const toggleDropdownButton = (selector, value) => {
     const dropdownButton = document.querySelector(`[property=${selector}]`)
@@ -18,6 +21,20 @@ const ChatItems = () => {
     setChatDropdownPosition(position)
   }
 
+  const markAsSelected = (selectedChat) => {
+    const newData = {...selectedChat, selected: !selectedChat.selected}
+    const mutableChatData = [...chats]
+    const selectedChatIndex = mutableChatData.indexOf(selectedChat)
+    mutableChatData[selectedChatIndex] = newData
+    dispatch(chatActions.addMultipleChat(mutableChatData))
+
+    if (!selectedChat.selected) {
+      setSelectedChatCount(selectedChatCount + 1)
+    } else {
+      setSelectedChatCount(selectedChatCount - 1)
+    }
+  }
+
   const filteredChatData = chats?.filter(item => item.contactId === selectedContact.id)
 
   return (
@@ -28,7 +45,7 @@ const ChatItems = () => {
         >
           <div className="checkbox-container">
             <label className="container">
-              <input type="checkbox" />
+              <input type="checkbox" onChange={() => markAsSelected(chat)} />
               <span className="checkmark"></span>
             </label>
           </div>

@@ -260,6 +260,8 @@
     .checkbox-container {
       display: none;
       @extend %style-checkbox;
+      position: relative;
+      z-index: 2;
     }
 
     .chat-content-wrapper {
@@ -319,6 +321,32 @@
       background: #05cc50;
       color: #fff;
       margin-left: 0.5em;
+    }
+  }
+
+  .select-chat-modal {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 65%;
+    height: 4em;
+    background-color: #fff;
+    gap: 0 1.5em;
+    box-sizing: border-box;
+    padding: 0 2em;
+    z-index: 1;
+
+    i {
+      font-size: 1.5em;
+    }
+
+    div {
+      margin: 0 0 0 auto;
+    }
+
+    button {
+      width: 4em;
     }
   }
 }
