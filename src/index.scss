@@ -31,4 +31,24 @@ body {
 
 .right-pane {
   grid-template-columns: 30% 40% 30%;
+
+  .chat-output-container {
+    .chat-content-wrapper {
+      margin: 0 2em 0 4em;
+    }
+
+    .person-two {
+      .angle-down-button {
+        right: 2em;
+      }
+    }
+  }
+
+  .header-dropdown {
+    right: 32%;
+  }
+
+  .dropdown {
+    left: 10em;
+  }
 }

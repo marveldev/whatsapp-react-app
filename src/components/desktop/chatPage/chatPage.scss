@@ -332,13 +332,13 @@
   }
 
   .select-chat-modal {
+    @extend %primary-width;
     display: flex;
     align-items: center;
     position: absolute;
     bottom: 0;
-    width: 65%;
     height: 4em;
-    background-color: #fff;
+    background-color: #EDECEC;
     gap: 0 1.5em;
     box-sizing: border-box;
     padding: 0 2em;
