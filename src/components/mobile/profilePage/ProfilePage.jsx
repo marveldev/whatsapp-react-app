@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { constants } from '../../../common'
-import { profileActions } from '../../data/profileSlice'
-import database from '../../../database'
+import { addPhotoFilePicker, updateProfile }
+  from '../../../common/helpers/profilePage'
 import './profilePage.scss'
 
 const ProfilePage = () => {
@@ -11,36 +11,6 @@ const ProfilePage = () => {
   const { profile } = useSelector(state => state.profile)
   const { goBack } = useHistory()
   const dispatch = useDispatch()
-
-  const addPhotoFilePicker = event => {
-    const photoReader = new FileReader()
-    photoReader.readAsDataURL(event.target.files[0])
-    photoReader.addEventListener('load', () => {
-      const profilePhoto = photoReader.result
-      const newData = {...profile, profilePhoto}
-      dispatch(profileActions.setProfile(newData))
-    })
-  }
-
-  const updateProfile = async () => {
-    const name = document.querySelector('#name').value
-    const about = document.querySelector('#about').value
-    const profilePhoto = document.querySelector('#profilePhoto').src
-    const profileObject = {
-      name,
-      about,
-      profilePhoto,
-    }
-
-    dispatch(profileActions.setProfile(profileObject))
-    setToasterIsOpen(true)
-    await database.profile.clear()
-    await database.profile.add(profileObject)
-
-    setTimeout(() => {
-      setToasterIsOpen(false)
-    }, 2000)
-  }
 
   return (
     <div className="profile-page">
@@ -57,7 +27,7 @@ const ProfilePage = () => {
           </div>
           <label>
             <input
-              onChange={event => addPhotoFilePicker(event)}
+              onChange={event => addPhotoFilePicker(event, profile, dispatch)}
               type="file"
               id="addProfileFilePicker"
               accept="image/*"
@@ -104,7 +74,11 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <button className="save-button" onClick={updateProfile}>Save</button>
+        <button className="save-button"
+          onClick={() => updateProfile(dispatch, setToasterIsOpen)}
+        >
+          Save
+        </button>
       </div>
       {toasterIsOpen && (
         <div className="toaster">Your profile updated</div>

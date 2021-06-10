@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import { Smileys, lightThemeWallpaper, darkThemeWallpaper } from '../../../common'
-import { displaySendButton } from './helper'
+import { Smileys, lightThemeWallpaper, darkThemeWallpaper }
+  from '../../../common'
 import { chatActions } from '../../data/chatSlice'
 import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
+import { addMessageToDom, displaySendButton }
+  from '../../../common/helpers/chatPage'
 import database from '../../../database'
 import './chatPage.scss'
 
@@ -60,31 +62,11 @@ const ChatPage = () => {
     dispatch(chatActions.addMultipleChat(newData))
   }
 
-  const addChatItemToDom = async person => {
-    const chatContainer = document.querySelector('.chat-container')
-    const chatInput = document.querySelector('.chat-input')
-    const id = 'id' + Date.parse(new Date()).toString()
-    const chatTime = new Date().toLocaleString('en-US',
-      { hour: 'numeric', minute: 'numeric', hour12: true }
-    )
-
-    const chatObject = {
-      id,
-      person,
-      chatTime,
-      chatInputValue,
-      contactId: selectedContact.id,
-      selected: false
-    }
-
-    await database.chat.add(chatObject)
-    chatContainer.scrollTop = chatContainer.scrollHeight
-    chatInput.style.height = ''
-    dispatch(chatActions.addChat(chatObject))
+  const addMessageEvent = person => {
+    addMessageToDom(person, selectedContact, dispatch)
     setChatInputValue('')
     setSendButtonIsActive(false)
     setSmileyModalIsOpen(false)
-    chatInput.focus()
   }
 
   const filteredChatData = chats?.filter(item => item.contactId === selectedContact.id)
@@ -136,7 +118,7 @@ const ChatPage = () => {
           </button>
         </div>
       </div>
-      <div className="chat-container" style={{fontSize}}>
+      <div className="chat-output-container" style={{fontSize}}>
         {chatItems}
       </div>
       <div className="chat-input-container">
@@ -157,7 +139,7 @@ const ChatPage = () => {
             }
           </div>
           <textarea
-            onKeyUp={() => displaySendButton('.chat-input', setSendButtonIsActive)}
+            onKeyUp={event => displaySendButton(event, setSendButtonIsActive)}
             className="chat-input"
             value={chatInputValue}
             placeholder="Type a message"
@@ -177,13 +159,13 @@ const ChatPage = () => {
               </button>
               <div className="persons-button-container">
                 <button
-                  onClick={() => addChatItemToDom('person-one')}
+                  onClick={() => addMessageEvent('person-one')}
                   className="person-one"
                 >
                   Person1
                 </button>
                 <button
-                  onClick={() => addChatItemToDom('person-two')}
+                  onClick={() => addMessageEvent('person-two')}
                   className="person-two"
                 >
                   Person2

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Smileys } from '../../../common/components'
+import { addMessageToDom, displaySendButton }
+  from '../../../common/helpers/chatPage'
 import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
 import ChatDropdown from './ChatDropdown'
@@ -18,17 +20,6 @@ const ChatPage = () => {
   const { chats } = useSelector(state => state.chat)
   const dispatch = useDispatch()
 
-  const displaySendButton = event => {
-    const chatBox = event.target
-    chatBox.style.height = "1px"
-    chatBox.style.height = (3+chatBox.scrollHeight)+"px"
-    if (chatBox.value.trim().length >= 1) {
-      setSendButtonIsActive(true)
-    } else {
-      setSendButtonIsActive(false)
-    }
-  }
-
   const deleteSelectedChat = async () => {
     const newData = chats.filter(chat => !chat.selected)
     const selectedChatData = chats.filter(chat => chat.selected)
@@ -43,31 +34,11 @@ const ChatPage = () => {
     }
   }
 
-  const addChatItemToDom = async person => {
-    const chatContainer = document.querySelector('.chat-output-container')
-    const chatInput = document.querySelector('.chat-input')
-    const id = 'id' + Date.parse(new Date()).toString()
-    const chatTime = new Date().toLocaleString('en-US',
-      { hour: 'numeric', minute: 'numeric', hour12: true }
-    )
-
-    const chatObject = {
-      id,
-      person,
-      chatTime,
-      chatInputValue,
-      contactId: selectedContact.id,
-      selected: false
-    }
-
-    await database.chat.add(chatObject)
-    chatContainer.scrollTop = chatContainer.scrollHeight
-    chatInput.style.height = ''
-    dispatch(chatActions.addChat(chatObject))
+  const addMessageEvent = person => {
+    addMessageToDom(person, selectedContact, dispatch)
     setChatInputValue('')
     setSendButtonIsActive(false)
     setSmileyModalIsOpen(false)
-    chatInput.focus()
   }
 
   return (
@@ -113,7 +84,7 @@ const ChatPage = () => {
           <i className="material-icons">&#xe226;</i>
         </button>
         <textarea
-          onKeyUp={event => displaySendButton(event)}
+          onKeyUp={event => displaySendButton(event, setSendButtonIsActive)}
           className="chat-input"
           value={chatInputValue}
           placeholder="Type a message"
@@ -129,12 +100,12 @@ const ChatPage = () => {
               </button>
               <div className="persons-button-container">
                 <button
-                  onClick={() => addChatItemToDom('person-one')}
+                  onClick={() => addMessageEvent('person-one')}
                   className="person-one"
                 >
                   Person1
                 </button>
-                <button onClick={() => addChatItemToDom('person-two')}>Person2</button>
+                <button onClick={() => addMessageEvent('person-two')}>Person2</button>
                 <div className="arrow-down"></div>
               </div>
             </div>
