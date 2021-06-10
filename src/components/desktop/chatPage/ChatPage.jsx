@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Smileys } from '../../../common/components'
-import { addMessageToDom, displaySendButton }
+import { addMessageToDom, deleteSelectedChat, displaySendButton }
   from '../../../common/helpers/chatPage'
 import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
@@ -15,24 +15,11 @@ const ChatPage = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState()
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
   const [selectChatModalIsOpen, setSelectChatModalIsOpen] = useState()
+  const [selectedChatId, setSelectedChatId] = useState()
   const [chatInputValue, setChatInputValue] = useState('')
   const { selectedContact } = useSelector(state => state.homePage)
   const { chats } = useSelector(state => state.chat)
   const dispatch = useDispatch()
-
-  const deleteSelectedChat = async () => {
-    const newData = chats.filter(chat => !chat.selected)
-    const selectedChatData = chats.filter(chat => chat.selected)
-    dispatch(chatActions.addMultipleChat(newData))
-    dispatch(chatActions.setSelectedChatCount(0))
-    setDropdownIsOpen(false)
-    setSelectChatModalIsOpen(false)
-
-    for (let index = 0; index < selectedChatData.length; index++) {
-      const chatId = selectedChatData[index].id
-      await database.chat.delete(chatId)
-    }
-  }
 
   const addMessageEvent = person => {
     addMessageToDom(person, selectedContact, dispatch)
@@ -63,8 +50,8 @@ const ChatPage = () => {
       <div>
         <ChatItems
           selectChatModalIsOpen={selectChatModalIsOpen}
-          deleteModalIsOpen={deleteModalIsOpen}
           setDeleteModalIsOpen={setDeleteModalIsOpen}
+          setSelectedChatId={setSelectedChatId}
         />
       </div>
       <div className="chat-input-container">
@@ -128,7 +115,11 @@ const ChatPage = () => {
           <div className="delete-modal">
             <p>Delete messages?</p>
             <button>CANCEL</button>
-            <button onClick={deleteSelectedChat} className="clear-button">CLEAR</button>
+            <button className="clear-button"
+              onClick={() => deleteSelectedChat(chats, dispatch, selectedChatId)}
+            >
+              CLEAR
+            </button>
           </div>
         </div>
       )}

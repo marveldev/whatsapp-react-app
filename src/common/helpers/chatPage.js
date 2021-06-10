@@ -26,6 +26,24 @@ const markAsSelected = (selectedChat, chats, dispatch, selectedChatCount) => {
   }
 }
 
+const deleteSelectedChat = async (chats, dispatch, selectedChatId) => {
+  if (selectedChatId) {
+    await database.chat.delete(selectedChatId)
+  } else {
+    const newData = chats.filter(chat => !chat.selected)
+    const selectedChatData = chats.filter(chat => chat.selected)
+    dispatch(chatActions.addMultipleChat(newData))
+    dispatch(chatActions.setSelectedChatCount(0))
+    // setDropdownIsOpen(false)
+    // setSelectChatModalIsOpen(false)
+
+    for (let index = 0; index < selectedChatData.length; index++) {
+      const chatId = selectedChatData[index].id
+      await database.chat.delete(chatId)
+    }
+  }
+}
+
 const addMessageToDom = async (person, selectedContact, dispatch) => {
   const chatContainer = document.querySelector('.chat-output-container')
   const chatInput = document.querySelector('.chat-input')
@@ -50,4 +68,4 @@ const addMessageToDom = async (person, selectedContact, dispatch) => {
   chatInput.focus()
 }
 
-export { displaySendButton, addMessageToDom, markAsSelected }
+export { displaySendButton, addMessageToDom, markAsSelected, deleteSelectedChat }

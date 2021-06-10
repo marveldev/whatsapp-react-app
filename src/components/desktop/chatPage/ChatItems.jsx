@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { markAsSelected } from '../../../common/helpers/chatPage'
 
-const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen }) => {
-  const [chatDropdownPosition, setChatDropdownPosition] = useState()
+const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen, setSelectedChatId }) => {
+  const [dropdownStyle, setDropdownStyle] = useState()
   const { selectedContact } = useSelector(state => state.homePage)
   const { chats, selectedChatCount } = useSelector(state => state.chat)
   const dispatch = useDispatch()
@@ -13,11 +13,12 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen }) => {
     dropdownButton.style.display = value
   }
 
-  const displayDropdown = (event, person) => {
+  const displayDropdown = (event, person, chatId) => {
     const left = person === 'person-one' ? event.clientX : event.clientX - 170
     const top = event.clientY
     const position = {left, top}
-    setChatDropdownPosition(position)
+    setDropdownStyle(position)
+    setSelectedChatId(chatId)
   }
 
   const filteredChatData = chats?.filter(item => item.contactId === selectedContact.id)
@@ -53,7 +54,7 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen }) => {
                   </div>
                 </div>
                 <button
-                  onClick={event => displayDropdown(event, chat.person)}
+                  onClick={event => displayDropdown(event, chat.person, chat.id)}
                   className="angle-down-button" property={chat.id}
                 >
                   <i className="fa fa-angle-down"></i>
@@ -63,14 +64,18 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen }) => {
           </div>
         </div>
       ))}
-      {chatDropdownPosition && (
-        <div onClick={() => setChatDropdownPosition(false)}>
+      {dropdownStyle && (
+        <div onClick={() => setDropdownStyle(null)}>
           <div className="overlay"></div>
-          <div className="chat-dropdown" style={chatDropdownPosition}>
+          <div className="chat-dropdown" style={dropdownStyle}>
             <button>Reply</button>
             <button>Forward message</button>
             <button>Star message</button>
-            <button onClick={() => setDeleteModalIsOpen(true)}>Delete message</button>
+            <button
+              onClick={() => setDeleteModalIsOpen(true)}
+            >
+              Delete message
+            </button>
           </div>
         </div>
       )}
