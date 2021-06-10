@@ -1,14 +1,20 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { homePageActions } from '../homePage/slice'
 import './contactInfoPane.scss'
 
 const ContactInfoPane = () => {
-  const { selectedContact, rightPaneIsOpen }
-  = useSelector(state => state.homePage)
+  const { selectedContact } = useSelector(state => state.homePage)
+  const dispatch = useDispatch()
 
   return (
     <div className="desktop-contact-info-pane">
       <div className="header">
-        <button className="material-icons">&#xe5cd;</button>
+        <button
+          onClick={() => dispatch(homePageActions.setRightPaneIsOpen(false))}
+          className="material-icons"
+        >
+          &#xe5cd;
+        </button>
         <p>Contact info</p>
       </div>
       <div className="content">
@@ -23,7 +29,7 @@ const ContactInfoPane = () => {
         </div>
         <div className="wrapper">
           <div>
-            <p>Mute notificatiion</p>
+            <p>Mute notification</p>
             <div className="checkbox-container">
               <label className="container">
                 <input type="checkbox"/>
@@ -43,7 +49,7 @@ const ContactInfoPane = () => {
             <button className="material-icons">&#xe315;</button>
           </div>
         </div>
-        <div className="wrapper">
+        <div className="about-wrapper">
           <h4>About and phone number</h4>
           <p>Hey there!, I am using Whatsapp.</p>
           <p>+234 655 466 4566</p>
@@ -58,7 +64,7 @@ const ContactInfoPane = () => {
             <span>Report contact</span>
           </button>
           <button>
-            <i className="material-icons">&#xe8db;</i>
+            <i className="material-icons">&#xe872;</i>
             <span>Delete chat</span>
           </button>
         </div>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
+import { homePageActions } from '../homePage/slice'
 
 const ChatDropdown = ({
   setDropdownIsOpen, setSelectChatModalIsOpen,
@@ -41,13 +42,20 @@ const ChatDropdown = ({
     setSelectChatModalIsOpen(false)
   }
 
+  const openContactInfoPane = () => {
+    dispatch(homePageActions.setRightPaneIsOpen(true))
+    setDropdownIsOpen(false)
+  }
+
   return (
     <div>
       {currentContent === 'dropdown' && (
         <div>
           <div onClick={() => setDropdownIsOpen(false)} className="overlay"></div>
           <div className="header-dropdown">
-            <button>Contact info</button>
+            <button onClick={openContactInfoPane}>
+              Contact info
+            </button>
             <button onClick={openSelectChatModal}>
               Select messages
             </button>
