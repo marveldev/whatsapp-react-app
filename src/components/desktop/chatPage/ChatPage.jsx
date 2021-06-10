@@ -5,6 +5,7 @@ import { addMessageToDom, displaySendButton }
   from '../../../common/helpers/chatPage'
 import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
+import { homePageActions } from '../homePage/slice'
 import ChatDropdown from './ChatDropdown'
 import ChatItems from './ChatItems'
 import './chatPage.scss'
@@ -61,7 +62,10 @@ const ChatPage = () => {
             className="contact-photo" alt="contactPhoto"
           />
         </div>
-        <div className="chat-person-info">
+        <div
+          onClick={() => dispatch(homePageActions.setRightPaneIsOpen(true))}
+          className="chat-person-info"
+        >
           <p>{selectedContact.name}</p>
           <p>online</p>
         </div>

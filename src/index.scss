@@ -18,7 +18,7 @@ body {
 
 .home-page {
   display: grid;
-  grid-template-columns: 1fr 1.86fr;
+  grid-template-columns: 35% 65%;
   position: absolute;
   left: 0;
   top: 0;
@@ -27,4 +27,8 @@ body {
   overflow-y: auto;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif, Helvetica;
+}
+
+.right-pane {
+  grid-template-columns: 30% 42% 28%;
 }
