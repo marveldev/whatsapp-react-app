@@ -12,6 +12,20 @@ const displaySendButton = (event, setSendButtonIsActive) => {
   }
 }
 
+const markAsSelected = (selectedChat, chats, dispatch, selectedChatCount) => {
+  const newData = {...selectedChat, selected: !selectedChat.selected}
+  const mutableChatData = [...chats]
+  const selectedChatIndex = mutableChatData.indexOf(selectedChat)
+  mutableChatData[selectedChatIndex] = newData
+  dispatch(chatActions.addMultipleChat(mutableChatData))
+
+  if (newData.selected) {
+    dispatch(chatActions.setSelectedChatCount(selectedChatCount + 1))
+  } else {
+    dispatch(chatActions.setSelectedChatCount(selectedChatCount - 1))
+  }
+}
+
 const addMessageToDom = async (person, selectedContact, dispatch) => {
   const chatContainer = document.querySelector('.chat-output-container')
   const chatInput = document.querySelector('.chat-input')
@@ -36,4 +50,4 @@ const addMessageToDom = async (person, selectedContact, dispatch) => {
   chatInput.focus()
 }
 
-export { displaySendButton, addMessageToDom }
+export { displaySendButton, addMessageToDom, markAsSelected }

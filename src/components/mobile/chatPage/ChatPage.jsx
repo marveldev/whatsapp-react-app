@@ -6,7 +6,7 @@ import { Smileys, lightThemeWallpaper, darkThemeWallpaper }
 import { chatActions } from '../../data/chatSlice'
 import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
-import { addMessageToDom, displaySendButton }
+import { addMessageToDom, displaySendButton, markAsSelected }
   from '../../../common/helpers/chatPage'
 import database from '../../../database'
 import './chatPage.scss'
@@ -26,20 +26,6 @@ const ChatPage = () => {
   const chatWallpaper = wallpaper || defaultWallpaper
   const history = useHistory()
   const dispatch = useDispatch()
-
-  const markAsSelected = selectedChat => {
-    const newData = {...selectedChat, selected: !selectedChat.selected}
-    const mutableChatData = [...chats]
-    const selectedChatIndex = mutableChatData.indexOf(selectedChat)
-    mutableChatData[selectedChatIndex] = newData
-    dispatch(chatActions.addMultipleChat(mutableChatData))
-
-    if (!selectedChat.selected) {
-      setSelectedChatCount(selectedChatCount + 1)
-    } else {
-      setSelectedChatCount(selectedChatCount - 1)
-    }
-  }
 
   const deleteSelectedChat = async () => {
     const newData = chats.filter(chat => !chat.selected)
@@ -73,7 +59,7 @@ const ChatPage = () => {
 
   const chatItems = filteredChatData?.map((chat, index) => (
     <div key={index} id={chat.id}
-      onClick={() => markAsSelected(chat)}
+      onClick={() => markAsSelected(chat, chats, dispatch, selectedChatCount)}
       className={chat.selected ? 'selected chat-item-wrapper' : 'chat-item-wrapper'}
     >
       <div className="chat-item-overlay">

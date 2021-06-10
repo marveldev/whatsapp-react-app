@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { chatActions } from '../../data/chatSlice'
+import { markAsSelected } from '../../../common/helpers/chatPage'
 
 const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen }) => {
   const [chatDropdownPosition, setChatDropdownPosition] = useState()
@@ -20,20 +20,6 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen }) => {
     setChatDropdownPosition(position)
   }
 
-  const markAsSelected = selectedChat => {
-    const newData = {...selectedChat, selected: !selectedChat.selected}
-    const mutableChatData = [...chats]
-    const selectedChatIndex = mutableChatData.indexOf(selectedChat)
-    mutableChatData[selectedChatIndex] = newData
-    dispatch(chatActions.addMultipleChat(mutableChatData))
-
-    if (newData.selected) {
-      dispatch(chatActions.setSelectedChatCount(selectedChatCount + 1))
-    } else {
-      dispatch(chatActions.setSelectedChatCount(selectedChatCount - 1))
-    }
-  }
-
   const filteredChatData = chats?.filter(item => item.contactId === selectedContact.id)
 
   return (
@@ -45,7 +31,9 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen }) => {
           {selectChatModalIsOpen && (
             <div className="checkbox-container">
               <label className="container">
-                <input type="checkbox" onChange={() => markAsSelected(chat)} />
+                <input type="checkbox"
+                  onChange={() => markAsSelected(chat, chats, dispatch, selectedChatCount)}
+                />
                 <span className="checkmark"></span>
               </label>
             </div>
