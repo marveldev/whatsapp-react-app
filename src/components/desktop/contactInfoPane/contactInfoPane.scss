@@ -1,0 +1,100 @@
+@import '../../../common/style/helperDesktop';
+
+.desktop-contact-info-pane {
+  background: $primaryBackgroundColor;
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0 1.5em;
+    position: fixed;
+    top: 0;
+    padding: 0 1.2em;
+    background: $primaryBackgroundColor;
+    height: 4em;
+    box-sizing: border-box;
+    width: 30%;
+    z-index: 1;
+
+    button {
+      font-weight: 600;
+    }
+  }
+
+  button {
+    @extend %remove-default;
+  }
+
+  .content {
+    @extend %style-scrollbar;
+    position: relative;
+    top: 4em;
+    max-height: 36em;
+    overflow-y: auto;
+  }
+
+  .contact-info {
+    background: #fff;
+    padding: 1.5em 2em 1em;
+  }
+
+  .photo-container {
+    margin: auto;
+    height: 12em;
+    width: 12em;
+    border-radius: 50%;
+    background: #000000;
+
+    .photo {
+      height: 12em;
+      width: 12em;
+      cursor: pointer;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .wrapper {
+    background: #fff;
+    padding: 0 1.5em;
+    margin-top: 0.8em;
+
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    p {
+      font-size: 1.1em;
+    }
+
+    h4 {
+      font-size: 0.9em;
+      font-weight: 400;
+      color: #0E9D8F;
+    }
+  }
+
+  .button-wrapper {
+    button {
+      display: flex;
+      align-items: center;
+      margin: 1em 0;
+      gap: 0 1.5em;
+      height: 3.5em;
+      background: #fff;
+      width: 100%;
+      font-size: 1em;
+      box-sizing: border-box;
+      padding: 0 1.5em;
+    }
+  }
+
+  .checkbox-container {
+    @extend %style-checkbox;
+    position: relative;
+    right: 3.5em;
+    bottom: 1em;
+  }
+}
