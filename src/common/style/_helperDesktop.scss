@@ -8,7 +8,21 @@ $primaryBackgroundColor: #EDEDED;
   position: fixed;
   top: 0;
   left: 0;
-  width: 28em;
+  width: 35%;
+}
+
+%primary-width {
+  width: 65%;
+}
+
+.right-pane {
+  %fixed-position {
+    width: 30%;
+  }
+
+  %primary-width {
+    width: 40%;
+  }
 }
 
 %style-overlay {
