@@ -6,7 +6,7 @@ const homePageSlice = createSlice({
     currentPane: 'defaultPane',
     previousPane: null,
     selectedContact: null,
-    rightPaneIsOpen: true
+    rightPaneIsOpen: false
   },
   reducers: {
     setPane: (state, { payload }) => {
