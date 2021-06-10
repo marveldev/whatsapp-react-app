@@ -65,8 +65,8 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen, setSelectedCha
         </div>
       ))}
       {dropdownStyle && (
-        <div onClick={() => setDropdownStyle(null)}>
-          <div className="overlay"></div>
+        <div onClick={() => setDropdownStyle()}>
+          <div onClick={() => setSelectedChatId()} className="overlay"></div>
           <div className="chat-dropdown" style={dropdownStyle}>
             <button>Reply</button>
             <button>Forward message</button>

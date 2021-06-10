@@ -4,7 +4,8 @@ import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
 
 const ChatDropdown = ({
-  setDropdownIsOpen, setSelectChatModalIsOpen, selectChatModalIsOpen, setDeleteModalIsOpen
+  setDropdownIsOpen, setSelectChatModalIsOpen,
+  selectChatModalIsOpen, setDeleteModalIsOpen
 }) => {
   const [currentContent, setCurrentContent] = useState('dropdown')
   const { chats, selectedChatCount } = useSelector(state => state.chat)

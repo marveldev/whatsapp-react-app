@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Smileys } from '../../../common/components'
-import { addMessageToDom, deleteSelectedChat, displaySendButton }
+import { addMessageToDom, displaySendButton }
   from '../../../common/helpers/chatPage'
 import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
@@ -26,6 +26,31 @@ const ChatPage = () => {
     setChatInputValue('')
     setSendButtonIsActive(false)
     setSmileyModalIsOpen(false)
+  }
+
+  const closeDeleteModal = () => {
+    setDeleteModalIsOpen(false)
+    setSelectedChatId()
+  }
+
+  const deleteSelectedChat = async () => {
+    if (selectedChatId) {
+      const newData = chats.filter(chat => chat.id !== selectedChatId)
+      dispatch(chatActions.addMultipleChat(newData))
+      await database.chat.delete(selectedChatId)
+    } else {
+      const newData = chats.filter(chat => !chat.selected)
+      const selectedChatData = chats.filter(chat => chat.selected)
+      dispatch(chatActions.addMultipleChat(newData))
+      dispatch(chatActions.setSelectedChatCount(0))
+      setDropdownIsOpen(false)
+      setSelectChatModalIsOpen(false)
+
+      for (let index = 0; index < selectedChatData.length; index++) {
+        const chatId = selectedChatData[index].id
+        await database.chat.delete(chatId)
+      }
+    }
   }
 
   return (
@@ -111,13 +136,11 @@ const ChatPage = () => {
         />
       }
       {deleteModalIsOpen && (
-        <div onClick={() => setDeleteModalIsOpen(false)} className="modal-overlay">
+        <div onClick={closeDeleteModal} className="modal-overlay">
           <div className="delete-modal">
             <p>Delete messages?</p>
             <button>CANCEL</button>
-            <button className="clear-button"
-              onClick={() => deleteSelectedChat(chats, dispatch, selectedChatId)}
-            >
+            <button className="clear-button" onClick={deleteSelectedChat}>
               CLEAR
             </button>
           </div>
