@@ -49,7 +49,7 @@ const SettingsPane = () => {
             <span className="material-icons">&#xe3ab;</span>
             <p>Theme</p>
           </button>
-          <button>
+          <button onClick={() => dispatch(homePageActions.setPane('wallpaperPane'))}>
             <span className="material-icons">&#xe1bc;</span>
             <p>Chat Wallpaper</p>
           </button>

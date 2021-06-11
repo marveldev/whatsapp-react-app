@@ -19,7 +19,7 @@ const ChatPage = () => {
   const [selectedChatId, setSelectedChatId] = useState()
   const [chatInputValue, setChatInputValue] = useState('')
   const { selectedContact } = useSelector(state => state.homePage)
-  const { chats } = useSelector(state => state.chat)
+  const { chats, wallpaper } = useSelector(state => state.chat)
   const dispatch = useDispatch()
 
   const addMessageEvent = person => {
@@ -55,7 +55,7 @@ const ChatPage = () => {
   }
 
   return (
-    <div className="desktop-chat-page">
+    <div className="desktop-chat-page" style={{background: wallpaper}}>
       <div className="header">
         <div className="photo-container">
           <img src={selectedContact.profilePhoto}

@@ -4,7 +4,7 @@ import { ContactInfoPane } from '../contactInfoPane'
 import { DefaultPage } from '../defaultPage'
 import { DefaultPane } from '../defaultPane'
 import { ProfilePane } from '../profilePane'
-import { SettingsPane } from '../settingsPane'
+import { SettingsPane, WallpaperPane } from '../settingsPane'
 
 const HomePage = () => {
   const { currentPane, selectedContact, rightPaneIsOpen }
@@ -16,6 +16,7 @@ const HomePage = () => {
         {currentPane === 'defaultPane' && <DefaultPane />}
         {currentPane === 'profilePane' && <ProfilePane />}
         {currentPane === 'settingsPane' && <SettingsPane />}
+        {currentPane === 'wallpaperPane' && <WallpaperPane />}
       </div>
       {selectedContact && <ChatPage />}
       {!selectedContact && <DefaultPage />}

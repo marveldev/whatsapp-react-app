@@ -145,4 +145,46 @@
       cursor: pointer;
     }
   }
+
+  .wallpaper-box-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    gap: 1em;
+    padding: 2em;
+    background-color: #EDECEC;
+
+    span {
+      height: 5em;
+      cursor: pointer;
+      transition: 0.1s all;
+
+      &:hover {
+        transform: scale(0.98);
+        box-shadow: inset 0 0 0 0.25em #fff;
+      }
+    }
+
+    .current {
+      box-shadow: inset 0 0 0 0.25em #01A5F5;
+    }
+
+    .default-wallpaper {
+      @include display(center);
+      background: url('../../../common/assets/lightThemeChatWallpaper.jpg');
+    }
+  }
+
+  .toaster {
+    display: none;
+    position: absolute;
+    bottom: 2em;
+    left: 2em;
+    background-color: #000000ab;
+    color: #fff;
+    width: fit-content;
+    padding: 0.5em 1em;
+    font-size: 1.1em;
+    border-radius: 0.3em;
+  }
 }
