@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { constants } from '../../../common'
 import { addStatusFilePicker } from '../../../common/helpers/statusPage'
 
@@ -6,6 +7,7 @@ const StatusPane = () => {
   const { profile } = useSelector(state => state.profile)
   const { statusData } = useSelector(state => state.status)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const lastStatusEntry = statusData[statusData.length - 1]
   const textStyleObject = {
@@ -33,7 +35,7 @@ const StatusPane = () => {
           </label>
         )}
         {statusData.length >= 1 && (
-          <div
+          <div onClick={() => history.push('/viewStatus')}
             className="view-status-container" role="button" tabIndex="0"
           >
             {lastStatusEntry?.photoSource && (

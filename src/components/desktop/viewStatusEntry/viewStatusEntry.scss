@@ -1,0 +1,85 @@
+@import '../../../common/style/helperMobile';
+
+.desktop-view-status-entry {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  @extend %absolute-position;
+  background: #000;
+
+  .bar-container {
+    position: absolute;
+    top: 1em;
+    display: flex;
+    gap: 0 0.3em;
+    width: 30%;
+
+    .progress-bar {
+      width: 100%;
+      border-radius: 1em;
+      height: 0.5em;
+      background-color: #dddddd7c;
+    }
+
+    .bar {
+      width: 0%;
+      height: 0.5em;
+      border-radius: 1em;
+      background-color: #ddd;
+    }
+  }
+
+  .info {
+    position: absolute;
+    top: 1em;
+    text-align: center;
+    color: #fff;
+
+    p {
+      margin: 1.5em 0 0.2em;
+    }
+
+    span {
+      font-size: 0.87em;
+    }
+  }
+
+  button {
+    @extend %remove-default;
+  }
+
+  .status-entry-container {
+    height: 100%;
+    width: 40%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .close-button {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
+
+  .back-button {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+  }
+
+  .previous-button {
+    position: absolute;
+    left: 1em;
+    top: 50%;
+  }
+
+  .next-button {
+    position: absolute;
+    right: 1em;
+    top: 50%;
+  }
+}
