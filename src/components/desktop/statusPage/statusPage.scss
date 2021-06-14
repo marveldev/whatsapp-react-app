@@ -21,6 +21,7 @@
     align-items: center;
     border-bottom: 1px solid #414041;
     padding: 2em 0 1.5em 1em;
+    cursor: pointer;
 
     .photo-container {
       @extend %photo-size;
@@ -57,7 +58,6 @@
   }
 
   .view-status-container {
-    display: none;
     @extend .add-status-container;
 
     .text-input {
@@ -188,7 +188,7 @@
 
   .delete-modal {
     @extend %center-modal;
-    padding: 2em 1em;
+    padding: 1em;
     width: 40%;
     background: #fff;
     color: #000;
@@ -202,7 +202,7 @@
 
     button {
       @extend %remove-default;
-      margin-top: 3em;
+      margin-top: 2em;
       padding: 0.8em 1.8em;
       background: #fff;
       color: #05cc50;

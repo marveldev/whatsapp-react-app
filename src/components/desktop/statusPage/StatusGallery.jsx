@@ -1,11 +1,22 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import database from '../../../database'
+import { statusActions } from '../../data/statusSlice'
 
 const StatusGallery = () => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
+  const [selectedStatusIndex, setSelectedStatusIndex] = useState()
   const { statusData } = useSelector(state => state.status)
   const { goBack } = useHistory()
+  const dispatch = useDispatch()
+
+  const deleteStatus = async () => {
+    const mutableStatusData = [...statusData]
+    mutableStatusData.splice(selectedStatusIndex, 1)
+    dispatch(statusActions.addMultipleStatus(mutableStatusData))
+    await database.status.delete(statusData[selectedStatusIndex].id)
+  }
 
   const statusItems = statusData.map((status, index) => (
     <div key={index} id={status.id} className="single-status-entry">
@@ -23,7 +34,7 @@ const StatusGallery = () => {
       )}
       <div className="status-info">
         <span>1 views</span>
-        <button onClick={() => setDeleteModalIsOpen(true)}
+        <button onClick={() => {setDeleteModalIsOpen(true); setSelectedStatusIndex(index)}}
           className="fa fa-trash-o"
         >
         </button>
@@ -35,12 +46,12 @@ const StatusGallery = () => {
   return (
     <div className="desktop-status-gallery">
       <button onClick={goBack} className="material-icons close-button">&#xe5cd;</button>
-      {!statusData && (
+      {statusData.length < 1 && (
         <div className="status-message">
           No status gallery yet.
         </div>
       )}
-      {statusData && (
+      {statusData.length >= 1 && (
         <div className="status-output-container">
           <h4>View your updates</h4>
           <div>
@@ -56,7 +67,7 @@ const StatusGallery = () => {
               also be deleted for everyone who received it.
             </p>
             <button>CANCEL</button>
-            <button onClick={{}} className="delete-button">DELETE</button>
+            <button onClick={deleteStatus} className="delete-button">DELETE</button>
           </div>
         </div>
       )}

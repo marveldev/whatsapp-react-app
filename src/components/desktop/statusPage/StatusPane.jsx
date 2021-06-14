@@ -16,40 +16,44 @@ const StatusPane = () => {
   return (
     <div className="status-pane">
       <div>
-        <label className="add-status-container"
-          htmlFor="addStatusFilePicker" role="button" tabIndex="0"
-        >
-          <div className="photo-container">
-            <img src={profile?.profilePhoto || constants.PHOTOURL}
-              className="photo" alt="profile"
-            />
-          </div>
-          <span className="material-icons plus-icon">&#xe145;</span>
-          <div className="status-message">
-            <p>My Status</p>
-            <span>Tap to add status update</span>
-          </div>
-        </label>
-        <div
-          className="view-status-container" role="button" tabIndex="0"
-        >
-          {lastStatusEntry?.photoSource && (
+        {statusData.length < 1 && (
+          <label className="add-status-container"
+            htmlFor="addStatusFilePicker" role="button" tabIndex="0"
+          >
             <div className="photo-container">
-              <img src={lastStatusEntry.photoSource}
+              <img src={profile?.profilePhoto || constants.PHOTOURL}
                 className="photo" alt="profile"
               />
             </div>
-          )}
-          {lastStatusEntry?.statusInputValue && (
-            <div className="text-input" style={textStyleObject}>
-              {lastStatusEntry.statusInputValue}
+            <span className="material-icons plus-icon">&#xe145;</span>
+            <div className="status-message">
+              <p>My Status</p>
+              <span>Tap to add status update</span>
             </div>
-          )}
-          <div className="status-message">
-            <p>My Status</p>
-            <span>Tap to view status update</span>
+          </label>
+        )}
+        {statusData.length >= 1 && (
+          <div
+            className="view-status-container" role="button" tabIndex="0"
+          >
+            {lastStatusEntry?.photoSource && (
+              <div className="photo-container">
+                <img src={lastStatusEntry.photoSource}
+                  className="photo" alt="profile"
+                />
+              </div>
+            )}
+            {lastStatusEntry?.statusInputValue && (
+              <div className="text-input" style={textStyleObject}>
+                {lastStatusEntry.statusInputValue}
+              </div>
+            )}
+            <div className="status-message">
+              <p>My Status</p>
+              <span>Tap to view status update</span>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <button className="text-icon">
         <i className="material-icons">&#xe3c9;</i>
