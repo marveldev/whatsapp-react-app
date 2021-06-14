@@ -1,4 +1,5 @@
 import StatusPane from './StatusPane'
+import StatusGallery from './StatusGallery'
 import './statusPage.scss'
 
 const StatusPage = () => {
@@ -7,7 +8,7 @@ const StatusPage = () => {
       <div>
         <StatusPane />
       </div>
-      main pane
+      <StatusGallery />
     </div>
   )
 }

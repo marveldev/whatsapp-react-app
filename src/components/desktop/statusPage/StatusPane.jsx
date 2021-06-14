@@ -23,8 +23,8 @@ const StatusPane = () => {
           </div>
           <span className="material-icons plus-icon">&#xe145;</span>
           <div className="status-message">
-            <span>My status</span>
-            <p>Tap to add status update</p>
+            <p>My Status</p>
+            <span>Tap to add status update</span>
           </div>
         </label>
         <div
@@ -43,8 +43,8 @@ const StatusPane = () => {
             </div>
           )}
           <div className="status-message">
-            <span>My status</span>
-            <p>Tap to view status update</p>
+            <p>My Status</p>
+            <span>Tap to view status update</span>
           </div>
         </div>
       </div>

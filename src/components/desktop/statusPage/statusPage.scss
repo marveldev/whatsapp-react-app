@@ -9,73 +9,65 @@
   width: 100%;
   height: 100%;
   font-family: "Roboto", sans-serif, Helvetica;
+  color: #fff;
 
   .status-pane {
     background-color: #151514;
     height: 100%;
-    color: #fff;
+  }
 
-    .add-status-container {
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #414041;
-      padding: 2em 0 1.5em 1em;
+  .add-status-container {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #414041;
+    padding: 2em 0 1.5em 1em;
 
-      .photo-container {
+    .photo-container {
+      @extend %photo-size;
+      background: #000000;
+
+      .photo {
         @extend %photo-size;
-        background: #000000;
-
-        .photo {
-          @extend %photo-size;
-          object-fit: cover;
-        }
-      }
-
-      .plus-icon {
-        position: absolute;
-        top: 3.8em;
-        left: 2.2em;
-        font-size: 1.4em;
-        border-radius: 50%;
-        background-color: $secondaryColor;
-        color: $textPrimaryColor;
-      }
-
-      .status-message {
-        width: 100%;
-        padding: 1em;
-
-        span {
-          font-weight: 550;
-        }
-
-        p {
-          font-size: 0.9em;
-          margin: 0;
-          margin-top: 0.5em;
-        }
+        object-fit: cover;
       }
     }
 
-    .view-status-container {
-      display: none;
-      @extend .add-status-container;
+    .plus-icon {
+      position: absolute;
+      top: 3.5em;
+      left: 2.2em;
+      font-size: 1.4em;
+      border-radius: 50%;
+      background-color: $secondaryColor;
+      color: $textPrimaryColor;
+    }
 
-      .more-button {
-        @extend %remove-default;
-        color: $secondaryColor;
+    .status-message {
+      width: 100%;
+      padding: 1em;
+
+      p {
+        margin: 0;
       }
 
-      .text-input {
-        @include display(center);
-        height: 3.5em;
-        min-width: 3.5em;
-        max-width: 3.5em;
-        border-radius: 50%;
-        color: #fff;
-        word-break: break-all;
-        overflow: hidden;
+      span {
+        font-size: 0.8em;
       }
+    }
+  }
+
+  .view-status-container {
+    display: none;
+    @extend .add-status-container;
+
+    .text-input {
+      @include display(center);
+      height: 3.5em;
+      min-width: 3.5em;
+      max-width: 3.5em;
+      border-radius: 50%;
+      word-break: break-all;
+      overflow: hidden;
     }
   }
 
@@ -128,5 +120,58 @@
     i {
       font-size: 1.5em;
     }
+  }
+
+  .desktop-status-gallery {
+    @include display(center);
+    background-color: #000;
+    text-align: center;
+
+    h4 {
+      font-size: 1.5em;
+    }
+
+    .status-message {
+      display: none;
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+
+    .close-button {
+      font-size: 2em;
+      position: absolute;
+      right: 1em;
+      top: 0.5em;
+    }
+  }
+
+  .status-output-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    .photo-container {
+      font-size: 1.7em;
+    }
+
+    .status-info {
+      padding: 1em 0;
+
+      p {
+        font-size: 0.8em;
+        margin: 0.5em 0 0;
+      }
+    }
+
+    .single-status-entry {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1em;
+    }
+  }
+
+  button {
+    @extend %remove-default;
+    color: #fff;
   }
 }
