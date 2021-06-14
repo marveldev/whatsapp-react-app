@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import contactList from './contactList'
 import constants from '../../../common/constants'
@@ -9,6 +10,7 @@ const DefaultPane = () => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState()
   const { profile } = useSelector(state => state.profile)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   return (
     <div className="default-pane">
@@ -22,7 +24,9 @@ const DefaultPane = () => {
             />
           </div>
           <div>
-            <button><i className="material-icons">&#xe1af;</i></button>
+            <button onClick={() => history.push('/status')}>
+              <i className="material-icons">&#xe1af;</i>
+            </button>
             <button><i className="material-icons">&#xe0b7;</i></button>
             <button onClick={() => setDropdownIsOpen(true)}>
               <i className="material-icons">&#xe5d4;</i>
