@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import database from '../../../database'
 import { chatActions } from '../../data/chatSlice'
 import { homePageActions } from '../homePage/slice'
-import { lightThemeWallpaper } from '../../../common'
+import { darkThemeWallpaper, lightThemeWallpaper } from '../../../common'
 import './settingsPane.scss'
 
 const WallpaperChatPane = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState()
   const { wallpaper } = useSelector(state => state.chat)
+  const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
+
+  const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
 
   const changeChatWallpaper = async background => {
     dispatch(chatActions.setChatWallpaper(background))
@@ -32,8 +35,10 @@ const WallpaperChatPane = () => {
       </div>
       <div className="wallpaper-box-wrapper">
         <span
-          className={`default-wallpaper ${wallpaper === lightThemeWallpaper ? 'current' : ''}`}
-          onClick={() => changeChatWallpaper(lightThemeWallpaper)}
+          className={`default-wallpaper
+            ${wallpaper === `url(${defaultWallpaper})` ? 'current' : ''}`
+          }
+          onClick={() => changeChatWallpaper(`url(${defaultWallpaper})`)}
         >
           Default
         </span>

@@ -313,4 +313,10 @@ $secondaryColor: #00AF9C;
       color: $secondaryColor;
     }
   }
+
+  .desktop-chat-page {
+    background: url('../assets/darkThemeChatWallpaper.png');
+    background-size: contain;
+    background-color: #0D1418;
+  }
 }
