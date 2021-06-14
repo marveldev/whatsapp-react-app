@@ -1,5 +1,5 @@
-import { statusActions } from '../components/data/statusSlice'
-import database from '../database'
+import { statusActions } from '../../components/data/statusSlice'
+import database from '../../database'
 
 const addStatusFilePicker = (event, dispatch) => {
   const storedTime = new Date().getTime()

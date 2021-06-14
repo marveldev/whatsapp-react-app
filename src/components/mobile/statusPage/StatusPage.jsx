@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { constants } from '../../../common'
-import { addStatusFilePicker } from '../../../common/helper'
+import { addStatusFilePicker } from '../../../common/helpers/statusPage'
 import database from '../../../database'
 import './statusPage.scss'
 

@@ -1,9 +1,12 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { constants } from '../../../common'
+import { addStatusFilePicker } from '../../../common/helpers/statusPage'
 
 const StatusPane = () => {
   const { profile } = useSelector(state => state.profile)
   const { statusData } = useSelector(state => state.status)
+  const dispatch = useDispatch()
+
   const lastStatusEntry = statusData[statusData.length - 1]
   const textStyleObject = {
     backgroundColor: lastStatusEntry?.backgroundColor,
@@ -53,7 +56,7 @@ const StatusPane = () => {
       </button>
       <label htmlFor="addStatusFilePicker">
         <input
-          // onChange={event => addStatusFilePicker(event, dispatch)}
+          onChange={event => addStatusFilePicker(event, dispatch)}
           type="file"
           id="addStatusFilePicker"
           accept="image/*"

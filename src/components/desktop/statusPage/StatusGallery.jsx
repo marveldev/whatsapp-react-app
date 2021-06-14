@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const StatusGallery = () => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
   const { statusData } = useSelector(state => state.status)
+  const { goBack } = useHistory()
 
   const statusItems = statusData.map((status, index) => (
     <div key={index} id={status.id} className="single-status-entry">
@@ -21,7 +23,10 @@ const StatusGallery = () => {
       )}
       <div className="status-info">
         <span>1 views</span>
-        <button className="fa fa-trash-o"></button>
+        <button onClick={() => setDeleteModalIsOpen(true)}
+          className="fa fa-trash-o"
+        >
+        </button>
         <p>today at {status.timeOfEntry}</p>
       </div>
     </div>
@@ -29,17 +34,21 @@ const StatusGallery = () => {
 
   return (
     <div className="desktop-status-gallery">
-      <button className="material-icons close-button">&#xe5cd;</button>
-      <div className="status-message">
-        No status gallery yet.
-      </div>
-      <div>
-        <h4>View your updates</h4>
-        <div className="status-output-container">
-          {statusItems}
+      <button onClick={goBack} className="material-icons close-button">&#xe5cd;</button>
+      {!statusData && (
+        <div className="status-message">
+          No status gallery yet.
         </div>
-        <p className="toaster">Your status updates will disappear after 24 hours.</p>
-      </div>
+      )}
+      {statusData && (
+        <div className="status-output-container">
+          <h4>View your updates</h4>
+          <div>
+            {statusItems}
+          </div>
+          <p className="toaster">Your status updates will disappear after 24 hours.</p>
+        </div>
+      )}
       {deleteModalIsOpen && (
         <div onClick={() => setDeleteModalIsOpen(false)} className="modal-overlay">
           <div className="delete-modal">
@@ -47,7 +56,7 @@ const StatusGallery = () => {
               also be deleted for everyone who received it.
             </p>
             <button>CANCEL</button>
-            <button onClick={{}}>DELETE</button>
+            <button onClick={{}} className="delete-button">DELETE</button>
           </div>
         </div>
       )}
