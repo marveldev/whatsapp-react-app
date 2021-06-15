@@ -84,4 +84,15 @@
     top: 50%;
     font-size: 2em;
   }
+
+  .text-input {
+    @include display(center);
+    padding: 0 1em;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    font-size: 1.8em;
+    word-break: break-all;
+    color: #fff;
+  }
 }

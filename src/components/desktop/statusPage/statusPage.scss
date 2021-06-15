@@ -59,16 +59,16 @@
 
   .view-status-container {
     @extend .add-status-container;
+  }
 
-    .text-input {
-      @include display(center);
-      height: 3.5em;
-      min-width: 3.5em;
-      max-width: 3.5em;
-      border-radius: 50%;
-      word-break: break-all;
-      overflow: hidden;
-    }
+  .text-input {
+    @include display(center);
+    height: 3.5em;
+    min-width: 3.5em;
+    max-width: 3.5em;
+    border-radius: 50%;
+    word-break: break-all;
+    overflow: hidden;
   }
 
   .photo-container {
@@ -166,6 +166,10 @@
       flex-direction: column;
       align-items: center;
       padding: 1em;
+    }
+
+    .text-input {
+      font-size: 1.4em;
     }
   }
 
