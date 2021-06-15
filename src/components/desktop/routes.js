@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom'
-import { HomePage, StatusPage, ViewStatusEntry } from '../desktop'
+import { HomePage, StatusPage, ViewStatusEntry, StatusTextEntry } from '../desktop'
 
 const DesktopRoutes = () => {
   return (
@@ -7,6 +7,7 @@ const DesktopRoutes = () => {
       <Route path="/" component={HomePage} exact />
       <Route path="/status" component={StatusPage} />
       <Route path="/viewStatus" component={ViewStatusEntry} />
+      <Route path="/statusTextEntry" component={StatusTextEntry} />
     </>
   )
 }

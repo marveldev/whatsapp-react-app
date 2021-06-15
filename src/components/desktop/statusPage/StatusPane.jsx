@@ -57,7 +57,7 @@ const StatusPane = () => {
           </div>
         )}
       </div>
-      <button className="text-icon">
+      <button onClick={() => history.push('/statusTextEntry')} className="text-icon">
         <i className="material-icons">&#xe3c9;</i>
       </button>
       <label htmlFor="addStatusFilePicker">

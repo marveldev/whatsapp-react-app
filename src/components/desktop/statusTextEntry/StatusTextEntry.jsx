@@ -53,8 +53,8 @@ const StatusTextEntry = () => {
   }
 
   return (
-    <div className="status-text-entry" style={{backgroundColor}}>
-      <div className="input-container">
+    <div className="desktop-status-text-entry" style={{backgroundColor}}>
+      <div>
         <textarea
           value={statusInputValue}
           onChange={event => handleInputEvent(event)}

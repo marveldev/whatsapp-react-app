@@ -106,16 +106,9 @@
 
   .photo-icon {
     @include display(center);
-    position: absolute;
+    @extend %style-icon;
     bottom: 4em;
     left: 28%;
-    color: $textPrimaryColor;
-    width: 3.5em;
-    height: 3.5em;
-    border: unset;
-    border-radius: 50%;
-    cursor: pointer;
-    background-color: #00BEA4;
 
     i {
       font-size: 1.5em;

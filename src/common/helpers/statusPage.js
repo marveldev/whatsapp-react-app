@@ -30,4 +30,25 @@ const addStatusFilePicker = (event, dispatch) => {
   }
 }
 
-export { addStatusFilePicker }
+const changeFontfamily = (fontFamily, setFontFamily) => {
+  const fontFamilyList = [
+    "Courier New", "Zapf-Chancery", "Verdana", "sans-serif",
+    "Times New Roman", "Courier", "Arial Narrow", "Candara", "fangsong",
+    "Calibri", "Garamond", "cursive", "Optima", "monospace", "fantasy",
+  ]
+
+  let index = fontFamilyList.indexOf(fontFamily) + 1
+  if (index === fontFamilyList.length) index = 0
+  setFontFamily(fontFamilyList[index])
+}
+
+const changeBackgroundColor = setBackgroundColor => {
+  let randomColor = '#'
+  for (let index = 0; index < 6; index++) {
+    randomColor += Math.floor(Math.random() * 10)
+  }
+
+  setBackgroundColor(randomColor)
+}
+
+export { addStatusFilePicker, changeFontfamily, changeBackgroundColor }

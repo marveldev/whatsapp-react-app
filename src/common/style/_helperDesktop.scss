@@ -172,3 +172,19 @@ $primaryBackgroundColor: #EDEDED;
   left: 50%;
   transform: translate(-50%,-50%);
 }
+
+%style-icon {
+  @include display(center);
+  position: absolute;
+  color: $textPrimaryColor;
+  width: 3.5em;
+  height: 3.5em;
+  border: unset;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #00BEA4;
+
+  i {
+    font-size: 1.5em;
+  }
+}
