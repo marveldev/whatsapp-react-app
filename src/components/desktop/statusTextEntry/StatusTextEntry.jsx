@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import { Smileys } from '../../../common'
-import { changeBackgroundColor, changeFontfamily }
-  from '../../../common/helpers/statusPage'
-import database from '../../../database'
 import { statusActions } from '../../data/statusSlice'
+import { Smileys } from '../../../common'
+import {
+  changeBackgroundColor, changeFontfamily
+} from '../../../common/helpers/statusPage'
+import database from '../../../database'
 import './statusTextEntry.scss'
 
 const StatusTextEntry = () => {
@@ -24,12 +25,9 @@ const StatusTextEntry = () => {
   }
 
   const handleInputEvent = event => {
-    setStatusInputValue(event.target.value)
-    if (event.target.value.trim().length >= 1) {
-      setSendButtonIsActive(true)
-    } else {
-      setSendButtonIsActive(false)
-    }
+    const { value } = event.target
+    setStatusInputValue(value)
+    setSendButtonIsActive(value.trim().length >= 1)
   }
 
   const addStatusTextEntry = async () => {
