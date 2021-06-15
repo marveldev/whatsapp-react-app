@@ -19,14 +19,13 @@ const ViewStatusEntry = () => {
         width++
         statusBar.current.style.width = width + '%'
       }
-    }, 20)
+    }, 30)
 
     const timeout = setTimeout(() => {
       if (statusIndex < statusData.length - 1) {
         setStatusIndex(statusIndex + 1)
       }
       else {
-        setStatusIndex(0)
         clearInterval(interval.current)
         history.goBack()
       }
@@ -39,7 +38,6 @@ const ViewStatusEntry = () => {
     clearInterval(interval.current)
     statusBar.current.style.width = 100 + '%'
     if (statusIndex === statusData.length - 1) {
-      setStatusIndex(0)
       history.goBack()
     } else {
       setStatusIndex(statusIndex + 1)
@@ -50,7 +48,6 @@ const ViewStatusEntry = () => {
     clearInterval(interval.current)
     statusBar.current.style.width = 0 + '%'
     if (statusIndex === 0) {
-      setStatusIndex(0)
       history.goBack()
     } else {
       setStatusIndex(statusIndex - 1)
@@ -86,11 +83,15 @@ const ViewStatusEntry = () => {
         &#xe5cd;
       </button>
       <button onClick={displayPreviousStatus}
-        className="previous-button"
+        className="material-icons previous-button"
       >
-        previous
+        &#xe314;
       </button>
-      <button onClick={displayNextStatus} className="next-button">next</button>
+      <button onClick={displayNextStatus}
+        className="material-icons next-button"
+      >
+        &#xe315;
+      </button>
       <div className="status-entry-container">
         {statusData[statusIndex]?.photoSource && (
           <img src={statusData[statusIndex]?.photoSource} alt="status" />

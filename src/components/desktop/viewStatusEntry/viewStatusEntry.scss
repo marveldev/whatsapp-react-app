@@ -73,13 +73,15 @@
 
   .previous-button {
     position: absolute;
-    left: 1em;
+    left: 0.8em;
     top: 50%;
+    font-size: 2em;
   }
 
   .next-button {
     position: absolute;
-    right: 1em;
+    right: 0.8em;
     top: 50%;
+    font-size: 2em;
   }
 }
