@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { homePageActions } from '../homePage/slice'
 import { constants } from '../../../common'
-import {
-  addPhotoFilePicker, updateProfile
-} from '../../../common/helpers/profilePage'
+import { addPhotoFilePicker, updateProfile } from '../../../common/helpers/profilePage'
 import './profilePane.scss'
 
 const ProfilePane = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState(false)
+  const [nameButtonIsOpen, setNameButtonIsOpen] = useState(null)
+  const [aboutButtonIsOpen, setAboutButtonIsOpen] = useState(null)
   const { profile } = useSelector(state => state.profile)
   const { previousPane } = useSelector(state => state.homePage)
   const dispatch = useDispatch()
@@ -31,7 +31,9 @@ const ProfilePane = () => {
           </div>
           <label>
             <input
-              onChange={event => addPhotoFilePicker(event, profile, dispatch)}
+              onChange={event =>
+                addPhotoFilePicker(event, dispatch, setToasterIsOpen)
+              }
               type="file"
               id="addProfileFilePicker"
               accept="image/*"
@@ -43,31 +45,49 @@ const ProfilePane = () => {
           <label>
             <span>Your Name</span>
             <input type="text" id="name"
+              onChange={() => setNameButtonIsOpen(true)}
               placeholder="Add name..."
               defaultValue={profile?.name}
-              autoFocus
             />
           </label>
-          <i className="material-icons">&#xe3c9;</i>
+          {nameButtonIsOpen && (
+            <button
+              onClick={() => {
+                updateProfile(dispatch, setToasterIsOpen); setNameButtonIsOpen(false)
+              }}
+            >
+              <i className="material-icons">&#xe5ca;</i>
+            </button>
+          )}
+          {!nameButtonIsOpen && (
+            <button><i className="material-icons">&#xe3c9;</i></button>
+          )}
         </div>
         <div className="input-container">
           <label>
             <span>About</span>
             <input type="text" id="about"
+              onChange={() => setAboutButtonIsOpen(true)}
               placeholder="Add about..."
               defaultValue={profile?.about}
             />
           </label>
-          <i className="material-icons">&#xe3c9;</i>
+          {aboutButtonIsOpen && (
+            <button
+              onClick={() => {
+                updateProfile(dispatch, setToasterIsOpen); setAboutButtonIsOpen(false)
+              }}
+            >
+              <i className="material-icons">&#xe5ca;</i>
+            </button>
+          )}
+          {!aboutButtonIsOpen && (
+            <button><i className="material-icons">&#xe3c9;</i></button>
+          )}
         </div>
-        <button onClick={() => updateProfile(dispatch, setToasterIsOpen)}
-          className="save-button"
-        >
-          Save
-        </button>
       </div>
       {toasterIsOpen && (
-        <div className="toaster">Your profile updated</div>
+        <div className="toaster">Your profile changed</div>
       )}
     </div>
   )

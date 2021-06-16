@@ -74,6 +74,7 @@
     margin-bottom: 1em;
     height: 6em;
     background: #fff;
+    padding-right: 1em;
 
     label {
       display: flex;
@@ -94,10 +95,11 @@
       font-size: 1em;
     }
 
-    i {
+    button {
+      @extend %remove-default;
       color: $primaryColor;
-      margin-top: 1em;
-      width: 2em;
+      margin-top: 1.2em;
+      width: 3em;
     }
   }
 

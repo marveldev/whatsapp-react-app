@@ -2,8 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { constants } from '../../../common'
-import { addPhotoFilePicker, updateProfile }
-  from '../../../common/helpers/profilePage'
+import { addPhotoFilePicker, updateProfile } from '../../../common/helpers/profilePage'
 import './profilePage.scss'
 
 const ProfilePage = () => {
@@ -27,7 +26,9 @@ const ProfilePage = () => {
           </div>
           <label>
             <input
-              onChange={event => addPhotoFilePicker(event, profile, dispatch)}
+              onChange={event =>
+                addPhotoFilePicker(event, profile, dispatch, setToasterIsOpen)
+              }
               type="file"
               id="addProfileFilePicker"
               accept="image/*"
