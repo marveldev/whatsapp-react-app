@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import database from '../../../database'
 import { statusActions } from '../../data/statusSlice'
+import database from '../../../database'
 
 const StatusGallery = () => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
   const [selectedStatusIndex, setSelectedStatusIndex] = useState()
   const { statusData } = useSelector(state => state.status)
-  const { goBack } = useHistory()
+  const history = useHistory()
   const dispatch = useDispatch()
 
   const deleteStatus = async () => {
@@ -18,20 +18,27 @@ const StatusGallery = () => {
     await database.status.delete(statusData[selectedStatusIndex].id)
   }
 
+  const displayStatus = index => {
+    dispatch(statusActions.setStatusIndex(index))
+    history.push('/viewStatus')
+  }
+
   const statusItems = statusData.map((status, index) => (
     <div key={index} id={status.id} className="single-status-entry">
-      {status.photoSource && (
-        <div className="photo-container">
-          <img src={status.photoSource} className="photo" alt="profile" />
-        </div>
-      )}
-      {status.statusInputValue && (
-        <div className="text-input"
-          style={{backgroundColor: status.backgroundColor, fontFamily: status.fontFamily}}
-        >
-          {status.statusInputValue}
-        </div>
-      )}
+      <div onClick={() => displayStatus(index)}>
+        {status.photoSource && (
+          <div className="photo-container">
+            <img src={status.photoSource} className="photo" alt="profile" />
+          </div>
+        )}
+        {status.statusInputValue && (
+          <div className="text-input"
+            style={{backgroundColor: status.backgroundColor, fontFamily: status.fontFamily}}
+          >
+            {status.statusInputValue}
+          </div>
+        )}
+      </div>
       <div className="status-info">
         <span>1 views</span>
         <button onClick={() => {setDeleteModalIsOpen(true); setSelectedStatusIndex(index)}}
@@ -45,7 +52,7 @@ const StatusGallery = () => {
 
   return (
     <div className="desktop-status-gallery">
-      <button onClick={goBack} className="material-icons close-button">&#xe5cd;</button>
+      <button onClick={history.goBack} className="material-icons close-button">&#xe5cd;</button>
       {statusData.length < 1 && (
         <div className="status-message">
           No status gallery yet.

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { statusActions } from '../../data/statusSlice'
 import { constants } from '../../../common'
 import { addStatusFilePicker } from '../../../common/helpers/statusPage'
 
@@ -13,6 +14,11 @@ const StatusPane = () => {
   const textStyleObject = {
     backgroundColor: lastStatusEntry?.backgroundColor,
     fontFamily: lastStatusEntry?.fontFamily
+  }
+
+  const displayStatus = () => {
+    dispatch(statusActions.setStatusIndex(0))
+    history.push('/viewStatus')
   }
 
   return (
@@ -35,7 +41,7 @@ const StatusPane = () => {
           </label>
         )}
         {statusData.length >= 1 && (
-          <div onClick={() => history.push('/viewStatus')}
+          <div onClick={displayStatus}
             className="view-status-container" role="button" tabIndex="0"
           >
             {lastStatusEntry?.photoSource && (

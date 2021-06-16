@@ -8,7 +8,8 @@ const getStatus = createAsyncThunk('chat/getStatus', async () => {
 const statusSlice = createSlice({
   name: 'status',
   initialState: {
-    statusData: []
+    statusData: [],
+    statusIndex: 0
   },
   reducers: {
     addStatus: (state, { payload }) => {
@@ -16,6 +17,9 @@ const statusSlice = createSlice({
     },
     addMultipleStatus: (state, { payload }) => {
       state.statusData = payload
+    },
+    setStatusIndex: (state, { payload }) => {
+      state.statusIndex = payload
     }
   },
   extraReducers: {
