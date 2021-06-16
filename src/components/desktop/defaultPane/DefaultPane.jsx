@@ -34,8 +34,8 @@ const DefaultPane = () => {
           </div>
         </div>
         <div className="search-box">
-          <i className="material-icons">&#xe8b6;</i>
-          <textarea placeholder="Search or start a new chat"></textarea>
+          <i className="material-icons search-icon">&#xe8b6;</i>
+          <input placeholder="Search or start a new chat"></input>
         </div>
       </div>
       <div className="content">

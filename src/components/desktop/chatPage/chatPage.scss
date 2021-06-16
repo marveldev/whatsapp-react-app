@@ -85,14 +85,14 @@
       max-height: 10em;
       line-height: unset;
       min-height: 3em;
-      padding: 1em 1em 0;
+      padding: 0.8em 1em 0;
       box-sizing: border-box;
       margin: 0 1em;
-      font-size: 1.15em;
+      font-size: 1em;
       border-radius: 2em;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
       &::placeholder {
-        font-size: 1em;
         padding-left: 0.5em;
       }
     }

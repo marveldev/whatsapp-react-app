@@ -3,14 +3,16 @@
 .default-pane {
   .header {
     @extend %fixed-position;
-    height: 12em;
-    padding: 1em 1em 0 1em;
+    padding: 0.5em 0 0 0;
     box-sizing: border-box;
     z-index: 1;
     background: $primaryBackgroundColor;
 
     .nav-buttons {
       @include display(space-between);
+      border-right: 1px solid #DADADA;
+      padding-left: 1em;
+      height: 3.5em;
 
       button {
         width: 3em;
@@ -24,20 +26,31 @@
       }
     }
 
+    input {
+      @extend %style-box;
+      width: 100%;
+      padding: 0.5em 0 0.8em 4em;
+      box-sizing: border-box;
+      position: relative;
+      bottom: 1em;
+      font-size: 0.9em;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .search-icon {
+      position: relative;
+      top: 0.8em;
+      left: 0.8em;
+      z-index: 1;
+      font-size: 1.3em;
+      color: $primaryColor;
+    }
+
     .search-box {
-      margin-top: 1.8em;
-
-      textarea {
-        width: 85%;
-        padding: 1em 0 0 4em;
-        @extend %style-box;
-      }
-
-      i {
-        position: relative;
-        top: 1.6em;
-        left: 0.8em;
-      }
+      background-color: #F6F7F7;
+      padding: 0 1em;
+      height: 3.8em;
+      border-bottom: 0.5px solid #dadada71;
     }
   }
 
@@ -47,19 +60,19 @@
 
   .content {
     position: relative;
-    top: 12em;
+    top: 8em;
 
     .contact-list {
       @extend %style-scrollbar;
       padding-bottom: 0.5em;
       height: auto;
-      max-height: 28em;
+      max-height: 32em;
       overflow-y: auto;
 
       .contact {
         display: flex;
         align-items: center;
-        gap: 0 1em;
+        gap: 0 2em;
         padding-left: 0.6em;
 
         &:hover {
@@ -68,10 +81,9 @@
 
         .info {
           width: 100%;
-          border-bottom: 1px solid #DCDCDC;
+          border-bottom: 0.5px solid #dcdcdc75;
           padding: 0.5em 1em 0.5em 0;
           cursor: pointer;
-          -webkit-tap-highlight-color: transparent;
 
           p {
             margin: 0.5em 0 0 0;
@@ -102,12 +114,17 @@
   }
 
   .photo-container {
-    @extend %photo-size;
+    height: 2.7em;
+    width: 2.7em;
     background: #000;
+    border-radius: 50%;
 
     .profile-photo {
-      @extend %photo-size;
+      height: 2.7em;
+      width: 2.7em;
       object-fit: cover;
+      border-radius: 50%;
+      cursor: pointer;
     }
   }
 
@@ -119,7 +136,7 @@
     @extend %style-dropdown;
     position: fixed;
     left: 15em;
-    top: 4.3em;
+    top: 3.2em;
     width: 11em;
     z-index: 1;
     animation: pop-in 0.3s ease-in-out;
