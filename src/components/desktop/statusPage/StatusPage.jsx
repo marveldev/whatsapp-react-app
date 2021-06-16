@@ -12,7 +12,7 @@ const StatusPage = () => {
     statusData.map(async ({storedTime, id}) => {
       const timeDifference = new Date().getTime() - storedTime
       const statusDuration = Math.floor(timeDifference/1000/60/60)
-      if (statusDuration >= '24') {
+      if (statusDuration >= 24) {
         await database.status.delete(id)
       }
     })
@@ -20,9 +20,7 @@ const StatusPage = () => {
 
   return (
     <div className="desktop-status-page">
-      <div>
-        <StatusPane />
-      </div>
+      <StatusPane />
       <StatusGallery />
     </div>
   )

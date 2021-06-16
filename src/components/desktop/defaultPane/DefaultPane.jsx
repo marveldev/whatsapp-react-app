@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import contactList from './contactList'
-import constants from '../../../common/constants'
 import { homePageActions } from '../homePage/slice'
+import contactList from '../../data/contactList'
+import constants from '../../../common/constants'
 import './defaultPane.scss'
 
 const DefaultPane = () => {

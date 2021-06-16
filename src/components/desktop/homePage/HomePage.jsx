@@ -7,8 +7,8 @@ import { ProfilePane } from '../profilePane'
 import { SettingsPane, WallpaperPane } from '../settingsPane'
 
 const HomePage = () => {
-  const { currentPane, selectedContact, rightPaneIsOpen }
-    = useSelector(state => state.homePage)
+  const { homePage }  = useSelector(state => state)
+  const { currentPane, selectedContact, rightPaneIsOpen } = homePage
 
   return (
     <div className={`home-page ${rightPaneIsOpen && 'right-pane'}`}>

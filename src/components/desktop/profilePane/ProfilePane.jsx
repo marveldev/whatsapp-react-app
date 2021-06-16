@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { constants } from '../../../common'
-import { addPhotoFilePicker, updateProfile }
-  from '../../../common/helpers/profilePage'
 import { homePageActions } from '../homePage/slice'
+import { constants } from '../../../common'
+import {
+  addPhotoFilePicker, updateProfile
+} from '../../../common/helpers/profilePage'
 import './profilePane.scss'
 
 const ProfilePane = () => {
