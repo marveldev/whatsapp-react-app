@@ -72,6 +72,56 @@ $desktopPrimaryColor: #2A2F32;
     }
   }
 
+  .profile-pane {
+    background: #131D20;
+
+    .header {
+      background: #333738;
+    }
+
+    .input-container {
+      background: #131D20;
+
+      input {
+        background: #131D20;
+        color: #fff;
+      }
+
+      label {
+        span {
+          color: #03887D;
+        }
+      }
+    }
+  }
+
+  .settings-pane {
+    background: #131D20;
+
+    .header {
+      background: #333738;
+    }
+
+    .settings-button-container {
+      button {
+        background: #131D20;
+        color: #fff;
+
+        &:hover {
+          background: #33373865;
+        }
+      }
+
+      p {
+        border-bottom: 0.5px solid #3C4247;
+      }
+    }
+
+    .profile-settings:hover {
+      background: #33373865;
+    }
+  }
+
   .status-page {
     .status-message {
       border-bottom: 1px solid #29333A;
