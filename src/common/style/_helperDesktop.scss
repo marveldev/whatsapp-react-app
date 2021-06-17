@@ -89,6 +89,20 @@ $primaryBackgroundColor: #EDEDED;
   }
 }
 
+.dark {
+  %style-dropdown {
+    background: #2A2F32;
+
+    button {
+      color: #fff;
+
+      &:hover {
+        background: #131d20bb;
+      }
+    }
+  }
+}
+
 %style-checkbox {
   .container {
     position: relative;
@@ -149,6 +163,14 @@ $primaryBackgroundColor: #EDEDED;
   &::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 1.5em;
+  }
+}
+
+.dark {
+  %style-scrollbar {
+    &::-webkit-scrollbar-thumb {
+      background: #384145;
+    }
   }
 }
 

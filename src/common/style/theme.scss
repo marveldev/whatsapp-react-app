@@ -1,10 +1,76 @@
 $primaryColor: #222D36;
 $textPrimaryColor: #fff;
 $secondaryColor: #00AF9C;
+$desktopPrimaryColor: #2A2F32;
 
 .dark {
   background: #101D24;
   color: $textPrimaryColor;
+
+  .default-pane {
+    .header {
+      background: $desktopPrimaryColor;
+    }
+
+    .search-box {
+      background: #131D20;
+      border-bottom: 1px solid #3E4548;
+    }
+
+    .nav-buttons {
+      border-right: 1px solid #3E4548;
+
+      button:focus {
+        background: #272A2C;
+      }
+    }
+
+    input {
+      background: $desktopPrimaryColor;
+    }
+
+    .contact-list {
+      background: #131D20;
+
+      .contact {
+        &:hover {
+          background: #33373865;
+        }
+
+        .info {
+          border-bottom: 1px solid #3E4548;
+
+          div {
+            .notification {
+              background: #01AE9C;
+              color: #000;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .default-page {
+    background: #262C30;
+    border-bottom: 0.4em solid #046163;
+
+    div {
+      border-bottom: 1px solid #3C4247;
+    }
+
+    span {
+      color: #A6A9AB;
+    }
+
+    & > p {
+      color: #A6A9AB;
+
+      span {
+        color: #01AE9C;
+      }
+    }
+  }
 
   .status-page {
     .status-message {
