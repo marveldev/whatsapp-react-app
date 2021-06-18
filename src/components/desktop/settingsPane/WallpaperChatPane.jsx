@@ -43,16 +43,16 @@ const WallpaperChatPane = () => {
     }, 2000)
   }
 
+  const handleHoverEvent = background => {
+    dispatch(chatActions.setChatWallpaper(background))
+  }
+
   const toggleDoodleDisplay = () => {
-    // dispatch(chatActions.setWallpaperDoodle(!wallpaperDoodle))
     if (wallpaperDoodle) {
+      dispatch(chatActions.setWallpaperDoodle())
     } else {
       dispatch(chatActions.setWallpaperDoodle(`url(${defaultWallpaper})`))
     }
-  }
-
-  const handleHoverEvent = background => {
-    dispatch(chatActions.setChatWallpaper(background))
   }
 
   return (
@@ -67,7 +67,7 @@ const WallpaperChatPane = () => {
         <div className="checkbox-container">
           <label className="container">
             <input type="checkbox"
-              onChange={toggleDoodleDisplay}
+              onChange={() => }
             />
             <span className="checkmark"></span>
           </label>
@@ -231,9 +231,9 @@ const WallpaperChatPane = () => {
           <span
             className={wallpaper === colorArray[19] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[19])}
-            onMouseOver={() => handleHoverEvent(colorArray[18])}
+            onMouseOver={() => handleHoverEvent(colorArray[19])}
             onMouseOut={() => handleHoverEvent(previousWallpaper)}
-            style={{background: colorArray[18]}}
+            style={{background: colorArray[19]}}
           >
           </span>
         </div>

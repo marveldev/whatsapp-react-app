@@ -1,15 +1,15 @@
 @import '../../../common/style/helperDesktop';
 
 .desktop-chat-page {
-  background-color: #efe7dd;
+  background-image: url('../../../common/assets/lightThemeChatWallpaper.jpg');
+  // background-color: #efe7dd;
   overflow-y: hidden;
 
-  .chat-wallpaper {
+  .doodle-wallpaper {
     position: absolute;
     height: 100%;
     width: 65%;
-    // background-image: url('../../../common/assets/lightThemeChatWallpaper.jpg');
-    opacity: 0.3;
+    opacity: 0.3;  // remove opacity without doodle.
   }
 
   .smileys {

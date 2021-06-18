@@ -458,5 +458,9 @@ $desktopPrimaryColor: #2A2F32;
 
   .desktop-chat-page {
     background: #0C1419;
+
+    .doodle-wallpaper {
+      background-image: url('../assets/darkThemeChatWallpaper.png');
+    }
   }
 }

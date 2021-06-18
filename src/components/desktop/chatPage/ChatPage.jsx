@@ -56,8 +56,11 @@ const ChatPage = () => {
   }
 
   return (
-    <div className="desktop-chat-page" style={{background: wallpaperDoodle}}>
-      <div className="chat-wallpaper" style={{background: wallpaper}}></div>
+    <div className="desktop-chat-page" style={{backgroundImage: `url(${wallpaperDoodle})`}}>
+      <div className="doodle-wallpaper"
+        style={{background: wallpaper, opacity: wallpaperDoodle ? '0.3' : '1'}}
+      >
+      </div>
       <div className="header">
         <div className="photo-container">
           <img src={selectedContact.profilePhoto}
