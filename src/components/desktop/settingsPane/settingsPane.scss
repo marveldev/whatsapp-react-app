@@ -148,13 +148,39 @@
     }
   }
 
+  .wallpaper-content {
+    @extend %style-scrollbar;
+    background-color: #EDECEC;
+    padding: 0 2em 2em;
+    max-height: 33.5em;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+  .checkbox-container {
+    @extend %style-checkbox;
+    padding: 2em 0;
+    text-align: center;
+
+    .container {
+      position: relative;
+      left: -1.2em;
+      top: 0.2em;
+      font-size: 1.2em;
+    }
+
+    p {
+      display: inline;
+      font-size: 0.85em;
+      color: #737273;
+    }
+  }
+
   .wallpaper-box-wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
     gap: 1em;
-    padding: 2em;
-    background-color: #EDECEC;
 
     span {
       height: 5em;

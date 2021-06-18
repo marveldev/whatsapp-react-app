@@ -5,6 +5,14 @@
   background-color: #efe7dd;
   overflow-y: hidden;
 
+  .chat-wallpaper {
+    position: absolute;
+    height: 100%;
+    width: 65%;
+    background-color: #5c0000;
+    opacity: 0.3;
+  }
+
   .smileys {
     bottom: 4.5em;
   }
