@@ -16,7 +16,7 @@ const chatSlice = createSlice({
     selectedChatCount: 0,
     previousWallpaper: null,
     wallpaper: null,
-    wallpaperDoodle: null
+    wallpaperDoodle: false
   },
   reducers: {
     addChat: (state, { payload }) => {

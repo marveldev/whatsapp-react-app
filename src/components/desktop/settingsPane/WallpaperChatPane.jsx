@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { homePageActions } from '../homePage/slice'
 import { chatActions } from '../../data/chatSlice'
-import { darkThemeWallpaper, lightThemeWallpaper } from '../../../common'
 import database from '../../../database'
 import './settingsPane.scss'
 
@@ -13,8 +12,6 @@ const WallpaperChatPane = () => {
   } = useSelector(state => state.chat)
   const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
-
-  const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
 
   const  lightThemeColors = [
     '#E4DDD4', '#bbe4e5', '#AFD8C6', '#7BCAA5', '#CADBEC', '#67D2D4',
@@ -67,7 +64,11 @@ const WallpaperChatPane = () => {
         <div className="checkbox-container">
           <label className="container">
             <input type="checkbox"
+<<<<<<< HEAD
               onChange={() => }
+=======
+              onChange={() => dispatch(chatActions.setWallpaperDoodle(!wallpaperDoodle))}
+>>>>>>> bce5c28d3a844914bab526fb5115500a86424d70
             />
             <span className="checkmark"></span>
           </label>
