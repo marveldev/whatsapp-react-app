@@ -8,7 +8,7 @@ import './settingsPane.scss'
 const WallpaperChatPane = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState()
   const {
-    wallpaper, previousWallpaper, wallpaperDoodle
+    wallpaper, previousWallpaper, doodleIsChecked
   } = useSelector(state => state.chat)
   const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
@@ -41,14 +41,25 @@ const WallpaperChatPane = () => {
   }
 
   const handleHoverEvent = background => {
-    dispatch(chatActions.setChatWallpaper(background))
+    const chatWallpaper = document.querySelector('.chat-wallpaper')
+    chatWallpaper.style.background = background
+    if (!doodleIsChecked) {
+      chatWallpaper.style.opacity = 1
+    } else {
+      chatWallpaper.style.opacity = 0.3
+    }
   }
 
   const toggleDoodleDisplay = () => {
-    if (wallpaperDoodle) {
-      dispatch(chatActions.setWallpaperDoodle())
-    } else {
-      dispatch(chatActions.setWallpaperDoodle(`url(${defaultWallpaper})`))
+    const doodleCheckbox = document.querySelector('#doodleCheckbox')
+
+    if (doodleCheckbox.checked) {
+      localStorage.setItem('doodleIsChecked', true)
+      dispatch(chatActions.setDoodleIsChecked(true))
+    }
+    else {
+      localStorage.setItem('doodleIsChecked', false)
+      dispatch(chatActions.setDoodleIsChecked(false))
     }
   }
 
@@ -63,12 +74,11 @@ const WallpaperChatPane = () => {
       <div className="wallpaper-content">
         <div className="checkbox-container">
           <label className="container">
-            <input type="checkbox"
-<<<<<<< HEAD
-              onChange={() => }
-=======
-              onChange={() => dispatch(chatActions.setWallpaperDoodle(!wallpaperDoodle))}
->>>>>>> bce5c28d3a844914bab526fb5115500a86424d70
+            <input
+              type="checkbox"
+              id="doodleCheckbox"
+              defaultChecked={doodleIsChecked}
+              onChange={toggleDoodleDisplay}
             />
             <span className="checkmark"></span>
           </label>

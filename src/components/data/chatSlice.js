@@ -16,7 +16,7 @@ const chatSlice = createSlice({
     selectedChatCount: 0,
     previousWallpaper: null,
     wallpaper: null,
-    wallpaperDoodle: false
+    doodleIsChecked: localStorage.getItem('doodleIsChecked') === 'true' ? true : false
   },
   reducers: {
     addChat: (state, { payload }) => {
@@ -32,8 +32,8 @@ const chatSlice = createSlice({
       state.previousWallpaper = state.wallpaper
       state.wallpaper = payload
     },
-    setWallpaperDoodle: (state, { payload }) => {
-      state.wallpaperDoodle = payload
+    setDoodleIsChecked: (state, { payload }) => {
+      state.doodleIsChecked = payload
     }
   },
   extraReducers: {

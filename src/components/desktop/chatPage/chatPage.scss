@@ -1,11 +1,10 @@
 @import '../../../common/style/helperDesktop';
 
 .desktop-chat-page {
-  background-image: url('../../../common/assets/lightThemeChatWallpaper.jpg');
   // background-color: #efe7dd;
   overflow-y: hidden;
 
-  .doodle-wallpaper {
+  .chat-wallpaper {
     position: absolute;
     height: 100%;
     width: 65%;

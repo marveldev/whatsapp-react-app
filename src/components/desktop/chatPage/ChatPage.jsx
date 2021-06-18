@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ChatDropdown from './ChatDropdown'
 import ChatItems from './ChatItems'
@@ -10,6 +10,7 @@ import {
 } from '../../../common/helpers/chatPage'
 import database from '../../../database'
 import './chatPage.scss'
+import { lightThemeWallpaper } from '../../../common'
 
 const ChatPage = () => {
   const [sendButtonIsActive, setSendButtonIsActive] = useState()
@@ -20,8 +21,18 @@ const ChatPage = () => {
   const [selectedChatId, setSelectedChatId] = useState()
   const [chatInputValue, setChatInputValue] = useState('')
   const { selectedContact } = useSelector(state => state.homePage)
-  const { chats, wallpaper, wallpaperDoodle } = useSelector(state => state.chat)
+  const { chats, doodleIsChecked } = useSelector(state => state.chat)
   const dispatch = useDispatch()
+
+  useLayoutEffect(() => {
+    const chatSection = document.querySelector('.desktop-chat-page')
+
+    if (doodleIsChecked) {
+      chatSection.style.background = `url(${lightThemeWallpaper})`
+    } else {
+      chatSection.style.background = ''
+    }
+  }, [doodleIsChecked])
 
   const addMessageEvent = person => {
     addMessageToDom(person, selectedContact, dispatch)
@@ -56,8 +67,8 @@ const ChatPage = () => {
   }
 
   return (
-    <div className="desktop-chat-page" style={{background: wallpaper}}>
-      {wallpaperDoodle && <div className="doodle-wallpaper"></div>}
+    <div className="desktop-chat-page">
+      <div className="chat-wallpaper"></div>
       <div className="header">
         <div className="photo-container">
           <img src={selectedContact.profilePhoto}
