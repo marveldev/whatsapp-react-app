@@ -56,8 +56,8 @@ const ChatPage = () => {
   }
 
   return (
-    <div className="desktop-chat-page" style={{background: wallpaperDoodle}}>
-      <div className="chat-wallpaper" style={{background: wallpaper}}></div>
+    <div className="desktop-chat-page" style={{background: wallpaper}}>
+      {wallpaperDoodle && <div className="doodle-wallpaper"></div>}
       <div className="header">
         <div className="photo-container">
           <img src={selectedContact.profilePhoto}

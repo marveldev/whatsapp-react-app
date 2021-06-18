@@ -4,11 +4,12 @@
   background-color: #efe7dd;
   overflow-y: hidden;
 
-  .chat-wallpaper {
+  .doodle-wallpaper {
     position: absolute;
     height: 100%;
     width: 65%;
-    // background-image: url('../../../common/assets/lightThemeChatWallpaper.jpg');
+    background-image: url('../../../common/assets/lightThemeChatWallpaper.jpg');
+    background-size: contain;
     opacity: 0.3;
   }
 
