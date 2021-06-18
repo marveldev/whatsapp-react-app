@@ -15,7 +15,8 @@ const chatSlice = createSlice({
     chats: [],
     selectedChatCount: 0,
     previousWallpaper: null,
-    wallpaper: null
+    wallpaper: null,
+    wallpaperDoodle: null
   },
   reducers: {
     addChat: (state, { payload }) => {
@@ -30,6 +31,9 @@ const chatSlice = createSlice({
     setChatWallpaper: (state, { payload }) => {
       state.previousWallpaper = state.wallpaper
       state.wallpaper = payload
+    },
+    setWallpaperDoodle: (state, { payload }) => {
+      state.wallpaperDoodle = payload
     }
   },
   extraReducers: {
@@ -37,7 +41,7 @@ const chatSlice = createSlice({
       state.chats = payload
     },
     [getWallpaper.fulfilled]: (state, { payload }) => {
-      state.wallpaper = payload[0]?.wallpaper
+      state.wallpaper = payload[0]?.wallpaper || '#E4DDD4'
     }
   }
 })

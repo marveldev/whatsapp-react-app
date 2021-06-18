@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import database from '../../../database'
-import { chatActions } from '../../data/chatSlice'
 import { homePageActions } from '../homePage/slice'
+import { chatActions } from '../../data/chatSlice'
 import { darkThemeWallpaper, lightThemeWallpaper } from '../../../common'
+import database from '../../../database'
 import './settingsPane.scss'
 
 const WallpaperChatPane = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState()
-  const { wallpaper, previousWallpaper } = useSelector(state => state.chat)
+  const {
+    wallpaper, previousWallpaper, wallpaperDoodle
+  } = useSelector(state => state.chat)
   const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
 
@@ -25,6 +27,14 @@ const WallpaperChatPane = () => {
     }, 2000)
   }
 
+  const toggleDoodleDisplay = () => {
+    if (wallpaperDoodle) {
+      dispatch(chatActions.setWallpaperDoodle())
+    } else {
+      dispatch(chatActions.setWallpaperDoodle(`url(${defaultWallpaper})`))
+    }
+  }
+
   return (
     <div className="settings-pane">
       <div className="header">
@@ -37,6 +47,7 @@ const WallpaperChatPane = () => {
         <div className="checkbox-container">
           <label className="container">
             <input type="checkbox"
+              onChange={toggleDoodleDisplay}
             />
             <span className="checkmark"></span>
           </label>
@@ -44,11 +55,9 @@ const WallpaperChatPane = () => {
         </div>
         <div className="wallpaper-box-wrapper">
           <span
-            className={`default-wallpaper
-              ${wallpaper === `url(${defaultWallpaper})` ? 'current' : ''}`
-            }
-            onClick={() => changeChatWallpaper(`url(${defaultWallpaper})`)}
-            onMouseOver={() => dispatch(chatActions.setChatWallpaper(`url(${defaultWallpaper})`))}
+            className={`default-wallpaper ${wallpaper === '#E4DDD4' ? 'current' : ''}`}
+            onClick={() => changeChatWallpaper('#E4DDD4')}
+            onMouseOver={() => dispatch(chatActions.setChatWallpaper('#E4DDD4'))}
             onMouseOut={() => dispatch(chatActions.setChatWallpaper(previousWallpaper))}
           >
             Default

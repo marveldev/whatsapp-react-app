@@ -1,7 +1,6 @@
 @import '../../../common/style/helperDesktop';
 
 .desktop-chat-page {
-  background: url('../../../common/assets/lightThemeChatWallpaper.jpg');
   background-color: #efe7dd;
   overflow-y: hidden;
 
@@ -9,7 +8,6 @@
     position: absolute;
     height: 100%;
     width: 65%;
-    background-color: #5c0000;
     opacity: 0.3;
   }
 

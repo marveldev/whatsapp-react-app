@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Smileys } from '../../../common/components'
-import { addMessageToDom, displaySendButton }
-  from '../../../common/helpers/chatPage'
-import database from '../../../database'
-import { chatActions } from '../../data/chatSlice'
-import { homePageActions } from '../homePage/slice'
 import ChatDropdown from './ChatDropdown'
 import ChatItems from './ChatItems'
+import { homePageActions } from '../homePage/slice'
+import { chatActions } from '../../data/chatSlice'
+import { Smileys } from '../../../common/components'
+import {
+  addMessageToDom, displaySendButton
+} from '../../../common/helpers/chatPage'
+import database from '../../../database'
 import './chatPage.scss'
 
 const ChatPage = () => {
@@ -19,7 +20,7 @@ const ChatPage = () => {
   const [selectedChatId, setSelectedChatId] = useState()
   const [chatInputValue, setChatInputValue] = useState('')
   const { selectedContact } = useSelector(state => state.homePage)
-  const { chats, wallpaper } = useSelector(state => state.chat)
+  const { chats, wallpaper, wallpaperDoodle } = useSelector(state => state.chat)
   const dispatch = useDispatch()
 
   const addMessageEvent = person => {
@@ -55,8 +56,8 @@ const ChatPage = () => {
   }
 
   return (
-    <div className="desktop-chat-page" style={{background: wallpaper}}>
-      <div className="chat-wallpaper"></div>
+    <div className="desktop-chat-page" style={{background: wallpaperDoodle}}>
+      <div className="chat-wallpaper" style={{background: wallpaper}}></div>
       <div className="header">
         <div className="photo-container">
           <img src={selectedContact.profilePhoto}
