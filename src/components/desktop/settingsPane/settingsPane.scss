@@ -169,7 +169,7 @@
       font-size: 1.2em;
     }
 
-    p {
+    span {
       display: inline;
       font-size: 0.85em;
       color: #737273;
@@ -198,8 +198,14 @@
     }
 
     .default-wallpaper {
-      @include display(center);
+      text-align: center;
       background: #E4DDD4;
+
+      small {
+        color: #737273;
+        font-size: 0.8em;
+        line-height: 6em;
+      }
     }
   }
 

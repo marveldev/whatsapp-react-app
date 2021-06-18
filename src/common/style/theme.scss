@@ -121,8 +121,30 @@ $desktopPrimaryColor: #2A2F32;
       background: #33373865;
     }
 
-    .wallpaper-box-wrapper {
+    .wallpaper-content {
       background: #131D20;
+
+      span {
+        color: #999DA0;
+      }
+    }
+
+    .wallpaper-box-wrapper {
+      span:hover {
+        box-shadow: inset 0 0 0 0.25em #3B4143;
+      }
+    }
+
+    .current {
+      box-shadow: inset 0 0 0 0.25em #74797A;
+    }
+
+    .default-wallpaper {
+      background: #0C1419;
+
+      small {
+        color: #fff;
+      }
     }
   }
 
@@ -435,8 +457,6 @@ $desktopPrimaryColor: #2A2F32;
   }
 
   .desktop-chat-page {
-    background: url('../assets/darkThemeChatWallpaper.png');
-    background-size: contain;
-    background-color: #0D1418;
+    background: #0C1419;
   }
 }
