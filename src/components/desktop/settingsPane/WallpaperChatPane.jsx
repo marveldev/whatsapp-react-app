@@ -38,7 +38,7 @@ const WallpaperChatPane = () => {
   }
 
   const changeChatWallpaper = async background => {
-    dispatch(chatActions.setSelectedWallpaper({background}))
+    dispatch(chatActions.setSelectedWallpaper(background))
     setToasterIsOpen(true)
     await database.chatWallpaper.clear()
     await database.chatWallpaper.add({background})
