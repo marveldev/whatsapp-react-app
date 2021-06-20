@@ -475,8 +475,66 @@ $secondaryColor: #00AF9C;
   .desktop-chat-page {
     background: #0C1419;
 
-    .doodle-wallpaper {
-      background-image: url('../assets/darkThemeChatWallpaper.png');
+    .header {
+      background: #2A2F32;
+    }
+
+    .button-container {
+      button {
+        color: #B0B2B5;
+
+        &:focus {
+          background: #272A2C;
+        }
+      }
+    }
+
+    .chat-input-container {
+      background: #1F2429;
+
+      .chat-input {
+        background: #33383B;
+        color: #fff;
+      }
+    }
+
+    .persons-button-container {
+      background: #1F2429;
+
+      button {
+        background: #33383B;
+      }
+    }
+
+    .arrow-down {
+      border-top: 1.5em solid #1F2429;
+    }
+
+    .content {
+      background: #262C30;
+    }
+
+    .arrow-right {
+      border-left: 1em solid #046163;
+    }
+
+    .arrow-left {
+      border-right: 1em solid #262C30;
+    }
+
+    .angle-down-button {
+      background: #262C30;
+      color: #fff;
+    }
+
+    .person-two {
+      .content {
+        background: #046163;
+      }
+
+      .angle-down-button {
+        background-color: #046163;
+      }
     }
   }
 }
