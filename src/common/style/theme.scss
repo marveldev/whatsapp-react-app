@@ -1,7 +1,6 @@
 $primaryColor: #222D36;
 $textPrimaryColor: #fff;
 $secondaryColor: #00AF9C;
-$desktopPrimaryColor: #2A2F32;
 
 .dark {
   background: #101D24;
@@ -9,7 +8,7 @@ $desktopPrimaryColor: #2A2F32;
 
   .default-pane {
     .header {
-      background: $desktopPrimaryColor;
+      background: #2A2F32;
     }
 
     .search-box {
@@ -20,13 +19,18 @@ $desktopPrimaryColor: #2A2F32;
     .nav-buttons {
       border-right: 1px solid #3E4548;
 
-      button:focus {
-        background: #272A2C;
+      button {
+        color: #B0B2B5;
+
+        &:focus {
+          background: #272A2C;
+        }
       }
     }
 
     input {
-      background: $desktopPrimaryColor;
+      background: #2A2F32;
+      color: $textPrimaryColor;
     }
 
     .contact-list {
@@ -84,7 +88,7 @@ $desktopPrimaryColor: #2A2F32;
 
       input {
         background: #131D20;
-        color: #fff;
+        color: $textPrimaryColor;
       }
 
       label {
@@ -105,7 +109,7 @@ $desktopPrimaryColor: #2A2F32;
     .settings-button-container {
       button {
         background: #131D20;
-        color: #fff;
+        color: $textPrimaryColor;
 
         &:hover {
           background: #33373865;
@@ -117,16 +121,20 @@ $desktopPrimaryColor: #2A2F32;
       }
     }
 
+    span {
+      color: #999DA0;
+    }
+
+    .overlay {
+      background-color: #0f0d1188;
+    }
+
     .profile-settings:hover {
       background: #33373865;
     }
 
     .wallpaper-content {
       background: #131D20;
-
-      span {
-        color: #999DA0;
-      }
     }
 
     .wallpaper-box-wrapper {
@@ -143,7 +151,7 @@ $desktopPrimaryColor: #2A2F32;
       background: #0C1419;
 
       small {
-        color: #fff;
+        color: $textPrimaryColor;
       }
     }
   }
@@ -241,7 +249,8 @@ $desktopPrimaryColor: #2A2F32;
   }
 
   .theme-modal {
-    background: $primaryColor;
+    background: #3b4143;
+    // color: $textPrimaryColor;
 
     .options {
       label input:checked ~ .checkmark {
@@ -253,12 +262,19 @@ $desktopPrimaryColor: #2A2F32;
       }
 
       .checkmark {
-        border: 2px solid #fff;
+        border: 2px solid $textPrimaryColor;
       }
     }
 
     button {
-      color: $secondaryColor;
+      color: #01AE9C;
+      background-color: #3b4143;
+      border: 1px solid #00000073;
+    }
+
+    .ok-button {
+      background: #01AE9C;
+      color: #000;
     }
   }
 
@@ -278,7 +294,7 @@ $desktopPrimaryColor: #2A2F32;
 
       input {
         background: #101D24;
-        color: #fff;
+        color: $textPrimaryColor;
       }
 
       i {
