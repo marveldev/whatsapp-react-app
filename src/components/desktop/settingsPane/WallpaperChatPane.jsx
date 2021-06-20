@@ -7,9 +7,7 @@ import './settingsPane.scss'
 
 const WallpaperChatPane = () => {
   const [toasterIsOpen, setToasterIsOpen] = useState()
-  const {
-    wallpaper, previousWallpaper, doodleIsChecked
-  } = useSelector(state => state.chat)
+  const { selectedWallpaper, doodleIsChecked } = useSelector(state => state.chat)
   const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
 
@@ -29,8 +27,18 @@ const WallpaperChatPane = () => {
 
   const colorArray = theme === 'Dark' ? darkThemeColors : lightThemeColors
 
+  const handleHoverEvent = background => {
+    if (doodleIsChecked) {
+      const chatBackground = {background, opacity: 0.3}
+      dispatch(chatActions.setChatWallpaper(chatBackground))
+    } else {
+      const chatBackground = {background, opacity: 1}
+      dispatch(chatActions.setChatWallpaper(chatBackground))
+    }
+  }
+
   const changeChatWallpaper = async background => {
-    dispatch(chatActions.setChatWallpaper(background))
+    dispatch(chatActions.setSelectedWallpaper({background}))
     setToasterIsOpen(true)
     await database.chatWallpaper.clear()
     await database.chatWallpaper.add({background})
@@ -38,16 +46,6 @@ const WallpaperChatPane = () => {
     setTimeout(() => {
       setToasterIsOpen(false)
     }, 2000)
-  }
-
-  const handleHoverEvent = background => {
-    const chatWallpaper = document.querySelector('.chat-wallpaper')
-    chatWallpaper.style.background = background
-    if (!doodleIsChecked) {
-      chatWallpaper.style.opacity = 1
-    } else {
-      chatWallpaper.style.opacity = 0.3
-    }
   }
 
   const toggleDoodleDisplay = () => {
@@ -87,163 +85,163 @@ const WallpaperChatPane = () => {
         <div className="wallpaper-box-wrapper">
           <span
             className={
-              `default-wallpaper ${wallpaper === colorArray[0] ? 'current' : ''}`
+              `default-wallpaper ${selectedWallpaper === colorArray[0] ? 'current' : ''}`
             }
             onClick={() => changeChatWallpaper(colorArray[0])}
             onMouseOver={() => handleHoverEvent(colorArray[0])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
           >
             <small>Default</small>
           </span>
           <span
-            className={wallpaper === colorArray[1] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[1] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[1])}
             onMouseOver={() => handleHoverEvent(colorArray[1])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[1]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[2] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[2] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[2])}
             onMouseOver={() => handleHoverEvent(colorArray[2])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[2]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[3] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[3] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[3])}
             onMouseOver={() => handleHoverEvent(colorArray[3])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[3]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[4] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[4] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[4])}
             onMouseOver={() => handleHoverEvent(colorArray[4])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[4]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[5] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[5] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[5])}
             onMouseOver={() => handleHoverEvent(colorArray[5])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[5]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[6] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[6] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[6])}
             onMouseOver={() => handleHoverEvent(colorArray[6])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[6]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[7] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[7] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[7])}
             onMouseOver={() => handleHoverEvent(colorArray[7])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[7]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[8] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[8] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[8])}
             onMouseOver={() => handleHoverEvent(colorArray[8])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[8]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[9] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[9] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[9])}
             onMouseOver={() => handleHoverEvent(colorArray[9])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[9]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[10] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[10] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[10])}
             onMouseOver={() => handleHoverEvent(colorArray[10])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[10]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[11] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[11] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[11])}
             onMouseOver={() => handleHoverEvent(colorArray[11])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[11]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[12] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[12] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[12])}
             onMouseOver={() => handleHoverEvent(colorArray[12])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[12]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[13] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[13] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[13])}
             onMouseOver={() => handleHoverEvent(colorArray[13])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[13]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[14] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[14] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[14])}
             onMouseOver={() => handleHoverEvent(colorArray[14])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[14]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[15] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[15] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[15])}
             onMouseOver={() => handleHoverEvent(colorArray[15])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[15]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[16] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[16] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[16])}
             onMouseOver={() => handleHoverEvent(colorArray[16])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[16]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[17] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[17] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[17])}
             onMouseOver={() => handleHoverEvent(colorArray[17])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[17]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[18] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[18] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[18])}
             onMouseOver={() => handleHoverEvent(colorArray[18])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[18]}}
           >
           </span>
           <span
-            className={wallpaper === colorArray[19] ? 'current' : ''}
+            className={selectedWallpaper === colorArray[19] ? 'current' : ''}
             onClick={() => changeChatWallpaper(colorArray[19])}
             onMouseOver={() => handleHoverEvent(colorArray[19])}
-            onMouseOut={() => handleHoverEvent(previousWallpaper)}
+            onMouseOut={() => handleHoverEvent(selectedWallpaper)}
             style={{background: colorArray[19]}}
           >
           </span>

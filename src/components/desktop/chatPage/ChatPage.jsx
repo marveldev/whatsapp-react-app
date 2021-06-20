@@ -8,9 +8,9 @@ import { Smileys } from '../../../common/components'
 import {
   addMessageToDom, displaySendButton
 } from '../../../common/helpers/chatPage'
+import { lightThemeWallpaper } from '../../../common'
 import database from '../../../database'
 import './chatPage.scss'
-import { lightThemeWallpaper } from '../../../common'
 
 const ChatPage = () => {
   const [sendButtonIsActive, setSendButtonIsActive] = useState()
@@ -21,17 +21,21 @@ const ChatPage = () => {
   const [selectedChatId, setSelectedChatId] = useState()
   const [chatInputValue, setChatInputValue] = useState('')
   const { selectedContact } = useSelector(state => state.homePage)
-  const { chats, doodleIsChecked } = useSelector(state => state.chat)
+  const { chats, doodleIsChecked, wallpaper } = useSelector(state => state.chat)
   const dispatch = useDispatch()
 
   useLayoutEffect(() => {
     const chatSection = document.querySelector('.desktop-chat-page')
+    const chatWallpaper = document.querySelector('.chat-wallpaper')
 
     if (doodleIsChecked) {
+      chatWallpaper.style.opacity = 0.3
       chatSection.style.background = `url(${lightThemeWallpaper})`
     } else {
+      chatWallpaper.style.opacity = 1
       chatSection.style.background = ''
     }
+
   }, [doodleIsChecked])
 
   const addMessageEvent = person => {
@@ -68,7 +72,7 @@ const ChatPage = () => {
 
   return (
     <div className="desktop-chat-page">
-      <div className="chat-wallpaper"></div>
+      <div className="chat-wallpaper" style={wallpaper}></div>
       <div className="header">
         <div className="photo-container">
           <img src={selectedContact.profilePhoto}

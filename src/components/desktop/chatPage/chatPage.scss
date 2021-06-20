@@ -1,14 +1,13 @@
 @import '../../../common/style/helperDesktop';
 
 .desktop-chat-page {
-  // background-color: #efe7dd;
+  background-color: #efe7dd;
   overflow-y: hidden;
 
   .chat-wallpaper {
     position: absolute;
     height: 100%;
     width: 65%;
-    opacity: 0.3;  // remove opacity without doodle.
   }
 
   .smileys {
