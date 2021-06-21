@@ -603,4 +603,21 @@ $secondaryColor: #00AF9C;
       background: #131D20;
     }
   }
+
+  .desktop-status-page {
+    .delete-modal {
+      background: #3B4143;
+
+      button {
+        color: #01AE9C;
+        background-color: #3b4143;
+        border: 1px solid #00000073;
+      }
+
+      .delete-button {
+        background: #01AE9C;
+        color: #000;
+      }
+    }
+  }
 }

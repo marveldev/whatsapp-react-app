@@ -19,7 +19,6 @@
   .add-status-container {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #414041;
     padding: 2em 0 1.5em 1em;
     cursor: pointer;
 
@@ -35,11 +34,11 @@
 
     .plus-icon {
       position: absolute;
-      top: 3.5em;
+      top: 3.2em;
       left: 2.2em;
       font-size: 1.4em;
       border-radius: 50%;
-      background-color: $secondaryColor;
+      background-color: #01AE9C;
       color: $textPrimaryColor;
     }
 
@@ -193,6 +192,7 @@
     text-align: right;
     border-radius: 0.2em;
     box-shadow: 0 0.5em 1em 0 #0000006c;
+
     p {
       margin-top: 0;
       text-align: left;
