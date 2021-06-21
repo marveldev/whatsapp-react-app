@@ -224,6 +224,10 @@ $secondaryColor: #00AF9C;
     }
   }
 
+  .modal-overlay {
+    background: #0f0d1188;
+  }
+
   .display-settings-page {
     @extend .settings-options;
 
@@ -250,7 +254,6 @@ $secondaryColor: #00AF9C;
 
   .theme-modal {
     background: #3b4143;
-    // color: $textPrimaryColor;
 
     .options {
       label input:checked ~ .checkmark {
@@ -535,6 +538,65 @@ $secondaryColor: #00AF9C;
       .angle-down-button {
         background-color: #046163;
       }
+    }
+
+    .select-chat-modal {
+      background: #2A2F32;
+
+      button {
+        color: #fff;
+      }
+    }
+
+    .selected {
+      background-color: #22292F;
+    }
+
+    .clear-modal {
+      background: #3B4143;
+
+      button {
+        color: #01AE9C;
+        background-color: #3b4143;
+        border: 1px solid #00000073;
+      }
+
+      .clear-button {
+        background: #01AE9C;
+        color: #000;
+      }
+    }
+
+    .delete-modal {
+      @extend .clear-modal;
+    }
+  }
+
+  .desktop-contact-info-pane  {
+    background: #0C1419;
+    border-left: 0.5px solid #414446;
+
+    .header {
+      background: #2A2F32;
+    }
+
+    .wrapper {
+      background: #131D20;
+    }
+
+    .about-wrapper {
+      background: #131D20;
+    }
+
+    .button-wrapper {
+      button {
+        background: #131D20;
+        color: #EF687B;
+      }
+    }
+
+    .contact-info {
+      background: #131D20;
     }
   }
 }
