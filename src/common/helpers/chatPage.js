@@ -4,7 +4,7 @@ import database from '../../database'
 const displaySendButton = (event, setSendButtonIsActive) => {
   const chatBox = event.target
   chatBox.style.height = "1px"
-  chatBox.style.height = (3+chatBox.scrollHeight)+"px"
+  chatBox.style.height = (chatBox.scrollHeight)+"px"
   if (chatBox.value.trim().length >= 1) {
     setSendButtonIsActive(true)
   } else {

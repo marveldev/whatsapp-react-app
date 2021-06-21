@@ -498,6 +498,10 @@ $secondaryColor: #00AF9C;
       .chat-input {
         background: #33383B;
         color: #fff;
+
+        &::placeholder {
+          color: #ffffff93;
+        }
       }
     }
 
