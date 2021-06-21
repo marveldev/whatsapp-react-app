@@ -8,7 +8,7 @@ import { Smileys } from '../../../common/components'
 import {
   addMessageToDom, displaySendButton
 } from '../../../common/helpers/chatPage'
-import { lightThemeWallpaper } from '../../../common'
+import { darkThemeWallpaper, lightThemeWallpaper } from '../../../common'
 import database from '../../../database'
 import './chatPage.scss'
 
@@ -22,21 +22,22 @@ const ChatPage = () => {
   const [chatInputValue, setChatInputValue] = useState('')
   const { selectedContact } = useSelector(state => state.homePage)
   const { chats, doodleIsChecked, wallpaper } = useSelector(state => state.chat)
+  const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
 
   useLayoutEffect(() => {
+    const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
     const chatSection = document.querySelector('.desktop-chat-page')
     const chatWallpaper = document.querySelector('.chat-wallpaper')
 
     if (doodleIsChecked) {
-      chatWallpaper.style.opacity = 0.3
-      chatSection.style.background = `url(${lightThemeWallpaper})`
+      chatWallpaper.style.opacity = 0.4
+      chatSection.style.background = `url(${defaultWallpaper})`
     } else {
       chatWallpaper.style.opacity = 1
       chatSection.style.background = ''
     }
-
-  }, [doodleIsChecked])
+  }, [doodleIsChecked, theme])
 
   const addMessageEvent = person => {
     addMessageToDom(person, selectedContact, dispatch)
