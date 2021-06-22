@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
+import parse from 'html-react-parser'
 import { statusActions } from '../../data/statusSlice'
 import './viewStatusEntry.scss'
 
@@ -69,7 +70,7 @@ const ViewStatusEntry = () => {
       <div className="bar-container">
         {statusData.map((item, index) => (
           <div key={index} className="progress-bar">
-            <div className="bar"></div>
+            <div className="bar" />
           </div>
         ))}
       </div>
@@ -103,7 +104,7 @@ const ViewStatusEntry = () => {
         )}
         {statusData[statusIndex]?.statusInputValue && (
           <div className="text-input" style={statusTextStyle}>
-            {statusData[statusIndex]?.statusInputValue}
+            {parse(statusData[statusIndex]?.statusInputValue)}
           </div>
         )}
       </div>
