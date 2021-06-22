@@ -49,7 +49,7 @@ const StatusTextEntry = () => {
     const textArray = text.split(' ')
     textArray.forEach((value, index) => {
       if (stringIsUrl(value)) {
-        textArray[index] = `<a href=${value} target="_blank" rel="noreferrer">link</a>`
+        textArray[index] = `<a href=${value} target="_blank" rel="noreferrer">${value}</a>`
       }
     })
 
