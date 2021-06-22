@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { Smileys } from '../../../common'
-import { changeBackgroundColor, changeFontfamily }
-  from '../../../common/helpers/statusPage'
+import { changeBackgroundColor, changeFontFamily } from '../../../common/helpers/statusPage'
 import database from '../../../database'
 import { statusActions } from '../../data/statusSlice'
 import './statusTextEntry.scss'
@@ -33,7 +32,7 @@ const StatusTextEntry = () => {
   }
 
   const addStatusTextEntry = async () => {
-    const id = 'id' + Date.parse(new Date()).toString()
+    const id = 'id' + Date.now()
     const storedTime = new Date().getTime()
     const timeOfEntry = new Date().toLocaleString('en-US',
       { hour: 'numeric', minute: 'numeric', hour12: true }
@@ -70,7 +69,7 @@ const StatusTextEntry = () => {
           <i className="material-icons">&#xe7f2;</i>
         </button>
         <button
-          onClick={() => changeFontfamily(fontFamily, setFontFamily)}
+          onClick={() => changeFontFamily(fontFamily, setFontFamily)}
           className="material-icons"
         >
           &#xe165;

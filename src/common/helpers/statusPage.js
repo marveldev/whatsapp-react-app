@@ -10,7 +10,7 @@ const addStatusFilePicker = (event, dispatch) => {
   const files = event.target.files
   if (files.length <= 5) {
     for (let index = 0; index < files.length; index++) {
-      const id = 'id' + Date.parse(new Date()).toString() + index
+      const id = 'id' + Date.now() + index
       const photoReader = new FileReader()
       photoReader.readAsDataURL(files[index])
       photoReader.addEventListener('load', async () => {
@@ -30,7 +30,7 @@ const addStatusFilePicker = (event, dispatch) => {
   }
 }
 
-const changeFontfamily = (fontFamily, setFontFamily) => {
+const changeFontFamily = (fontFamily, setFontFamily) => {
   const fontFamilyList = [
     "Courier New", "Zapf-Chancery", "Verdana", "sans-serif",
     "Times New Roman", "Courier", "Arial Narrow", "Candara", "fangsong",
@@ -51,4 +51,4 @@ const changeBackgroundColor = setBackgroundColor => {
   setBackgroundColor(randomColor)
 }
 
-export { addStatusFilePicker, changeFontfamily, changeBackgroundColor }
+export { addStatusFilePicker, changeFontFamily, changeBackgroundColor }

@@ -6,10 +6,11 @@ import { statusActions } from '../../data/statusSlice'
 import './viewStatusEntry.scss'
 
 const ViewStatusEntry = () => {
-  const { statusData, statusIndex } = useSelector(state => state.status)
+  const { status } = useSelector(state => state)
+  const { statusData, statusIndex } = status
   const dispatch = useDispatch()
   const history = useHistory()
-  const interval = useRef()
+  const intervalRef = useRef(null)
 
   useEffect(() => {
     let width = 1
@@ -22,7 +23,7 @@ const ViewStatusEntry = () => {
       }
     })
 
-    interval.current = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       if (width < 100) {
         width++
         statusBars[statusIndex].style.width = width + '%'
@@ -34,7 +35,7 @@ const ViewStatusEntry = () => {
         dispatch(statusActions.setStatusIndex(statusIndex + 1))
       }
       else {
-        clearInterval(interval.current)
+        clearInterval(intervalRef.current)
         history.goBack()
       }
     }, 3000)
@@ -43,7 +44,7 @@ const ViewStatusEntry = () => {
   }, [statusIndex, history, statusData, dispatch])
 
   const displayNextStatus = () => {
-    clearInterval(interval.current)
+    clearInterval(intervalRef.current)
     if (statusIndex === statusData.length - 1) {
       history.goBack()
     } else {
@@ -52,7 +53,7 @@ const ViewStatusEntry = () => {
   }
 
   const displayPreviousStatus = () => {
-    clearInterval(interval.current)
+    clearInterval(intervalRef.current)
     if (statusIndex === 0) {
       history.goBack()
     } else {
@@ -104,7 +105,7 @@ const ViewStatusEntry = () => {
         )}
         {statusData[statusIndex]?.statusInputValue && (
           <div className="text-input" style={statusTextStyle}>
-            {parse(statusData[statusIndex]?.statusInputValue)}
+            <p>{parse(statusData[statusIndex]?.statusInputValue)}</p>
           </div>
         )}
       </div>

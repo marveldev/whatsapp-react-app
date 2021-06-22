@@ -22,7 +22,7 @@
     }
 
     .bar {
-      width: 0%;
+      width: 0;
       height: 0.5em;
       border-radius: 1em;
       background-color: #ddd;
@@ -93,7 +93,19 @@
     width: 100%;
     font-size: 1.8em;
     word-break: break-all;
-    color: #fff;
     white-space: pre-wrap;
+
+    p {
+      color: #fff;
+      line-height: 1.5em;
+    }
+
+    a {
+      color: #24d2f9;
+
+      &:hover {
+        color:#ffcc00;
+      }
+    }
   }
 }

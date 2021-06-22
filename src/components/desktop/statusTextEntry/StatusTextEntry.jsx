@@ -3,9 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { statusActions } from '../../data/statusSlice'
 import { Smileys } from '../../../common'
-import {
-  changeBackgroundColor, changeFontfamily
-} from '../../../common/helpers/statusPage'
+import { changeBackgroundColor, changeFontFamily } from '../../../common/helpers/statusPage'
 import database from '../../../database'
 import './statusTextEntry.scss'
 
@@ -25,14 +23,14 @@ const StatusTextEntry = () => {
   }
 
   const handleInputEvent = event => {
-    const { value } = event.target
+    const {value} = event.target
     setStatusInputValue(value)
     setSendButtonIsActive(value.trim().length >= 1)
   }
 
   const stringIsUrl = string => {
     let url
-    if (!typeof(string) === 'string') {
+    if (typeof (string) !== 'string') {
       return false
     }
     if (string.includes('www.')) {
@@ -51,32 +49,28 @@ const StatusTextEntry = () => {
     const textArray = text.split(' ')
     textArray.forEach((value, index) => {
       if (stringIsUrl(value)) {
-        textArray[index] = `<a href=${value} target="_blank" rel="noreferrer">${value}</a>`
+        textArray[index] = `<a href=${value} target="_blank" rel="noreferrer">link</a>`
       }
     })
 
     return textArray.join(' ')
   }
 
-  /**
-    Please check out my new song: https://newsong.com
-  **/
-
   const addStatusTextEntry = async () => {
-    const id = 'id' + Date.parse(new Date()).toString()
+    const id = 'id' + Date.now()
     const storedTime = new Date().getTime()
     const timeOfEntry = new Date().toLocaleString('en-US',
-      { hour: 'numeric', minute: 'numeric', hour12: true }
+      {hour: 'numeric', minute: 'numeric', hour12: true}
     )
 
     const htmlText = convertURLToHTML(statusInputValue)
 
     const statusObject = {
-      id: id,
-      timeOfEntry: timeOfEntry,
-      storedTime: storedTime,
-      backgroundColor: backgroundColor,
-      fontFamily: fontFamily,
+      id,
+      timeOfEntry,
+      storedTime,
+      backgroundColor,
+      fontFamily,
       statusInputValue: htmlText
     }
 
@@ -103,7 +97,7 @@ const StatusTextEntry = () => {
           <i className="material-icons">&#xe7f2;</i>
         </button>
         <button
-          onClick={() => changeFontfamily(fontFamily, setFontFamily)}
+          onClick={() => changeFontFamily(fontFamily, setFontFamily)}
           className="material-icons"
         >
           &#xe165;
@@ -124,11 +118,11 @@ const StatusTextEntry = () => {
         </button>
       )}
       {smileyModalIsOpen &&
-        <Smileys
-          setStatusInputValue={setStatusInputValue}
-          statusInputValue={statusInputValue}
-          cursorPosition={cursorPosition}
-        />
+      <Smileys
+        setStatusInputValue={setStatusInputValue}
+        statusInputValue={statusInputValue}
+        cursorPosition={cursorPosition}
+      />
       }
     </div>
   )
