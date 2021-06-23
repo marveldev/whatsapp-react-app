@@ -1,11 +1,30 @@
-@import '../../../common/style/helperMobile';
+@import '../../../common/style/helperDesktop';
 
 .desktop-view-status-entry {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  @extend %absolute-position;
+  overflow-y: auto;
   background: #000;
+
+  .background-entry {
+    height: 100%;
+    width: 100%;
+    filter: blur(8px);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
 
   .bar-container {
     position: absolute;
@@ -46,16 +65,18 @@
 
   button {
     @extend %remove-default;
+    color: #fff;
   }
 
   .status-entry-container {
     height: 100%;
     width: 40%;
+    box-shadow: 0 0 0.5em 0 #0C1419;
   }
 
   img {
     width: 100%;
-    height: 100%;
+    height: 99%;
     object-fit: cover;
   }
 
@@ -89,7 +110,7 @@
     @include display(center);
     padding: 0 1em;
     box-sizing: border-box;
-    height: 100%;
+    height: 99%;
     width: 100%;
     font-size: 1.8em;
     word-break: break-all;

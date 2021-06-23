@@ -68,46 +68,53 @@ const ViewStatusEntry = () => {
 
   return (
     <div className="desktop-view-status-entry">
-      <div className="bar-container">
-        {statusData.map((item, index) => (
-          <div key={index} className="progress-bar">
-            <div className="bar" />
-          </div>
-        ))}
-      </div>
-      <div className="info">
-        <p>You</p>
-        <span>today at {statusData[statusIndex]?.timeOfEntry}</span>
-      </div>
-      <button onClick={history.goBack}
-        className="material-icons back-button"
-      >
-        &#xe5c4;
-      </button>
-      <button onClick={() => history.push('/')}
-        className="material-icons close-button"
-      >
-        &#xe5cd;
-      </button>
-      <button onClick={displayPreviousStatus}
-        className="material-icons previous-button"
-      >
-        &#xe314;
-      </button>
-      <button onClick={displayNextStatus}
-        className="material-icons next-button"
-      >
-        &#xe315;
-      </button>
-      <div className="status-entry-container">
-        {statusData[statusIndex]?.photoSource && (
-          <img src={statusData[statusIndex]?.photoSource} alt="status" />
-        )}
-        {statusData[statusIndex]?.statusInputValue && (
-          <div className="text-input" style={statusTextStyle}>
-            <p>{parse(statusData[statusIndex]?.statusInputValue)}</p>
-          </div>
-        )}
+      <div className="background-entry"
+        style={{backgroundColor: statusData[statusIndex]?.backgroundColor,
+          backgroundImage: `url(${statusData[statusIndex]?.photoSource})`}
+        }
+      />
+      <div className="content">
+        <div className="bar-container">
+          {statusData.map((item, index) => (
+            <div key={index} className="progress-bar">
+              <div className="bar" />
+            </div>
+          ))}
+        </div>
+        <div className="info">
+          <p>You</p>
+          <span>today at {statusData[statusIndex]?.timeOfEntry}</span>
+        </div>
+        <button onClick={history.goBack}
+          className="material-icons back-button"
+        >
+          &#xe5c4;
+        </button>
+        <button onClick={() => history.push('/')}
+          className="material-icons close-button"
+        >
+          &#xe5cd;
+        </button>
+        <button onClick={displayPreviousStatus}
+          className="material-icons previous-button"
+        >
+          &#xe314;
+        </button>
+        <button onClick={displayNextStatus}
+          className="material-icons next-button"
+        >
+          &#xe315;
+        </button>
+        <div className="status-entry-container">
+          {statusData[statusIndex]?.photoSource && (
+            <img src={statusData[statusIndex]?.photoSource} alt="status" />
+          )}
+          {statusData[statusIndex]?.statusInputValue && (
+            <div className="text-input" style={statusTextStyle}>
+              <p>{parse(statusData[statusIndex]?.statusInputValue)}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
