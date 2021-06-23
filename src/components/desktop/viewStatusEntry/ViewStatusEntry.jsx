@@ -7,12 +7,16 @@ import './viewStatusEntry.scss'
 
 const ViewStatusEntry = () => {
   const { status } = useSelector(state => state)
-  const { statusData, statusIndex } = status
+  const { statusData, statusIndex, userIsReloading } = status
   const dispatch = useDispatch()
   const history = useHistory()
   const intervalRef = useRef(null)
 
   useEffect(() => {
+    if (userIsReloading) {
+      history.push('/status')
+    }
+    
     let width = 1
     const statusBars = document.querySelectorAll('.bar')
     statusBars.forEach((statusBar, index) => {
@@ -24,7 +28,7 @@ const ViewStatusEntry = () => {
     })
 
     intervalRef.current = setInterval(() => {
-      if (width < 100) {
+      if (width < 100 && statusBars[statusIndex]) {
         width++
         statusBars[statusIndex].style.width = width + '%'
       }
@@ -41,7 +45,7 @@ const ViewStatusEntry = () => {
     }, 3000)
 
     return () => clearTimeout(timeout)
-  }, [statusIndex, history, statusData, dispatch])
+  }, [statusIndex, history, statusData, dispatch, userIsReloading])
 
   const displayNextStatus = () => {
     clearInterval(intervalRef.current)

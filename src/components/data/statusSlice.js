@@ -9,7 +9,8 @@ const statusSlice = createSlice({
   name: 'status',
   initialState: {
     statusData: [],
-    statusIndex: 0
+    statusIndex: 0,
+    userIsReloading: true
   },
   reducers: {
     addStatus: (state, { payload }) => {
@@ -20,6 +21,9 @@ const statusSlice = createSlice({
     },
     setStatusIndex: (state, { payload }) => {
       state.statusIndex = payload
+    },
+    setUserIsReloading: (state, { payload }) => {
+      state.userIsReloading = payload
     }
   },
   extraReducers: {

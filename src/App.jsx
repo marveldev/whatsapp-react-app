@@ -19,7 +19,7 @@ const App = () => {
     } else {
       setDevice('mobile')
     }
-
+  
     dispatch(getProfile())
     dispatch(getChats())
     dispatch(getWallpaper())
