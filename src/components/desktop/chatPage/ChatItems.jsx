@@ -35,12 +35,12 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen, setSelectedCha
                 <input type="checkbox"
                   onChange={() => markAsSelected(chat, chats, dispatch, selectedChatCount)}
                 />
-                <span className="checkmark"></span>
+                <span className="checkmark" />
               </label>
             </div>
           )}
           <div className="chat-content-wrapper">
-            <div className={chat.person === 'person-one' ? 'arrow-left' : 'arrow-right'}></div>
+            <div className={chat.person === 'person-one' ? 'arrow-left' : 'arrow-right'} />
             <div className={`${chat.person} chat-item`}>
               <div
                 onMouseOver={() => toggleDropdownButton(chat.id, 'block')}
@@ -57,7 +57,7 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen, setSelectedCha
                   onClick={event => displayDropdown(event, chat.person, chat.id)}
                   className="angle-down-button" property={chat.id}
                 >
-                  <i className="fa fa-angle-down"></i>
+                  <i className="fa fa-angle-down" />
                 </button>
               </div>
             </div>
@@ -66,7 +66,7 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen, setSelectedCha
       ))}
       {dropdownStyle && (
         <div onClick={() => setDropdownStyle()}>
-          <div onClick={() => setSelectedChatId()} className="overlay"></div>
+          <div onClick={() => setSelectedChatId()} className="overlay" />
           <div className="chat-dropdown" style={dropdownStyle}>
             <button>Reply</button>
             <button>Forward message</button>

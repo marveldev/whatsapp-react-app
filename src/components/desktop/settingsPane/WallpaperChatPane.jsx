@@ -78,7 +78,7 @@ const WallpaperChatPane = () => {
               defaultChecked={doodleIsChecked}
               onChange={toggleDoodleDisplay}
             />
-            <span className="checkmark"></span>
+            <span className="checkmark" />
           </label>
           <span>Add WhatsApp Doodles</span>
         </div>

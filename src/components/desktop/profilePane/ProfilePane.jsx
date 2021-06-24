@@ -38,7 +38,7 @@ const ProfilePane = () => {
               id="addProfileFilePicker"
               accept="image/*"
             />
-            <span className="photo-icon"><i className="fa fa-camera"></i></span>
+            <span className="photo-icon"><i className="fa fa-camera" /></span>
           </label>
         </div>
         <div className="input-container">

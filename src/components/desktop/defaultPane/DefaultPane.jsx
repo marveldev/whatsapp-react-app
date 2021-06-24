@@ -35,7 +35,7 @@ const DefaultPane = () => {
         </div>
         <div className="search-box">
           <i className="material-icons search-icon">&#xe8b6;</i>
-          <input placeholder="Search or start a new chat"></input>
+          <input placeholder="Search or start a new chat" />
         </div>
       </div>
       <div className="content">
@@ -61,7 +61,7 @@ const DefaultPane = () => {
       </div>
       {dropdownIsOpen && (
         <div>
-          <div onClick={() => setDropdownIsOpen(false)} className="overlay"></div>
+          <div onClick={() => setDropdownIsOpen(false)} className="overlay" />
           <div className="dropdown">
             <button>New group</button>
             <button>Create a room</button>

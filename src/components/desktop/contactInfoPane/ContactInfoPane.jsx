@@ -33,7 +33,7 @@ const ContactInfoPane = () => {
             <div className="checkbox-container">
               <label className="container">
                 <input type="checkbox"/>
-                <span className="checkmark"></span>
+                <span className="checkmark" />
               </label>
             </div>
           </div>

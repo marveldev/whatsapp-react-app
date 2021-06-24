@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { constants } from '../../../common'
-import { displaySettingsActions } from '../../data/settingsSlice'
 import { homePageActions } from '../homePage/slice'
+import { chatActions } from '../../data/chatSlice'
+import { displaySettingsActions } from '../../data/settingsSlice'
+import { constants } from '../../../common'
 import './settingsPane.scss'
 
 const SettingsPane = () => {
@@ -14,10 +15,12 @@ const SettingsPane = () => {
 
   const changeTheme = () => {
     dispatch(displaySettingsActions.setTheme(themeValue))
+    dispatch(chatActions.setChatWallpaper(null))
+    dispatch(chatActions.setSelectedWallpaper(null))
     localStorage.setItem('storedTheme', themeValue)
     setThemeModalIsOpen(false)
   }
-
+  
   return (
     <div className="settings-pane">
       <div className="header">
@@ -65,25 +68,25 @@ const SettingsPane = () => {
       </div>
       {themeModalIsOpen && (
         <>
-          <div onClick={() => setThemeModalIsOpen(false)} className="overlay"></div>
+          <div onClick={() => setThemeModalIsOpen(false)} className="overlay" />
           <div className="theme-modal">
             <p>Choose theme</p>
             <div className="options">
               <label onChange={() => setThemeValue('System default')}>
                 <input type="radio" name="theme"
-                  defaultChecked={theme === 'System default' ? true : false}
+                  defaultChecked={theme === 'System default'}
                 />
                 <p>System default</p>
               </label>
               <label onChange={() => setThemeValue('Light')}>
                 <input type="radio" name="theme"
-                  defaultChecked={theme === 'Light' ? true : false}
+                  defaultChecked={theme === 'Light'}
                 />
                 <p>Light</p>
               </label>
               <label onChange={() => setThemeValue('Dark')}>
                 <input type="radio" name="theme"
-                  defaultChecked={theme === 'Dark' ? true : false}
+                  defaultChecked={theme === 'Dark'}
                 />
                 <p>Dark</p>
               </label>

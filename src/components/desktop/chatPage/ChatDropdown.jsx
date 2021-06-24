@@ -51,7 +51,7 @@ const ChatDropdown = ({
     <div>
       {currentContent === 'dropdown' && (
         <div>
-          <div onClick={() => setDropdownIsOpen(false)} className="overlay"></div>
+          <div onClick={() => setDropdownIsOpen(false)} className="overlay" />
           <div className="header-dropdown">
             <button onClick={openContactInfoPane}>
               Contact info
@@ -78,7 +78,7 @@ const ChatDropdown = ({
       )}
       {selectChatModalIsOpen && (
         <div>
-          <div className="overlay"></div>
+          <div className="overlay" />
           <div className="select-chat-modal">
             <button onClick={closeSelectChatModal}
               className="material-icons"
@@ -87,11 +87,11 @@ const ChatDropdown = ({
             </button>
             <span>{selectedChatCount} selected</span>
             <div className={selectedChatCount >= 1 ? 'active' : ''}>
-              <button><i className="fa fa-star"></i></button>
+              <button><i className="fa fa-star" /></button>
               <button onClick={() => setDeleteModalIsOpen(true)}>
-                <i className="fa fa-trash"></i>
+                <i className="fa fa-trash" />
               </button>
-              <button><i className="fa fa-mail-forward"></i></button>
+              <button><i className="fa fa-mail-forward" /></button>
             </div>
           </div>
         </div>

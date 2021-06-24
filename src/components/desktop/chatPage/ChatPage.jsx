@@ -73,7 +73,7 @@ const ChatPage = () => {
 
   return (
     <div className="desktop-chat-page">
-      <div className="chat-wallpaper" style={wallpaper}></div>
+      <div className="chat-wallpaper" style={wallpaper} />
       <div className="header">
         <div className="photo-container">
           <img src={selectedContact.profilePhoto}
@@ -140,12 +140,12 @@ const ChatPage = () => {
                   Person1
                 </button>
                 <button onClick={() => addMessageEvent('person-two')}>Person2</button>
-                <div className="arrow-down"></div>
+                <div className="arrow-down" />
               </div>
             </div>
           )}
           {!sendButtonIsActive && (
-            <button><i className="fa fa-microphone"></i></button>
+            <button><i className="fa fa-microphone" /></button>
           )}
         </div>
       </div>

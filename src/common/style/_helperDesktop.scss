@@ -74,7 +74,7 @@ $primaryBackgroundColor: #EDEDED;
   padding: 0.5em 0;
   border-radius: 0.2em;
   background-color: $textPrimaryColor;
-  box-shadow: 0 0.2em 0.3em 0em #00000060;
+  box-shadow: 0 0.2em 0.3em 0 #00000060;
 
   button {
     @extend %remove-default;
@@ -116,7 +116,6 @@ $primaryBackgroundColor: #EDEDED;
     position: absolute;
     opacity: 0;
     height: 0;
-    width: 0;
   }
 
   .checkmark {
