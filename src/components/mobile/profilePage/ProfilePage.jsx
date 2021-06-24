@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { constants } from '../../../common'
 import { addPhotoFilePicker, updateProfile } from '../../../common/helpers/profilePage'
 import './profilePage.scss'
@@ -33,7 +33,7 @@ const ProfilePage = () => {
               id="addProfileFilePicker"
               accept="image/*"
             />
-            <span className="photo-icon"><i className="fa fa-camera"></i></span>
+            <span className="photo-icon"><i className="fa fa-camera" /></span>
           </label>
         </div>
         <div>

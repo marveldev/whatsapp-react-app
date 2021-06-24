@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { currentPageActions } from '../homePage/slice'
 import './topNav.scss'
 
@@ -38,7 +38,7 @@ const TopNav = () => {
         <div className="header">
           <h3>WhatsApp</h3>
           <div>
-            <button><i className="fa fa-search"></i></button>
+            <button><i className="fa fa-search" /></button>
             <button onClick={() => setDropdownIsOpen(true)}>
               <i className="material-icons">&#xe5d4;</i>
             </button>
@@ -46,7 +46,7 @@ const TopNav = () => {
         </div>
       )}
       <nav className="nav">
-        <button><i className="fa fa-camera"></i></button>
+        <button><i className="fa fa-camera" /></button>
         <button onClick={() => switchCurrentPage('contactList')}
           className={currentPage === 'contactList' ? 'active' : ''}
         >

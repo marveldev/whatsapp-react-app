@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { constants } from '../../../common'
 import './viewStatusEntry.scss'
 
@@ -70,7 +70,7 @@ const ViewStatusEntry = () => {
         <div className="bar-container">
           {statusData.map((item, index) => (
             <div key={index} className="progress-bar">
-              <div className="bar"></div>
+              <div className="bar" />
             </div>
           ))}
         </div>

@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { useHistory, useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Smileys, lightThemeWallpaper, darkThemeWallpaper }
-  from '../../../common'
-import { chatActions } from '../../data/chatSlice'
 import ChatDropdown from './ChatDropdown'
 import contactList from '../contactListPage/contactList'
-import { addMessageToDom, displaySendButton, markAsSelected }
-  from '../../../common/helpers/chatPage'
+import { chatActions } from '../../data/chatSlice'
+import { Smileys, lightThemeWallpaper, darkThemeWallpaper } from '../../../common'
+import {
+  addMessageToDom, displaySendButton, markAsSelected
+} from '../../../common/helpers/chatPage'
 import database from '../../../database'
 import './chatPage.scss'
 
@@ -63,7 +63,7 @@ const ChatPage = () => {
       className={chat.selected ? 'selected chat-item-wrapper' : 'chat-item-wrapper'}
     >
       <div className="chat-item-overlay">
-        <div className={chat.person === 'person-one' ? 'arrow-left' : 'arrow-right'}></div>
+        <div className={chat.person === 'person-one' ? 'arrow-left' : 'arrow-right'} />
         <div className={`${chat.person} chat-item`}>
           <div className="content">
             <p className="chat-text">{chat.chatInputValue}</p>
@@ -97,8 +97,8 @@ const ChatPage = () => {
           <p>online</p>
         </div>
         <div className="button-container">
-          <button><i className="fa fa-video-camera"></i></button>
-          <button><i className="fa fa-phone"></i></button>
+          <button><i className="fa fa-video-camera" /></button>
+          <button><i className="fa fa-phone" /></button>
           <button onClick={() => setChatDropdownIsOpen(true)}>
             <i className="material-icons">&#xe5d4;</i>
           </button>
@@ -134,7 +134,7 @@ const ChatPage = () => {
           >
           </textarea>
           <button className="clip-button">
-            <i className="fa fa-paperclip"></i>
+            <i className="fa fa-paperclip" />
           </button>
         </div>
         <div>
@@ -156,13 +156,13 @@ const ChatPage = () => {
                 >
                   Person2
                 </button>
-                <div className="arrow-down"></div>
+                <div className="arrow-down" />
               </div>
             </div>
           )}
           {!sendButtonIsActive && (
             <button className="record-button">
-              <i className="fa fa-microphone"></i>
+              <i className="fa fa-microphone" />
             </button>
           )}
         </div>
@@ -173,12 +173,12 @@ const ChatPage = () => {
             <i className="material-icons">&#xe5c4;</i>
           </button>
           <span>{selectedChatCount}</span>
-          <button><i className="fa fa-star"></i></button>
+          <button><i className="fa fa-star" /></button>
           <button onClick={() => setDeleteModalIsOpen(true)}>
-            <i className="fa fa-trash"></i>
+            <i className="fa fa-trash" />
           </button>
           <button><i className="material-icons">&#xe14d;</i></button>
-          <button><i className="fa fa-mail-forward"></i></button>
+          <button><i className="fa fa-mail-forward" /></button>
         </div>
       )}
       {deleteModalIsOpen && (

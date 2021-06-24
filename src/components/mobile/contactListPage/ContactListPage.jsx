@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import contactList from './contactList'
 import './contactListPage.scss'
 
@@ -27,7 +27,7 @@ const ContactListPage = () => {
       </div>
       {selectedContactIndex >=0 && (
         <>
-          <div onClick={() => setSelectedContactIndex()} className="overlay"></div>
+          <div onClick={() => setSelectedContactIndex()} className="overlay" />
           <div className="contact-modal">
             <img src={contactList[selectedContactIndex].profilePhoto}
               className="contact-photo" alt="contact"
@@ -36,8 +36,8 @@ const ContactListPage = () => {
               <button onClick={() => history.push(`/chatPage/${selectedContactIndex}`)}>
                 <i className="material-icons">&#xe0b7;</i>
               </button>
-              <button><i className="fa fa-phone"></i></button>
-              <button><i className="fa fa-video-camera"></i></button>
+              <button><i className="fa fa-phone" /></button>
+              <button><i className="fa fa-video-camera" /></button>
               <button onClick={() => history.push(`/contactInfoPage/${selectedContactIndex}`)}>
                 <i className="material-icons">&#xe88f;</i>
               </button>

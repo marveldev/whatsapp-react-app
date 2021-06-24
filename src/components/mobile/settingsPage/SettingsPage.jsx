@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { constants } from '../../../common'
 import './settingsPage.scss'
 
@@ -28,7 +28,7 @@ const SettingsPage = () => {
         </div>
         <div className="settings-options">
           <button>
-            <i className="fa fa-key"></i>
+            <i className="fa fa-key" />
             <div>
               <p>Account</p>
               <span>Privacy,security, change number</span>
@@ -44,7 +44,7 @@ const SettingsPage = () => {
             </div>
           </button>
           <button>
-            <i className="fa fa-bell"></i>
+            <i className="fa fa-bell" />
             <div>
               <p>Notification</p>
               <span>Message,group & call tones</span>
@@ -54,7 +54,7 @@ const SettingsPage = () => {
             <i className="material-icons">&#xe1af;</i>
             <div>
               <p>Storage and data</p>
-              <span>Network usuage, auto-download</span>
+              <span>Network usage, auto-download</span>
             </div>
           </button>
           <button>

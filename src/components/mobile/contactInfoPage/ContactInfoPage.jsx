@@ -5,7 +5,7 @@ import './contactInfoPage.scss'
 
 const ContactInfoPage = () => {
   const [opacity, setOpacity] = useState()
-  const [fadeInHeaderisOpen, setFadeInHeaderIsOpen] = useState()
+  const [fadeInHeaderIsOpen, setFadeInHeaderIsOpen] = useState()
   const { goBack } = useHistory()
   const { selectedContactIndex } = useParams()
 
@@ -40,7 +40,7 @@ const ContactInfoPage = () => {
           />
         </div>
         <div className="contact-name">{contactList[selectedContactIndex].name}</div>
-        {fadeInHeaderisOpen && (
+        {fadeInHeaderIsOpen && (
           <div className="fade-in-header">
             <button onClick={goBack}><i className="material-icons">&#xe5c4;</i></button>
             <span>{contactList[selectedContactIndex].name}</span>
@@ -55,7 +55,7 @@ const ContactInfoPage = () => {
             <label className="switch-wrapper">
               <div className="switch">
                 <input type="checkbox" />
-                <span className="slider round"></span>
+                <span className="slider round" />
               </div>
             </label>
           </div>
@@ -73,7 +73,7 @@ const ContactInfoPage = () => {
           <div className="message">
             <div>
               <p>Encryption</p>
-              <small>Messages and calls are end-to-end encrpted.Tap to verify.</small>
+              <small>Messages and calls are end-to-end encrypted.Tap to verify.</small>
             </div>
             <button><i className="material-icons">&#xe63f;</i></button>
           </div>
@@ -90,8 +90,8 @@ const ContactInfoPage = () => {
             <span>+234 655 466 4566</span>
             <div>
               <button><i className="material-icons">&#xe0b7;</i></button>
-              <button><i className="fa fa-phone"></i></button>
-              <button><i className="fa fa-video-camera"></i></button>
+              <button><i className="fa fa-phone" /></button>
+              <button><i className="fa fa-video-camera" /></button>
             </div>
           </div>
         </div>

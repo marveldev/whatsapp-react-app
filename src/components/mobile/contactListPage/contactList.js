@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 const contactList = [
   {
     id: 'kjfdnd',

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { constants } from '../../../common'
 import { addStatusFilePicker } from '../../../common/helpers/statusPage'
 import database from '../../../database'
@@ -89,7 +89,7 @@ const StatusPage = () => {
         <i className="material-icons">&#xe3c9;</i>
       </button>
       <label htmlFor="addStatusFilePicker">
-        <span className="photo-icon"><i className="fa fa-camera"></i></span>
+        <span className="photo-icon"><i className="fa fa-camera" /></span>
       </label>
     </div>
   )

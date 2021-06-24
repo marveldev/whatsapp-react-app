@@ -50,7 +50,7 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
     <div>
       {currentContent === 'dropdown' && (
         <>
-          <div onClick={() => setChatDropdownIsOpen(false)} className="dropdown-overlay"></div>
+          <div onClick={() => setChatDropdownIsOpen(false)} className="dropdown-overlay" />
           <div className="chat-dropdown">
             <button>View contact</button>
             <button>Media, links, and docs</button>
@@ -76,7 +76,7 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
       )}
       {currentContent === 'wallpaper-options' && (
         <>
-          <div onClick={() => setChatDropdownIsOpen(false)} className="overlay"></div>
+          <div onClick={() => setChatDropdownIsOpen(false)} className="overlay" />
           <div className="wallpaper-options">
             <p>Wallpaper</p>
             <button onClick={addDefaultWallpaper} className="default-button">
@@ -88,7 +88,7 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
                 onChange={(event) => addGalleryWallpaper(event)}
               />
               <label htmlFor="wallpaperPicker">
-                <i className="fa fa-photo"></i>
+                <i className="fa fa-photo" />
                 <span>Gallery</span>
               </label>
             </button>

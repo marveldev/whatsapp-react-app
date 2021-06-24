@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
+import { statusActions } from '../../data/statusSlice'
 import { addStatusFilePicker } from '../../../common/helpers/statusPage'
 import database from '../../../database'
-import { statusActions } from '../../data/statusSlice'
 import './statusGallery.scss'
 
 const StatusGallery = () => {
@@ -70,7 +70,7 @@ const StatusGallery = () => {
             accept="image/*"
             multiple
           />
-          <span className="photo-icon"><i className="fa fa-camera"></i></span>
+          <span className="photo-icon"><i className="fa fa-camera" /></span>
         </label>
       </div>
       {dropdownIsOpen && (

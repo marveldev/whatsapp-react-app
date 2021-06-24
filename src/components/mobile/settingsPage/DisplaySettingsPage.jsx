@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { chatActions } from '../../data/chatSlice'
 import { displaySettingsActions } from '../../data/settingsSlice'
 
@@ -57,7 +57,7 @@ const DisplaySettingsPage = () => {
             </div>
             <div className="switch">
               <input type="checkbox" />
-              <span className="slider round"></span>
+              <span className="slider round" />
             </div>
           </label>
           <label>
@@ -67,7 +67,7 @@ const DisplaySettingsPage = () => {
             </div>
             <div className="switch">
               <input type="checkbox" />
-              <span className="slider round"></span>
+              <span className="slider round" />
             </div>
           </label>
           <button onClick={() => setFontModalIsOpen(true)}>
@@ -78,29 +78,29 @@ const DisplaySettingsPage = () => {
       </div>
       {themeModalIsOpen && (
         <>
-          <div onClick={() => setThemeModalIsOpen(false)} className="overlay"></div>
+          <div onClick={() => setThemeModalIsOpen(false)} className="overlay" />
           <div className="theme-modal">
             <h3>Choose theme</h3>
             <div className="options">
               <label onChange={() => setThemeValue('System default')}>
                 <input type="radio" name="theme"
-                  defaultChecked={theme === 'System default' ? true : false}
+                  defaultChecked={theme === 'System default'}
                 />
-                <span className="checkmark"></span>
+                <span className="checkmark" />
                 <p>System default</p>
               </label>
               <label onChange={() => setThemeValue('Light')}>
                 <input type="radio" name="theme"
-                  defaultChecked={theme === 'Light' ? true : false}
+                  defaultChecked={theme === 'Light'}
                 />
-                <span className="checkmark"></span>
+                <span className="checkmark" />
                 <p>Light</p>
               </label>
               <label onChange={() => setThemeValue('Dark')}>
                 <input type="radio" name="theme"
-                  defaultChecked={theme === 'Dark' ? true : false}
+                  defaultChecked={theme === 'Dark'}
                 />
-                <span className="checkmark"></span>
+                <span className="checkmark" />
                 <p>Dark</p>
               </label>
             </div>
@@ -111,29 +111,29 @@ const DisplaySettingsPage = () => {
       )}
       {fontModalIsOpen && (
         <>
-          <div onClick={() => setFontModalIsOpen(false)} className="overlay"></div>
+          <div onClick={() => setFontModalIsOpen(false)} className="overlay" />
           <div className="font-modal">
             <h3>Font-size</h3>
             <div className="options">
               <label onChange={() => changeFontSize('Small')}>
                 <input type="radio" name="font-size"
-                  defaultChecked={fontSize === 'Small' ? true : false}
+                  defaultChecked={fontSize === 'Small'}
                 />
-                <span className="checkmark"></span>
+                <span className="checkmark" />
                 <p>Small</p>
               </label>
               <label onChange={() => changeFontSize('Medium')}>
                 <input type="radio" name="font-size"
-                  defaultChecked={fontSize === 'Medium' ? true : false}
+                  defaultChecked={fontSize === 'Medium'}
                 />
-                <span className="checkmark"></span>
+                <span className="checkmark" />
                 <p>Medium</p>
               </label>
               <label onChange={() => changeFontSize('Large')}>
                 <input type="radio" name="font-size"
-                  defaultChecked={fontSize === 'Large' ? true : false}
+                  defaultChecked={fontSize === 'Large'}
                 />
-                <span className="checkmark"></span>
+                <span className="checkmark" />
                 <p>Large</p>
               </label>
             </div>
