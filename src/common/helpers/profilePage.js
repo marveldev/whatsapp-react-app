@@ -21,7 +21,7 @@ const addPhotoFilePicker = (event, dispatch, setToasterIsOpen) => {
   photoReader.readAsDataURL(event.target.files[0])
   photoReader.addEventListener('load', async () => {
     const photoUrl = photoReader.result
-    updateProfile(dispatch, setToasterIsOpen, photoUrl)
+    await updateProfile(dispatch, setToasterIsOpen, photoUrl)
   })
 }
 

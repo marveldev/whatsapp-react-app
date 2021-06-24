@@ -62,7 +62,8 @@
       width: 100%;
       border-bottom: 0.1em solid #dcdcdc;
 
-      i {
+      button {
+        @extend %remove-default;
         font-size: 1.1em;
       }
     }
@@ -90,22 +91,14 @@
     }
   }
 
-  .save-button {
-    @extend %remove-default;
-    color: $primaryColor;
-    font-size: 1em;
-    font-weight: 600;
-    float: right;
-    margin: 1em 1em 0 0;
-  }
-
   .toaster {
     @include display(center);
+    text-align: center;
     position: absolute;
     top: 0;
     left: 0;
-    background-color: $secondaryColor;
-    color: $textPrimaryColor;
+    background-color: #000000ab;
+    color: #fff;
     z-index: 1;
     height: 2em;
     width: 100%;

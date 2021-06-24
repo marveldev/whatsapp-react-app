@@ -44,7 +44,9 @@ const ProfilePane = () => {
         <div className="input-container">
           <label>
             <span>Your Name</span>
-            <input type="text" id="name"
+            <input
+              type="text"
+              id="name"
               onChange={() => setNameButtonIsOpen(true)}
               placeholder="Add name..."
               defaultValue={profile?.name}
@@ -66,7 +68,9 @@ const ProfilePane = () => {
         <div className="input-container">
           <label>
             <span>About</span>
-            <input type="text" id="about"
+            <input
+              type="text"
+              id="about"
               onChange={() => setAboutButtonIsOpen(true)}
               placeholder="Add about..."
               defaultValue={profile?.about}
