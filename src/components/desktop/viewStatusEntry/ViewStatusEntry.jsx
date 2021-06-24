@@ -77,6 +77,8 @@ const ViewStatusEntry = () => {
           backgroundImage: `url(${statusData[statusIndex]?.photoSource})`}
         }
       />
+      <div className="left-overlay" />
+      <div className="right-overlay" />
       <div className="content">
         <div className="bar-container">
           {statusData.map((item, index) => (
