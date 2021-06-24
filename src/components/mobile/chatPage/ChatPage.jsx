@@ -15,23 +15,22 @@ const ChatPage = () => {
   const [sendButtonIsActive, setSendButtonIsActive] = useState(false)
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
-  const [selectedChatCount, setSelectedChatCount] = useState(0)
   const [chatDropdownIsOpen, setChatDropdownIsOpen] = useState(false)
   const [chatInputValue, setChatInputValue] = useState('')
   const { theme, fontSize } = useSelector(state => state.displaySettings)
-  const { chats, wallpaper } = useSelector(state => state.chat)
+  const { chats, wallpaper, selectedChatCount } = useSelector(state => state.chat)
   const { selectedContactIndex } = useParams()
   const selectedContact = contactList[selectedContactIndex]
   const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
-  const chatWallpaper = wallpaper || defaultWallpaper
+  const chatWallpaper = wallpaper?.background || defaultWallpaper
   const history = useHistory()
   const dispatch = useDispatch()
-
+  
   const deleteSelectedChat = async () => {
     const newData = chats.filter(chat => !chat.selected)
     const selectedChatData = chats.filter(chat => chat.selected)
     dispatch(chatActions.addMultipleChat(newData))
-    setSelectedChatCount(0)
+    dispatch(chatActions.setSelectedChatCount(0))
 
     for (let index = 0; index < selectedChatData.length; index++) {
       const chatId = selectedChatData[index].id
@@ -43,8 +42,8 @@ const ChatPage = () => {
     const newData = chats.map(chat => {
       return {...chat, selected: false}
     })
-
-    setSelectedChatCount(0)
+  
+    dispatch(chatActions.setSelectedChatCount(0))
     dispatch(chatActions.addMultipleChat(newData))
   }
 

@@ -27,18 +27,18 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
     const photoReader = new FileReader()
     photoReader.readAsDataURL(event.target.files[0])
     photoReader.addEventListener('load', async () => {
-      const wallpaper = photoReader.result
-      dispatch(chatActions.setChatWallpaper(wallpaper))
+      const background = photoReader.result
+      dispatch(chatActions.setChatWallpaper({background}))
       await database.chatWallpaper.clear()
-      await database.chatWallpaper.add({wallpaper})
+      await database.chatWallpaper.add({background})
     })
 
     setChatDropdownIsOpen(false)
   }
 
   const addDefaultWallpaper = () => {
-    const setWallpaper = async wallpaper => {
-      dispatch(chatActions.setChatWallpaper(wallpaper))
+    const setWallpaper = async background => {
+      dispatch(chatActions.setChatWallpaper(background))
       await database.chatWallpaper.clear()
     }
 
