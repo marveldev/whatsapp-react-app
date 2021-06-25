@@ -294,8 +294,15 @@
     .chat-item-wrapper {
       margin-bottom: 0.07em;
 
-      &:hover {
-        //background-color: #D5DED9;
+      .chat-photo {
+        display: block;
+        width: 16em;
+        height: 18em;
+        max-width: 16em;
+        max-height: 18em;
+        object-fit: cover;
+        background: #000;
+        border-radius: 0.3em;
       }
     }
   }

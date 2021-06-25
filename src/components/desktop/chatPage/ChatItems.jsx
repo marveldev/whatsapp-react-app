@@ -47,6 +47,9 @@ const ChatItems = ({ selectChatModalIsOpen, setDeleteModalIsOpen, setSelectedCha
                 onMouseLeave={() => toggleDropdownButton(chat.id, 'none')}
               >
                 <div className="content">
+                  {chat.chatPhoto &&
+                    <img src={chat.chatPhoto} className="chat-photo" alt="chatPhoto" />
+                  }
                   <p className="chat-text">{chat.chatInputValue}</p>
                   <div className="chat-time">
                     <small>{chat.chatTime}</small>
