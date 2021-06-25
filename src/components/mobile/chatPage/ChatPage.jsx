@@ -16,9 +16,9 @@ const ChatPage = () => {
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
   const [chatDropdownIsOpen, setChatDropdownIsOpen] = useState(false)
-  const [chatInputValue, setChatInputValue] = useState('')
   const { theme, fontSize } = useSelector(state => state.displaySettings)
-  const { chats, wallpaper, selectedChatCount } = useSelector(state => state.chat)
+  const { chats, wallpaper, selectedChatCount, chatInputValue
+  } = useSelector(state => state.chat)
   const { selectedContactIndex } = useParams()
   const selectedContact = contactList[selectedContactIndex]
   const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
@@ -49,7 +49,7 @@ const ChatPage = () => {
 
   const addMessageEvent = person => {
     addMessageToDom(person, selectedContact, dispatch)
-    setChatInputValue('')
+    dispatch(chatActions.setChatInputValue(''))
     setSendButtonIsActive(false)
     setSmileyModalIsOpen(false)
   }
@@ -58,14 +58,10 @@ const ChatPage = () => {
     const photoReader = new FileReader()
     photoReader.readAsDataURL(event.target.files[0])
     photoReader.addEventListener('load', () => {
-      // const photo = photoReader.result
-      history.push('/chatPhotoPreview')
+      dispatch(chatActions.setChatPhoto(photoReader.result))
+      history.push(`/chatPhotoPreview/${selectedContactIndex}`)
     })
   }
-
-  // const addChatPhoto = () => {
-  //
-  // }
   
   const filteredChatData = chats?.filter(item => item.contactId === selectedContact.id)
 
@@ -130,8 +126,6 @@ const ChatPage = () => {
             </button>
             {smileyModalIsOpen &&
               <Smileys
-                setChatInputValue={setChatInputValue}
-                chatInputValue={chatInputValue}
                 setSendButtonIsActive={setSendButtonIsActive}
               />
             }
@@ -141,7 +135,7 @@ const ChatPage = () => {
             className="chat-input"
             value={chatInputValue}
             placeholder="Type a message"
-            onChange={event => setChatInputValue(event.target.value)}
+            onChange={event => dispatch(chatActions.setChatInputValue(event.target.value))}
             autoFocus
           >
           </textarea>

@@ -8,7 +8,7 @@ const MobileRoutes = () => {
     <>
       <Route path="/" component={HomePage} exact />
       <Route path="/chatPage/:selectedContactIndex" component={ChatPage} />
-      <Route path="/chatPhotoPreview" component={ChatPhotoPreview} />
+      <Route path="/chatPhotoPreview/:selectedContactIndex" component={ChatPhotoPreview} />
       <Route path="/settingsPage" component={SettingsPage} />
       <Route path="/displaySettingsPage" component={DisplaySettingsPage} />
       <Route path="/statusGallery" component={StatusGallery} />

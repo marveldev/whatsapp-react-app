@@ -13,6 +13,8 @@ const chatSlice = createSlice({
   name: 'chat',
   initialState: {
     chats: [],
+    chatPhoto: null,
+    chatInputValue: '',
     selectedChatCount: 0,
     wallpaper: null,
     selectedWallpaper: null,
@@ -36,6 +38,12 @@ const chatSlice = createSlice({
     },
     setDoodleIsChecked: (state, { payload }) => {
       state.doodleIsChecked = payload
+    },
+    setChatPhoto: (state, { payload }) => {
+      state.chatPhoto = payload
+    },
+    setChatInputValue: (state, { payload }) => {
+      state.chatInputValue = payload
     }
   },
   extraReducers: {

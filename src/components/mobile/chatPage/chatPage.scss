@@ -434,8 +434,27 @@
     @extend %remove-default;
   }
 
-  .send-button {
-    @extend %style-icon;
-    background-color: $primaryColor;
+  .persons-button-container {
+    position: absolute;
+    bottom: 3.3em;
+    right: 1em;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px 0 #00000033;
+    z-index: 1;
+    padding: 0.5em;
+    border-radius: 0.8em;
+
+    button {
+      display: block;
+      color: #fff;
+      padding: 0.5em 0.8em;
+      font-weight: 600;
+      border-radius: 0.5em;
+      background: $primaryColor;
+    }
+
+    .person-one {
+      margin-bottom: 0.5em;
+    }
   }
 }
