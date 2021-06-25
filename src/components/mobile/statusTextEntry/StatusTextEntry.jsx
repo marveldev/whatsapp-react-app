@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Smileys } from '../../../common'
-import { changeBackgroundColor, changeFontFamily } from '../../../common/helpers/statusPage'
+import { changeBackgroundColor, changeFontFamily, convertURLToHTML
+} from '../../../common/helpers/statusPage'
 import database from '../../../database'
 import { statusActions } from '../../data/statusSlice'
 import './statusTextEntry.scss'
@@ -37,13 +38,16 @@ const StatusTextEntry = () => {
     const timeOfEntry = new Date().toLocaleString('en-US',
       { hour: 'numeric', minute: 'numeric', hour12: true }
     )
+  
+    const htmlText = convertURLToHTML(statusInputValue)
+  
     const statusObject = {
       id,
       timeOfEntry,
       storedTime,
       backgroundColor,
       fontFamily,
-      statusInputValue
+      statusInputValue: htmlText
     }
 
     dispatch(statusActions.addStatus(statusObject))

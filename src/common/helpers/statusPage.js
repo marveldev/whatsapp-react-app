@@ -51,4 +51,32 @@ const changeBackgroundColor = setBackgroundColor => {
   setBackgroundColor(randomColor)
 }
 
-export { addStatusFilePicker, changeFontFamily, changeBackgroundColor }
+const stringIsUrl = string => {
+  let url
+  if (typeof (string) !== 'string') {
+    return false
+  }
+  if (string.includes('www.')) {
+    return true
+  }
+  try {
+    url = new URL(string)
+  } catch (error) {
+    return false
+  }
+  
+  return url.protocol === 'https:' || url.protocol === 'http:'
+}
+
+const convertURLToHTML = text => {
+  const textArray = text.split(' ')
+  textArray.forEach((value, index) => {
+    if (stringIsUrl(value)) {
+      textArray[index] = `<a href=${value} target="_blank" rel="noreferrer">${value}</a>`
+    }
+  })
+  
+  return textArray.join(' ')
+}
+
+export { addStatusFilePicker, changeFontFamily, changeBackgroundColor, convertURLToHTML }

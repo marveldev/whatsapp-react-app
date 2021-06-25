@@ -1,61 +1,68 @@
-import { useEffect, useState, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import parse from 'html-react-parser'
 import { constants } from '../../../common'
+import { statusActions } from '../../data/statusSlice'
 import './viewStatusEntry.scss'
 
 const ViewStatusEntry = () => {
   const { profile } = useSelector(state => state.profile)
-  const { statusData } = useSelector(state => state.status)
-  const [statusIndex, setStatusIndex] = useState(0)
+  const { statusData, statusIndex, userIsReloading } = useSelector(state => state.status)
   const history = useHistory()
-  const interval = useRef()
-  const statusBar = useRef()
-
+  const dispatch = useDispatch()
+  const intervalRef = useRef(null)
+  
   useEffect(() => {
+    if (userIsReloading) {
+      history.push('/')
+    }
+
     let width = 1
     const statusBars = document.querySelectorAll('.bar')
-    statusBar.current = statusBars[statusIndex]
-    interval.current = setInterval(() => {
-      if (width < 100) {
-        width++
-        statusBar.current.style.width = width + '%'
+    statusBars.forEach((statusBar, index) => {
+      if (index < statusIndex) {
+        statusBar.style.width = 100 + '%'
+      } else {
+        statusBar.style.width = 0 + '%'
       }
-    }, 20)
+    })
+
+    intervalRef.current = setInterval(() => {
+      if (width < 100 && statusBars[statusIndex]) {
+        width++
+        statusBars[statusIndex].style.width = width + '%'
+      }
+    }, 30)
 
     const timeout = setTimeout(() => {
       if (statusIndex < statusData.length - 1) {
-        setStatusIndex(statusIndex + 1)
+        dispatch(statusActions.setStatusIndex(statusIndex + 1))
       }
       else {
-        setStatusIndex(0)
-        clearInterval(interval.current)
-        history.push('/')
+        clearInterval(intervalRef.current)
+        history.goBack()
       }
     }, 3000)
 
     return () => clearTimeout(timeout)
-  }, [statusIndex, history, statusData])
-
+  }, [statusIndex, history, statusData, dispatch, userIsReloading])
+  
   const displayNextStatus = () => {
-    clearInterval(interval.current)
-    statusBar.current.style.width = 100 + '%'
+    clearInterval(intervalRef.current)
     if (statusIndex === statusData.length - 1) {
-      setStatusIndex(0)
-      history.push('/')
+      history.goBack()
     } else {
-      setStatusIndex(statusIndex + 1)
+      dispatch(statusActions.setStatusIndex(statusIndex + 1))
     }
   }
-
+  
   const displayPreviousStatus = () => {
-    clearInterval(interval.current)
-    statusBar.current.style.width = 1 + '%'
+    clearInterval(intervalRef.current)
     if (statusIndex === 0) {
-      setStatusIndex(0)
-      history.push('/')
+      history.goBack()
     } else {
-      setStatusIndex(statusIndex - 1)
+      dispatch(statusActions.setStatusIndex(statusIndex - 1))
     }
   }
 
@@ -94,7 +101,7 @@ const ViewStatusEntry = () => {
           )}
           {statusData[statusIndex]?.statusInputValue && (
             <div className="text-input" style={statusTextStyle}>
-              {statusData[statusIndex]?.statusInputValue}
+              <p>{parse(statusData[statusIndex]?.statusInputValue)}</p>
             </div>
           )}
         </div>

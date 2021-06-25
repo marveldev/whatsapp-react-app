@@ -53,7 +53,20 @@ const ChatPage = () => {
     setSendButtonIsActive(false)
     setSmileyModalIsOpen(false)
   }
+  
+  const addChatPhotoPicker = event => {
+    const photoReader = new FileReader()
+    photoReader.readAsDataURL(event.target.files[0])
+    photoReader.addEventListener('load', () => {
+      // const photo = photoReader.result
+      history.push('/chatPhotoPreview')
+    })
+  }
 
+  // const addChatPhoto = () => {
+  //
+  // }
+  
   const filteredChatData = chats?.filter(item => item.contactId === selectedContact.id)
 
   const chatItems = filteredChatData?.map((chat, index) => (
@@ -133,7 +146,12 @@ const ChatPage = () => {
           >
           </textarea>
           <button className="clip-button">
-            <i className="fa fa-paperclip" />
+            <input type="file" id="chatPhotoPicker" accept="image/*"
+              onChange={(event) => addChatPhotoPicker(event)}
+            />
+            <label htmlFor="chatPhotoPicker">
+              <i className="fa fa-paperclip" />
+            </label>
           </button>
         </div>
         <div>

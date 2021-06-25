@@ -1,5 +1,5 @@
 export { HomePage } from './homePage'
-export { ChatPage } from './chatPage'
+export { ChatPage, ChatPhotoPreview } from './chatPage'
 export { SettingsPage } from './settingsPage'
 export { DisplaySettingsPage } from './settingsPage'
 export { StatusGallery } from './statusGallery'

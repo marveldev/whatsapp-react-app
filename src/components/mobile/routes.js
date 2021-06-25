@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom'
-import { ChatPage, DisplaySettingsPage, HomePage, SettingsPage,
+import { ChatPage, DisplaySettingsPage, HomePage, SettingsPage, ChatPhotoPreview,
   StatusGallery, ProfilePage, ContactInfoPage, ViewStatusEntry, StatusTextEntry
 } from '../mobile'
 
@@ -8,6 +8,7 @@ const MobileRoutes = () => {
     <>
       <Route path="/" component={HomePage} exact />
       <Route path="/chatPage/:selectedContactIndex" component={ChatPage} />
+      <Route path="/chatPhotoPreview" component={ChatPhotoPreview} />
       <Route path="/settingsPage" component={SettingsPage} />
       <Route path="/displaySettingsPage" component={DisplaySettingsPage} />
       <Route path="/statusGallery" component={StatusGallery} />

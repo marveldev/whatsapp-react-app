@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { statusActions } from '../../data/statusSlice'
 import { Smileys } from '../../../common'
-import { changeBackgroundColor, changeFontFamily } from '../../../common/helpers/statusPage'
+import { changeBackgroundColor, changeFontFamily, convertURLToHTML
+} from '../../../common/helpers/statusPage'
 import database from '../../../database'
 import './statusTextEntry.scss'
 
@@ -26,34 +27,6 @@ const StatusTextEntry = () => {
     const {value} = event.target
     setStatusInputValue(value)
     setSendButtonIsActive(value.trim().length >= 1)
-  }
-
-  const stringIsUrl = string => {
-    let url
-    if (typeof (string) !== 'string') {
-      return false
-    }
-    if (string.includes('www.')) {
-      return true
-    }
-    try {
-      url = new URL(string)
-    } catch (error) {
-      return false
-    }
-
-    return url.protocol === 'https:' || url.protocol === 'http:'
-  }
-
-  const convertURLToHTML = text => {
-    const textArray = text.split(' ')
-    textArray.forEach((value, index) => {
-      if (stringIsUrl(value)) {
-        textArray[index] = `<a href=${value} target="_blank" rel="noreferrer">${value}</a>`
-      }
-    })
-
-    return textArray.join(' ')
   }
 
   const addStatusTextEntry = async () => {
