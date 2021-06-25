@@ -151,6 +151,17 @@
       }
     }
 
+    .chat-photo {
+      display: block;
+      width: 14em;
+      height: 13em;
+      max-width: 14em;
+      max-height: 13em;
+      object-fit: cover;
+      background: #000;
+      border-radius: 0.3em;
+    }
+
     .chat-text {
       word-wrap: break-word;
       display: inline;

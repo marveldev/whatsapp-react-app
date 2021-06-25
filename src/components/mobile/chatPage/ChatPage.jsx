@@ -74,6 +74,9 @@ const ChatPage = () => {
         <div className={chat.person === 'person-one' ? 'arrow-left' : 'arrow-right'} />
         <div className={`${chat.person} chat-item`}>
           <div className="content">
+            {chat.chatPhoto &&
+              <img src={chat.chatPhoto} className="chat-photo" alt="chat-photo" />
+            }
             <p className="chat-text">{chat.chatInputValue}</p>
             <div className="chat-time">
               <small>{chat.chatTime}</small>
