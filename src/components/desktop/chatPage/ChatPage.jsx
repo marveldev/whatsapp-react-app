@@ -2,6 +2,7 @@ import { useState, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ChatDropdown from './ChatDropdown'
 import ChatItems from './ChatItems'
+import ChatPhotoPreview from './ChatPhotoPreview'
 import { homePageActions } from '../homePage/slice'
 import { chatActions } from '../../data/chatSlice'
 import { Smileys } from '../../../common/components'
@@ -19,12 +20,12 @@ const ChatPage = () => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
   const [selectChatModalIsOpen, setSelectChatModalIsOpen] = useState()
   const [selectedChatId, setSelectedChatId] = useState()
-  const [chatInputValue, setChatInputValue] = useState('')
   const { selectedContact } = useSelector(state => state.homePage)
-  const { chats, doodleIsChecked, wallpaper } = useSelector(state => state.chat)
+  const { chats, doodleIsChecked, wallpaper, chatPhoto, chatInputValue
+  } = useSelector(state => state.chat)
   const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
-
+  
   useLayoutEffect(() => {
     const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
     const chatSection = document.querySelector('.desktop-chat-page')
@@ -38,10 +39,18 @@ const ChatPage = () => {
       chatSection.style.background = ''
     }
   }, [doodleIsChecked, theme])
+  
+  const addChatPhotoPicker = event => {
+    const photoReader = new FileReader()
+    photoReader.readAsDataURL(event.target.files[0])
+    photoReader.addEventListener('load', () => {
+      dispatch(chatActions.setChatPhoto(photoReader.result))
+    })
+  }
 
   const addMessageEvent = person => {
     addMessageToDom(person, selectedContact, dispatch)
-    setChatInputValue('')
+    dispatch(chatActions.setChatInputValue(''))
     setSendButtonIsActive(false)
     setSmileyModalIsOpen(false)
   }
@@ -94,6 +103,7 @@ const ChatPage = () => {
           </button>
         </div>
       </div>
+      {chatPhoto && <ChatPhotoPreview />}
       <div>
         <ChatItems
           selectChatModalIsOpen={selectChatModalIsOpen}
@@ -104,8 +114,6 @@ const ChatPage = () => {
       <div className="chat-input-container">
         {smileyModalIsOpen &&
           <Smileys
-            setChatInputValue={setChatInputValue}
-            chatInputValue={chatInputValue}
             setSendButtonIsActive={setSendButtonIsActive}
           />
         }
@@ -115,14 +123,19 @@ const ChatPage = () => {
           <i className="material-icons">&#xe7f2;</i>
         </button>
         <button>
-          <i className="material-icons">&#xe226;</i>
+          <input type="file" id="chatPhotoPicker" accept="image/*"
+            onChange={(event) => addChatPhotoPicker(event)}
+          />
+          <label htmlFor="chatPhotoPicker">
+            <i className="material-icons">&#xe226;</i>
+          </label>
         </button>
         <textarea
           onKeyUp={event => displaySendButton(event, setSendButtonIsActive)}
           className="chat-input"
           value={chatInputValue}
           placeholder="Type a message"
-          onChange={event => setChatInputValue(event.target.value)}
+          onChange={event => dispatch(chatActions.setChatInputValue(event.target.value))}
           autoFocus
         >
         </textarea>
