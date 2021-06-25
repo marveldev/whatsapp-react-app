@@ -1,50 +1,46 @@
-import { useHistory, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import contactList from '../contactListPage/contactList'
 import { chatActions } from '../../data/chatSlice'
-import { constants } from '../../../common'
 import database from '../../../database'
 import './chatPage.scss'
 
 const ChatPhotoPreview = () => {
   const { chatPhoto, chatInputValue } = useSelector(state => state.chat)
-  const { selectedContactIndex } = useParams()
-  const history = useHistory()
+  const { selectedContact } = useSelector(state => state.homePage)
   const dispatch = useDispatch()
-  
-  const contactId = contactList[selectedContactIndex].id
   
   const addMessageEvent = async person => {
     const id = 'id' + Date.parse(new Date()).toString()
-    const chatTime = new Date().toLocaleString('en-US',
-      { hour: 'numeric', minute: 'numeric', hour12: true }
-    )
-  
+     const chatTime = new Date().toLocaleString('en-US',
+     { hour: 'numeric', minute: 'numeric', hour12: true }
+     )
+
     const chatObject = {
       id,
       person,
       chatTime,
       chatInputValue,
-      contactId,
+      contactId: selectedContact.id,
       chatPhoto,
       selected: false
     }
-    
+
     dispatch(chatActions.addChat(chatObject))
     dispatch(chatActions.setChatInputValue(''))
+    dispatch(chatActions.setChatPhoto(null))
     await database.chat.add(chatObject)
-    history.goBack()
   }
   
   return (
     <div className="chat-photo-preview">
-      <div className="header">
-        <button className="back-button" onClick={history.goBack}>
+      <div className="photo-preview-header">
+        <button className="back-button"
+          onClick={() => dispatch(chatActions.setChatPhoto(null))}
+        >
           <i className="material-icons">&#xe5c4;</i>
         </button>
         <span>Preview</span>
       </div>
-      <img src={chatPhoto || constants.PHOTOURL} alt="chatPhoto" />
+      <img src={chatPhoto} alt="chatPhoto" />
       <input type="text" placeholder="Add a caption"
         value={chatInputValue}
         onChange={event => dispatch(chatActions.setChatInputValue(event.target.value))}

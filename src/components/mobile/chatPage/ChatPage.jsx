@@ -75,7 +75,7 @@ const ChatPage = () => {
         <div className={`${chat.person} chat-item`}>
           <div className="content">
             {chat.chatPhoto &&
-              <img src={chat.chatPhoto} className="chat-photo" alt="chat-photo" />
+              <img src={chat.chatPhoto} className="chat-photo" alt="chatPhoto" />
             }
             <p className="chat-text">{chat.chatInputValue}</p>
             <div className="chat-time">
