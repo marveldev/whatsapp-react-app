@@ -3,7 +3,7 @@ import { chatActions } from '../../data/chatSlice'
 import database from '../../../database'
 import './chatPage.scss'
 
-const ChatPhotoPreview = () => {
+const ChatPhotoPreview = ({ setSendButtonIsActive }) => {
   const { chatPhoto, chatInputValue } = useSelector(state => state.chat)
   const { selectedContact } = useSelector(state => state.homePage)
   const dispatch = useDispatch()
@@ -27,6 +27,7 @@ const ChatPhotoPreview = () => {
     dispatch(chatActions.addChat(chatObject))
     dispatch(chatActions.setChatInputValue(''))
     dispatch(chatActions.setChatPhoto(null))
+    setSendButtonIsActive(false)
     await database.chat.add(chatObject)
   }
   

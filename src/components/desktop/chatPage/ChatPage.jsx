@@ -103,7 +103,7 @@ const ChatPage = () => {
           </button>
         </div>
       </div>
-      {chatPhoto && <ChatPhotoPreview />}
+      {chatPhoto && <ChatPhotoPreview setSendButtonIsActive={setSendButtonIsActive}/>}
       <div>
         <ChatItems
           selectChatModalIsOpen={selectChatModalIsOpen}
