@@ -565,6 +565,23 @@ $secondaryColor: #00AF9C;
     .delete-modal {
       @extend .clear-modal;
     }
+
+    .chat-photo-preview {
+      background: #1F2529;
+
+      .photo-preview-header {
+        background: #333738;
+      }
+
+      input {
+        background: #1F2529;
+        color: #fff;
+
+        &::placeholder {
+          color: #fff;
+        }
+      }
+    }
   }
 
   .desktop-contact-info-pane  {
