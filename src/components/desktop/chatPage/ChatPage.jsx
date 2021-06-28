@@ -18,6 +18,7 @@ const ChatPage = () => {
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState()
   const [dropdownIsOpen, setDropdownIsOpen] = useState()
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState()
+  const [userIsRecording, setUserIsRecording] = useState()
   const [selectChatModalIsOpen, setSelectChatModalIsOpen] = useState()
   const [selectedChatId, setSelectedChatId] = useState()
   const { selectedContact } = useSelector(state => state.homePage)
@@ -25,6 +26,8 @@ const ChatPage = () => {
   } = useSelector(state => state.chat)
   const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
+  const [stream, setStream] = useState(null)
+  const [count, setCount] = useState(0)
   
   useLayoutEffect(() => {
     const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
@@ -39,6 +42,27 @@ const ChatPage = () => {
       chatSection.style.background = ''
     }
   }, [doodleIsChecked, theme])
+  
+  const updateTimer = () => {
+    setCount(count + 1)
+  }
+  
+  const recordAudio = async () => {
+    setUserIsRecording(true)
+    setInterval(updateTimer, 1000)
+    
+    try {
+      const userMedia = await navigator.mediaDevices.getUserMedia({ audio: true})
+      setStream(userMedia)
+    } catch (error) {
+      console.log('error')
+    }
+  }
+  
+  const stopAudioRecording = () => {
+    stream?.getAudioTracks()[0].stop()
+    setUserIsRecording(false)
+  }
   
   const addChatPhotoPicker = event => {
     const photoReader = new FileReader()
@@ -110,6 +134,8 @@ const ChatPage = () => {
           setDeleteModalIsOpen={setDeleteModalIsOpen}
           setSelectedChatId={setSelectedChatId}
         />
+        <audio id="chatAudio" controls>Audio not supported in your browser</audio>
+        
       </div>
       <div className="chat-input-container">
         {smileyModalIsOpen &&
@@ -158,7 +184,27 @@ const ChatPage = () => {
             </div>
           )}
           {!sendButtonIsActive && (
-            <button><i className="fa fa-microphone" /></button>
+            <>
+              {userIsRecording && (
+                <div className="audio-options">
+                  <button onClick={stopAudioRecording}>
+                    <i className="material-icons stop-audio-icon">&#xe5cd;</i>
+                  </button>
+                  <p className="audio-timer">
+                    <i className="material-icons">&#xe837;</i>
+                    <span id="stuff">0:00</span>
+                  </p>
+                  <button>
+                    <i className="material-icons send-audio-icon">&#xe5ca;</i>
+                  </button>
+                </div>
+              )}
+              {!userIsRecording && (
+                <button onClick={recordAudio}>
+                  <i className="fa fa-microphone" />
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>

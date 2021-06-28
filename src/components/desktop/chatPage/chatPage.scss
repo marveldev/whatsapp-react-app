@@ -141,6 +141,59 @@
     }
   }
 
+  .audio-options {
+    display: flex;
+    align-items: center;
+    gap: 0 1.2em;
+
+    .send-audio-icon {
+      color: #58d458;
+      vertical-align: bottom;
+      border: 0.1em solid #58d458;
+      border-radius: 1.5em;
+      padding: 0.2em;
+    }
+
+    .stop-audio-icon {
+      color: #ee6e6e;
+      vertical-align: bottom;
+      border: 0.1em solid #ee6e6e;
+      border-radius: 1.5em;
+      padding: 0.2em;
+    }
+
+    .audio-timer {
+      display: flex;
+      margin: 0;
+      align-items: center;
+      gap: 0 0.2em;
+
+      i {
+        color: #ee6e6e;
+        animation: opacity 1.5s ease-in infinite;
+        opacity: 1;
+      }
+
+      span {
+        font-size: 1.2em;
+      }
+    }
+
+    @keyframes opacity {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+
   .persons-button-container {
     position: absolute;
     bottom: 3.3em;
