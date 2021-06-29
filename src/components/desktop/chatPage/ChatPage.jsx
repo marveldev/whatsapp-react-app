@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react'
+import { useState, useLayoutEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ChatDropdown from './ChatDropdown'
 import ChatItems from './ChatItems'
@@ -26,8 +26,9 @@ const ChatPage = () => {
   } = useSelector(state => state.chat)
   const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
-  const [stream, setStream] = useState(null)
-  const [count, setCount] = useState(0)
+  const [stream, setStream] = useState()
+  const [recordCounter, setRecordCounter] = useState()
+  const intervalRef = useRef(null)
   
   useLayoutEffect(() => {
     const defaultWallpaper = theme === 'Dark' ? darkThemeWallpaper : lightThemeWallpaper
@@ -43,13 +44,19 @@ const ChatPage = () => {
     }
   }, [doodleIsChecked, theme])
   
-  const updateTimer = () => {
-    setCount(count + 1)
-  }
-  
   const recordAudio = async () => {
     setUserIsRecording(true)
-    setInterval(updateTimer, 1000)
+    let timer = 0
+    let minute = 0
+    intervalRef.current = setInterval(() => {
+      timer++
+      if (timer > 60) {
+        minute++
+        timer = 0
+      }
+      const doubleDigitTimer = timer < 10 ? '0'+timer : timer
+      setRecordCounter(`${minute}:${doubleDigitTimer}`)
+    }, 1000)
     
     try {
       const userMedia = await navigator.mediaDevices.getUserMedia({ audio: true})
@@ -60,6 +67,8 @@ const ChatPage = () => {
   }
   
   const stopAudioRecording = () => {
+    clearInterval(intervalRef.current)
+    setRecordCounter('0:00')
     stream?.getAudioTracks()[0].stop()
     setUserIsRecording(false)
   }
@@ -135,7 +144,6 @@ const ChatPage = () => {
           setSelectedChatId={setSelectedChatId}
         />
         <audio id="chatAudio" controls>Audio not supported in your browser</audio>
-        
       </div>
       <div className="chat-input-container">
         {smileyModalIsOpen &&
@@ -192,7 +200,7 @@ const ChatPage = () => {
                   </button>
                   <p className="audio-timer">
                     <i className="material-icons">&#xe837;</i>
-                    <span id="stuff">0:00</span>
+                    <span id="stuff">{recordCounter || '0:00'}</span>
                   </p>
                   <button>
                     <i className="material-icons send-audio-icon">&#xe5ca;</i>
