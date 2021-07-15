@@ -59,18 +59,27 @@ const ChatPage = () => {
     }, 1000)
     
     try {
-      const userMedia = await navigator.mediaDevices.getUserMedia({ audio: true})
+      const userMedia = await navigator.mediaDevices.getUserMedia({ audio: true, video: false})
       setStream(userMedia)
     } catch (error) {
       console.log('error')
     }
   }
   
-  const stopAudioRecording = () => {
+  const stopAudioRecording = async () => {
     clearInterval(intervalRef.current)
     setRecordCounter('0:00')
     stream?.getAudioTracks()[0].stop()
     setUserIsRecording(false)
+    const chatAudio = document.querySelector('#chatAudio')
+    const mediaStream = new MediaStream(stream)
+    console.log(mediaStream)
+    chatAudio.srcObject = mediaStream
+    // let audio = new Audio();
+    // audio.srcObject = await navigator.mediaDevices.getUserMedia({audio: true, video: false});
+    // await audio.play();
+    // console.log(stream.getAudioTracks()[0])
+    // setStream(URL.createObjectURL(stream.getAudioTracks()[0]))
   }
   
   const addChatPhotoPicker = event => {
@@ -143,7 +152,7 @@ const ChatPage = () => {
           setDeleteModalIsOpen={setDeleteModalIsOpen}
           setSelectedChatId={setSelectedChatId}
         />
-        <audio id="chatAudio" controls>Audio not supported in your browser</audio>
+        <audio id="chatAudio" src={stream} controls>Audio not supported in your browser</audio>
       </div>
       <div className="chat-input-container">
         {smileyModalIsOpen &&
