@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory, useParams } from 'react-router-dom'
 import { chatActions } from '../../data/chatSlice'
 import { lightThemeWallpaper, darkThemeWallpaper } from '../../../common'
 import database from '../../../database'
@@ -9,6 +10,8 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
   const { theme } = useSelector(state => state.displaySettings)
   const { chats } = useSelector(state => state.chat)
   const dispatch = useDispatch()
+  const history = useHistory()
+  const { selectedContactIndex } = useParams()
 
   const clearChat = async () => {
     const newData = chats.filter(item => item.contactId !== selectedContact.id)
@@ -52,7 +55,11 @@ const ChatDropdown = ({ setChatDropdownIsOpen, selectedContact }) => {
         <>
           <div onClick={() => setChatDropdownIsOpen(false)} className="dropdown-overlay" />
           <div className="chat-dropdown">
-            <button>View contact</button>
+            <button
+              onClick={() => history.push(`/contactInfoPage/${selectedContactIndex}`)}
+            >
+              View contact
+            </button>
             <button>Media, links, and docs</button>
             <button>Search</button>
             <button>Mute notifications</button>
