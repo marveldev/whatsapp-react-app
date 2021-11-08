@@ -383,7 +383,7 @@ $secondaryColor: #00AF9C;
       color: $textPrimaryColor;
     }
 
-    .chat-container {
+    .chat-container, .chat-output-container {
       .content {
         background: $primaryColor;
       }

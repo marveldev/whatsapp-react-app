@@ -2,7 +2,6 @@ import { useHistory, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import contactList from '../contactListPage/contactList'
 import { chatActions } from '../../data/chatSlice'
-import { constants } from '../../../common'
 import database from '../../../database'
 import './chatPage.scss'
 
@@ -32,7 +31,7 @@ const ChatPhotoPreview = () => {
     
     dispatch(chatActions.addChat(chatObject))
     dispatch(chatActions.setChatInputValue(''))
-    await database.chat.add(chatObject)
+    await database.chat.put(chatObject)
     history.goBack()
   }
   
@@ -44,7 +43,7 @@ const ChatPhotoPreview = () => {
         </button>
         <span>Preview</span>
       </div>
-      <img src={chatPhoto || constants.PHOTOURL} alt="chatPhoto" />
+      <img src={chatPhoto} alt="chatPhoto" />
       <input type="text" placeholder="Add a caption"
         value={chatInputValue}
         onChange={event => dispatch(chatActions.setChatInputValue(event.target.value))}

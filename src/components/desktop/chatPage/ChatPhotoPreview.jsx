@@ -28,7 +28,7 @@ const ChatPhotoPreview = ({ setSendButtonIsActive }) => {
     dispatch(chatActions.setChatInputValue(''))
     dispatch(chatActions.setChatPhoto(null))
     setSendButtonIsActive(false)
-    await database.chat.add(chatObject)
+    await database.chat.put(chatObject)
   }
   
   return (

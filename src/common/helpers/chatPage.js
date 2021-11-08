@@ -43,7 +43,7 @@ const addMessageToDom = async (person, selectedContact, dispatch) => {
     selected: false
   }
 
-  await database.chat.add(chatObject)
+  await database.chat.put(chatObject)
   chatContainer.scrollTop = chatContainer.scrollHeight
   chatInput.style.height = ''
   dispatch(chatActions.addChat(chatObject))
