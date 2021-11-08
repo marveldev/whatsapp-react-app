@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 import { ChatPage, DisplaySettingsPage, HomePage, SettingsPage, ChatPhotoPreview,
   StatusGallery, ProfilePage, ContactInfoPage, ViewStatusEntry, StatusTextEntry
 } from '../mobile'
@@ -16,6 +16,7 @@ const MobileRoutes = () => {
       <Route path="/viewStatusEntry" component={ViewStatusEntry} />
       <Route path="/statusTextEntry" component={StatusTextEntry} />
       <Route path="/contactInfoPage/:selectedContactIndex" component={ContactInfoPage} />
+      <Redirect to='/' />
     </>
   )
 }

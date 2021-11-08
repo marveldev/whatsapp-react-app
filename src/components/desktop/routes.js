@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 import { HomePage, StatusPage, ViewStatusEntry, StatusTextEntry } from '../desktop'
 
 const DesktopRoutes = () => {
@@ -8,6 +8,7 @@ const DesktopRoutes = () => {
       <Route path="/status" component={StatusPage} />
       <Route path="/viewStatus" component={ViewStatusEntry} />
       <Route path="/statusTextEntry" component={StatusTextEntry} />
+      <Redirect to='/' />
     </>
   )
 }
