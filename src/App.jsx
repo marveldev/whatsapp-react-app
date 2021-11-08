@@ -9,29 +9,30 @@ import { getStatus } from './components/data/statusSlice'
 import './index.scss'
 
 const App = () => {
-  const [device, setDevice] = useState()
+  const [width, setWidth] = useState(window.innerWidth)
   const { theme } = useSelector(state => state.displaySettings)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (window.innerWidth >= 768) {
-      setDevice('desktop')
-    } else {
-      setDevice('mobile')
-    }
-  
     dispatch(getProfile())
     dispatch(getChats())
     dispatch(getWallpaper())
     dispatch(getStatus())
+
+    const handleResizeWindow = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', handleResizeWindow)
+
+    return () => {
+      window.removeEventListener('resize', handleResizeWindow)
+    }
   }, [dispatch])
 
   return (
     <BrowserRouter>
       <div className={`app-layer ${theme?.toLowerCase()}`}>
         <Switch>
-          {device === 'mobile' && <MobileRoutes />}
-          {device === 'desktop' && <DesktopRoutes />}
+          {width < 860 && <MobileRoutes />}
+          {width >= 860 && <DesktopRoutes />}
         </Switch>
       </div>
     </BrowserRouter>
