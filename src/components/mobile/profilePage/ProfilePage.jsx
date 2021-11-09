@@ -16,7 +16,13 @@ const ProfilePage = () => {
   return (
     <div className="profile-page">
       <div className="header">
-        <button onClick={goBack} className="material-icons">&#xe5c4;</button>
+        <button
+          onClick={goBack}
+          id="profileBackButton"
+          className="material-icons"
+        >
+          &#xe5c4;
+        </button>
         <p>Profile</p>
       </div>
       <div className="content">
@@ -54,6 +60,7 @@ const ProfilePage = () => {
               </label>
               {nameButtonIsOpen && (
                 <button
+                  id="nameCheckButton"
                   onClick={() => {
                     updateProfile(dispatch, setToasterIsOpen); setNameButtonIsOpen(false)
                   }}
@@ -81,6 +88,7 @@ const ProfilePage = () => {
               </label>
               {aboutButtonIsOpen && (
                 <button
+                  id="aboutCheckButton"
                   onClick={() => {
                     updateProfile(dispatch, setToasterIsOpen); setAboutButtonIsOpen(false)
                   }}

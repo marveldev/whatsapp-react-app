@@ -39,7 +39,7 @@ const TopNav = () => {
           <h3>WhatsApp</h3>
           <div>
             <button><i className="fa fa-search" /></button>
-            <button onClick={() => setDropdownIsOpen(true)}>
+            <button id="dropdownIcon" onClick={() => setDropdownIsOpen(true)}>
               <i className="material-icons">&#xe5d4;</i>
             </button>
           </div>
