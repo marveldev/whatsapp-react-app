@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import contactList from '../contactListPage/contactList'
+import contactList from '../../data/contactList'
 import './contactInfoPage.scss'
 
 const ContactInfoPage = () => {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import contactList from './contactList'
+import contactList from '../../data/contactList'
 import './contactListPage.scss'
 
 const ContactListPage = () => {

@@ -1,6 +1,6 @@
 const contactList = [
   {
-    id: 'kjfdnd',
+    id: 'kofiHawa',
     name: 'Kofi Hawa',
     profilePhoto: 'https://images.pexels.com/photos/2876486/pexels-photo-2876486.png?auto=compress&cs=tinysrgb&dpr=2&w=500'
   },

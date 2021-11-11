@@ -1,6 +1,6 @@
 import { useHistory, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import contactList from '../contactListPage/contactList'
+import contactList from '../../data/contactList'
 import { chatActions } from '../../data/chatSlice'
 import database from '../../../database'
 import './chatPage.scss'

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import ChatDropdown from './ChatDropdown'
-import contactList from '../contactListPage/contactList'
+import contactList from '../../data/contactList'
 import { chatActions } from '../../data/chatSlice'
 import { Smileys, lightThemeWallpaper, darkThemeWallpaper } from '../../../common'
 import {
