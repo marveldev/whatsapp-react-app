@@ -110,7 +110,7 @@ const ChatPage = () => {
         <div className="button-container">
           <button><i className="fa fa-video-camera" /></button>
           <button><i className="fa fa-phone" /></button>
-          <button onClick={() => setChatDropdownIsOpen(true)}>
+          <button id="dropdown" onClick={() => setChatDropdownIsOpen(true)}>
             <i className="material-icons">&#xe5d4;</i>
           </button>
         </div>
@@ -188,7 +188,7 @@ const ChatPage = () => {
           </button>
           <span>{selectedChatCount}</span>
           <button><i className="fa fa-star" /></button>
-          <button onClick={() => setDeleteModalIsOpen(true)}>
+          <button id="deleteButton" onClick={() => setDeleteModalIsOpen(true)}>
             <i className="fa fa-trash" />
           </button>
           <button><i className="material-icons">&#xe14d;</i></button>

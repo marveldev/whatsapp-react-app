@@ -1,42 +1,41 @@
-//   Check if the chat history is displaying correctly for the user.
-//   The user should be able to upload a profile picture and edit the profile information.
-//  Verify that the user can change the status in the app
-
 describe('Chat features', () => {
   before(() => {
     cy.visit('/')
   })
 
-  it('should be able to send and receive messages', () => {
-    cy.findByText(/kofi hawa/i).click()
-    cy.findByRole('textbox').type('How you doing?')
-    cy.findByRole('button', {  name: /person1/i}).click()
-    cy.get('.chat-output-container').should('contain', 'How you doing?')
-    cy.findByRole('textbox').type('I am good.')
-    cy.findByRole('button', {  name: /person2/i}).click()
-    cy.get('.chat-output-container').should('contain', 'I am good.')
-  })
+  const personOneMessage = 'How you doing?'
+  const personTwoMessage = 'I am good.'
 
-  it('should be able to delete single chat messages', () => {
-    cy.findAllByText('How you doing?').click({ multiple: true, force: true })
-    cy.get('.fa-trash').click()
-    cy.get('.delete-modal').should('be.visible')
-    cy.findByRole('button', {  name: /delete for me/i}).click()
-    cy.get('.chat-output-container').should('not.contain', 'How you doing?')
+  it('should be able to send and receive messages', () => {
+    cy.get('.contact').first().click()
+    cy.findByRole('textbox').type(personOneMessage)
+    cy.findByText('Person1').click()
+    cy.get('.chat-output-container').should('contain', personOneMessage)
+    cy.findByRole('textbox').type(personTwoMessage)
+    cy.findByText('Person2').click()
+    cy.get('.chat-output-container').should('contain', personTwoMessage)
   })
 
   it('should be able to delete all chat messages', () => {
-    cy.findByRole('button', {  name: //i}).click()
-    cy.findByRole('button', {  name: /clear chat/i}).click()
+    cy.get('#dropdown').click()
+    cy.findByText('Clear chat').click()
     cy.findByText('CLEAR').click()
   })
 
   it('should be able to add smiley(s) to chat messages', () => {
-    cy.findByRole('textbox').type('I love you')
+    cy.findByRole('textbox').type(personTwoMessage)
     cy.get('.smiley-button').click()
-    cy.findByRole('button', {  name: /😍/i}).dblclick()
-    cy.findByRole('button', {  name: /person1/i}).click()
-    cy.get('.chat-output-container').should('contain', '😍')
+    cy.get('.smiley').first().click()
+    cy.findByText('Person1').click()
+    cy.get('.chat-output-container').should('contain', '😀')
+  })
+
+  it('should be able to delete single chat messages', () => {
+    cy.get('.chat-item-wrapper').first().click()
+    cy.get('#deleteButton').click()
+    cy.get('.delete-modal').should('be.visible')
+    cy.findByText('DELETE FOR ME').click()
+    cy.get('.chat-output-container').should('contain', '')
   })
 
   it('should be able to add images to chat messages', () => {
