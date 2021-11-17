@@ -8,11 +8,11 @@ describe('Chat features', () => {
 
   it('should be able to send and receive messages', () => {
     cy.get('.contact').first().click()
-    cy.findByRole('textbox').type(personOneMessage)
-    cy.findByText('Person1').click()
+    cy.get('.chat-input').type(personOneMessage)
+    cy.get('#personOne').click()
     cy.get('.chat-output-container').should('contain', personOneMessage)
-    cy.findByRole('textbox').type(personTwoMessage)
-    cy.findByText('Person2').click()
+    cy.get('.chat-input').type(personTwoMessage)
+    cy.get('#personTwo').click()
     cy.get('.chat-output-container').should('contain', personTwoMessage)
   })
 
@@ -23,10 +23,10 @@ describe('Chat features', () => {
   })
 
   it('should be able to add smiley(s) to chat messages', () => {
-    cy.findByRole('textbox').type(personTwoMessage)
+    cy.get('.chat-input').type(personTwoMessage)
     cy.get('.smiley-button').click()
     cy.get('.smiley').first().click()
-    cy.findByText('Person1').click()
+    cy.get('#personOne').click()
     cy.get('.chat-output-container').should('contain', '😀')
   })
 

@@ -161,12 +161,14 @@ const ChatPage = () => {
                 <button
                   onClick={() => addMessageEvent('person-one')}
                   className="person-one"
+                  id="personOne"
                 >
                   Person1
                 </button>
                 <button
                   onClick={() => addMessageEvent('person-two')}
                   className="person-two"
+                  id="personTwo"
                 >
                   Person2
                 </button>
